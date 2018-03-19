@@ -1,7 +1,9 @@
 <h2>Account Info</h2>
 <h3>ID：<%= @user.name %></h3>
 <h3>スクリーンネーム：<%= @user.nickname %></h3>
-<% if @user.id == current_user.id %>
+<% if user_signed_in? && (@user.id == current_user.id) %>
 <h3>メールアドレス：<%= @user.email %></h3>
-<% end %>
 <p><%= link_to 'Edit Account', edit_user_registration_path %></p>
+<% end %>
+<%= render 'follow_form' %>
+<%= render 'stats' %>

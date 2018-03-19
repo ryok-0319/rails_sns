@@ -8,6 +8,7 @@ class TweetsController < ApplicationController
   end
 
   def show
+    @poster = User.find_by(id: @tweet.user_id)
   end
 
   def new
