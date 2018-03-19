@@ -1,19 +1,22 @@
+# リプライの操作
 class RepliesController < ApplicationController
+  before_action :set_tweet
+  before_action :set_reply, only: [:edit, :update, :destroy]
 
   def create
-    @tweet = Tweet.find(params[:tweet_id])
-    @tweet.replies.create(reply_params)
-    redirect_to tweet_path(@tweet)
+    @reply = @tweet.replies.new(reply_params)
+    if @reply.save
+      redirect_to tweet_path(@tweet)
+    else
+      @tweet = Tweet.find(params[:tweet_id])
+      render 'tweets/show'
+    end
   end
 
   def edit
-    @tweet = Tweet.find(params[:tweet_id])
-    @reply = @tweet.replies.find(params[:id])
   end
 
   def update
-    @tweet = Tweet.find(params[:tweet_id])
-    @reply = @tweet.replies.find(params[:id])
     if @reply.update(reply_params)
       redirect_to tweet_path(@tweet)
     else
@@ -22,15 +25,21 @@ class RepliesController < ApplicationController
   end
 
   def destroy
-    @tweet = Tweet.find(params[:tweet_id])
-    @reply = @tweet.replies.find(params[:id])
     @reply.destroy
     redirect_to tweet_path(@tweet)
   end
 
   private
-    def reply_params
-      params.require(:reply).permit(:content)
-    end
 
+  def reply_params
+    params.require(:reply).permit(:content)
+  end
+
+  def set_tweet
+    @tweet = Tweet.find(params[:tweet_id])
+  end
+
+  def set_reply
+    @reply = @tweet.replies.find(params[:id])
+  end
 end
