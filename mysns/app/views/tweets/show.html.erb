@@ -7,12 +7,14 @@
   <% @tweet.replies.each do |reply| %>
   <li>
     <%= reply.content %>
+    <% if user_signed_in? && (reply.user_id == current_user.id) %>
     <%= link_to '[Edit]', edit_tweet_reply_path(@tweet, reply), class: 'command'%>
     <%= link_to '[x]',
       tweet_reply_path(@tweet, reply),
       method: :delete,
       class: 'command',
       data: { confirm: 'Sure?' } %>
+    <% end %>
   </li>
   <% end %>
 </ul>
