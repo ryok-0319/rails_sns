@@ -25,6 +25,9 @@
       <p>ログイン中：<%= current_user.nickname %></p>
       <p>ID：<%= current_user.name %></p>
       <% end %>
+      <% if user_signed_in? %>
+      <h2><%= link_to 'Account Info', user_path(current_user.id) %></h2>
+      <% end %>
     <%= yield %>
     </div>
   </body>
