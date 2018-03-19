@@ -1,0 +1,28 @@
+<h2>ツイート詳細</h2>
+<p><%= simple_format @tweet.content %></p>
+
+<h3>Replies</h3>
+<% if @tweet.replies.any? %>
+<ul>
+  <% @tweet.replies.each do |reply| %>
+  <li>
+    <%= reply.content %>
+    <%= link_to '[Edit]', edit_tweet_reply_path(@tweet, reply), class: 'command'%>
+    <%= link_to '[x]',
+      tweet_reply_path(@tweet, reply),
+      method: :delete,
+      class: 'command',
+      data: { confirm: 'Sure?' } %>
+  </li>
+  <% end %>
+</ul>
+<% end %>
+
+<%= form_for ([@tweet, @tweet.replies.build]) do |f| %>
+<p>
+  <%= f.text_area :content, placeholder: 'enter here '%>
+</p>
+<p>
+  <%= f.submit %>
+</p>
+<% end %>

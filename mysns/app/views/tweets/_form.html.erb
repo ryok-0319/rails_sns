@@ -1,0 +1,11 @@
+<%= form_for @tweet do |f| %>
+<p>
+  <%= f.text_area :content, placeholder: 'enter here '%>
+  <% if @tweet.errors.messages[:content].any? %>
+  <span class="error"><%= @tweet.errors.messages[:content][0] %></span>
+  <% end %>
+</p>
+<p>
+  <%= f.submit %>
+</p>
+<% end %>

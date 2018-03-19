@@ -1,0 +1,9 @@
+<h2>Edit Reply</h2>
+<%= form_for ([@tweet, @reply]) do |f| %>
+<p>
+  <%= f.text_area :content, placeholder: 'enter here '%>
+</p>
+<p>
+  <%= f.submit %>
+</p>
+<% end %>
