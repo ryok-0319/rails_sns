@@ -21,6 +21,9 @@
 <%= form_for ([@tweet, @tweet.replies.build]) do |f| %>
 <p>
   <%= f.text_area :content, placeholder: 'enter here '%>
+  <% if !(@reply.nil?) && @reply.errors.messages[:content].any? %>
+  <span class="error"><%= @reply.errors.messages[:content][0] %></span>
+  <% end %>
 </p>
 <p>
   <%= f.submit %>
