@@ -1,5 +1,6 @@
 <h2>ツイート詳細</h2>
 <p><%= simple_format @tweet.content %></p>
+<p>投稿者：<%= link_to "@#{@poster.name}", user_path(@poster) %></p>
 
 <h3>Replies</h3>
 <% if @tweet.replies.any? %>
