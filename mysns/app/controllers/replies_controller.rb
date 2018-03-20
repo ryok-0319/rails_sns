@@ -2,9 +2,11 @@
 class RepliesController < ApplicationController
   before_action :set_tweet
   before_action :set_reply, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!
 
   def create
     @reply = @tweet.replies.new(reply_params)
+    @reply[:user_id] = current_user.id
     if @reply.save
       redirect_to tweet_path(@tweet)
     else
@@ -14,6 +16,9 @@ class RepliesController < ApplicationController
   end
 
   def edit
+    if @reply.user_id != current_user.id
+      render plain: "編集・削除は作成者のみです"
+    end
   end
 
   def update

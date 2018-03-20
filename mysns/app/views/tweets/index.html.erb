@@ -6,12 +6,14 @@
   <% @tweets.each do |tweet| %>
   <li>
     <%= link_to tweet.content, tweet_path(tweet) %>
+    <% if user_signed_in? && (tweet.user_id == current_user.id) %>
     <%= link_to '[Edit]', edit_tweet_path(tweet), class: 'command'%>
     <%= link_to '[x]',
       tweet_path(tweet),
       method: :delete,
       class: 'command',
       data: { confirm: 'Sure?' } %>
+    <% end%>
   </li>
   <% end %>
 </ul>
