@@ -3,35 +3,11 @@
   <%= link_to 'New Tweet', new_tweet_path, class: 'header-menu' %>
   フォローしているユーザーのTweet
 </h2>
-<ul>
-  <% current_user.followings.each do |user| %>
-  <% user.tweets.each do |tweet| %>
-  <% if tweet.level != 2 %>
-  <li><%= link_to tweet.content, tweet_path(tweet) %> <%= link_to "@#{tweet.user.nickname}", user_path(tweet.user) %></li>
-  <% end %>
-  <% end %>
-  <% end %>
-</ul>
+<%= render :partial => "tweets", :locals => { tweets: @following_tweets } %>
 <% end %>
 
 <h2>
   <%= link_to 'New Tweet', new_tweet_path, class: 'header-menu' %>
   全てのTweet
 </h2>
-<ul>
-  <% @tweets.each do |tweet| %>
-  <% if tweet.level == 0 %>
-  <li>
-    <%= link_to tweet.content, tweet_path(tweet) %> <%= link_to "@#{tweet.user.nickname}", user_path(tweet.user) %>
-    <% if user_signed_in? && (tweet.user_id == current_user.id) %>
-    <%= link_to '[Edit]', edit_tweet_path(tweet), class: 'command'%>
-    <%= link_to '[x]',
-      tweet_path(tweet),
-      method: :delete,
-      class: 'command',
-      data: { confirm: 'Sure?' } %>
-    <% end%>
-  </li>
-  <% end %>
-  <% end %>
-</ul>
+<%= render :partial => "tweets", :locals => { tweets: @tweets } %>

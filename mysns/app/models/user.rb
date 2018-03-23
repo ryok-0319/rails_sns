@@ -20,6 +20,8 @@ class User < ApplicationRecord
 
   has_many :tweets
 
+  has_many :replies
+
   def following?(other_user)
     following_relationships.find_by(following_id: other_user.id)
   end

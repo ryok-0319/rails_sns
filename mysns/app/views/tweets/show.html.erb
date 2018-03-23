@@ -3,11 +3,11 @@
 <p>投稿者：<%= link_to "@#{@poster.name}", user_path(@poster) %></p>
 
 <h3>Replies</h3>
-<% if @tweet.replies.any? %>
+<% if @replies.any? %>
 <ul>
-  <% @tweet.replies.each do |reply| %>
+  <% @replies.each do |reply| %>
   <li>
-    <%= reply.content %>
+    <%= reply.content %> <%= link_to "@#{reply.user.nickname}" %>
     <% if user_signed_in? && (reply.user_id == current_user.id) %>
     <%= link_to '[Edit]', edit_tweet_reply_path(@tweet, reply), class: 'command'%>
     <%= link_to '[x]',
