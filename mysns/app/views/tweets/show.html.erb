@@ -3,22 +3,10 @@
 <p>投稿者：<%= link_to "@#{@poster.name}", user_path(@poster) %></p>
 
 <h3>Replies</h3>
-<% if @tweet.replies.any? %>
-<ul>
-  <% @tweet.replies.each do |reply| %>
-  <li>
-    <%= reply.content %>
-    <% if user_signed_in? && (reply.user_id == current_user.id) %>
-    <%= link_to '[Edit]', edit_tweet_reply_path(@tweet, reply), class: 'command'%>
-    <%= link_to '[x]',
-      tweet_reply_path(@tweet, reply),
-      method: :delete,
-      class: 'command',
-      data: { confirm: 'Sure?' } %>
-    <% end %>
-  </li>
-  <% end %>
-</ul>
+<% if @replies.any? %>
+<%= render :partial => "tweets", :locals => { tweets: @replies } %>
+<% else %>
+リプライはまだありません
 <% end %>
 
 <%= form_for ([@tweet, @tweet.replies.build]) do |f| %>
