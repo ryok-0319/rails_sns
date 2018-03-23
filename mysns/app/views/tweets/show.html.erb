@@ -4,21 +4,9 @@
 
 <h3>Replies</h3>
 <% if @replies.any? %>
-<ul>
-  <% @replies.each do |reply| %>
-  <li>
-    <%= reply.content %> <%= link_to "@#{reply.user.nickname}" %>
-    <% if user_signed_in? && (reply.user_id == current_user.id) %>
-    <%= link_to '[Edit]', edit_tweet_reply_path(@tweet, reply), class: 'command'%>
-    <%= link_to '[x]',
-      tweet_reply_path(@tweet, reply),
-      method: :delete,
-      class: 'command',
-      data: { confirm: 'Sure?' } %>
-    <% end %>
-  </li>
-  <% end %>
-</ul>
+<%= render :partial => "tweets", :locals => { tweets: @replies } %>
+<% else %>
+リプライはまだありません
 <% end %>
 
 <%= form_for ([@tweet, @tweet.replies.build]) do |f| %>

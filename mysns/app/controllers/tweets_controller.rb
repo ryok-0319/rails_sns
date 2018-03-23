@@ -73,8 +73,8 @@ class TweetsController < ApplicationController
   end
 
   def unauthorized?(tweet)
-    (tweet.level == 1 && (!(user_signed_in?) || !(current_user.following?(tweet.user)))) ||
-      (tweet.level == 2 && (!(user_signed_in?) || current_user != tweet.user))
+    (tweet.to_followers? && (!(user_signed_in?) || !(current_user.following?(tweet.user)))) ||
+      (tweet.to_myself? && (!(user_signed_in?) || current_user != tweet.user))
   end
 
   # judge if the tweet can be shown

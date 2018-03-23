@@ -3,7 +3,11 @@
   <%= link_to 'New Tweet', new_tweet_path, class: 'header-menu' %>
   フォローしているユーザーのTweet
 </h2>
+<% if @following_tweets.any? %>
 <%= render :partial => "tweets", :locals => { tweets: @following_tweets } %>
+<% else %>
+ツイートがまだありません
+<% end %>
 <% end %>
 
 <h2>
