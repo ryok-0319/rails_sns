@@ -8,7 +8,10 @@ class TweetsController < ApplicationController
   end
 
   def show
-    @poster = User.find_by(id: @tweet.user_id)
+    @poster = @tweet.user
+    if (@tweet.level == 1 && !(following?(@poster))) || @tweet.level == 2
+      render plain: "閲覧権限がありません"
+    end
   end
 
   def new
@@ -47,7 +50,7 @@ class TweetsController < ApplicationController
   private
 
   def tweet_params
-    params.require(:tweet).permit(:content)
+    params.require(:tweet).permit(:content, :level)
   end
 
   def set_tweet

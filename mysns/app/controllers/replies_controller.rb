@@ -37,7 +37,7 @@ class RepliesController < ApplicationController
   private
 
   def reply_params
-    params.require(:reply).permit(:content)
+    params.require(:reply).permit(:content, :level)
   end
 
   def set_tweet
