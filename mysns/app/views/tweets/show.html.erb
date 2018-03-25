@@ -20,7 +20,7 @@
   <%= f.label :"公開範囲" %>
 </p>
 <p>
-  <%= f.select :level, [["全体", 0], ["フォロワーのみ", 1], ["自分のみ", 2]] %>
+  <%= f.select :level, [["全体", :to_all], ["フォロワーのみ", :to_followers], ["自分のみ", :to_myself]] %>
 </p>
 <p>
   <%= f.submit %>
