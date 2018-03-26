@@ -1,17 +1,18 @@
 class ReplyFavsController < ApplicationController
   def create
-    @user_id = current_user.id
-    @reply_id = Tweet.find(params[:id]).id
-    @reply_fav = ReplyFav.new(reply_id: @reply_id, user_id: @user_id)
-    if @reply_fav.save
-      redirect_to tweet_path(@tweet_id)
-    end
+    @reply_fav = ReplyFav.create(user_id: current_user.id, reply_id: params[:reply_id])
+    @tweet = Tweet.find(params[:tweet_id])
+    @reply_favs = ReplyFav.where(reply_id: params[:reply_id])
+    @replies = Reply.all
+    redirect_to tweet_path(@tweet)
   end
 
   def destroy
-    @reply_fav = ReplyFav.find(params[:id])
-    if @reply_fav.destroy
-      redirect_to tweet_path(@tweet_id)
-    end
+    reply_fav = ReplyFav.find_by(user_id: current_user.id, reply_id: params[:reply_id])
+    reply_fav.destroy
+    @tweet = Tweet.find(params[:tweet_id])
+    @reply_favs = ReplyFav.where(reply_id: params[:reply_id])
+    @replies = Reply.all
+    redirect_to tweet_path(@tweet)
   end
 end

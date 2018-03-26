@@ -28,6 +28,7 @@ class TweetsController < ApplicationController
     @replies = Reply.permitted_reply(@tweet, current_user)
     if user_signed_in?
       @tweet_fav = TweetFav.find_by(user_id: current_user.id, tweet_id: @tweet.id)
+      @favs = ReplyFav.user_favs(@replies, current_user)
     end
   end
 
