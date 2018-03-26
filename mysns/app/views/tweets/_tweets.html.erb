@@ -1,5 +1,5 @@
 <ul>
-  <% tweets.each do |tweet| %>
+  <% tweets.each_with_index do |tweet, i| %>
   <li>
     <%= link_to tweet.content, tweet_path(tweet) %> <%= link_to "@#{tweet.user.nickname}", user_path(tweet.user) %>
     <% if user_signed_in? && (tweet.user_id == current_user.id) %>
@@ -11,5 +11,27 @@
       data: { confirm: 'Sure?' } %>
     <% end %>
   </li>
+  <% if user_signed_in? %>
+    <% if tweet.fav_added?(current_user.id) %>
+      <%= button_to "/tweets/#{tweet.id}/tweet_favs/#{favs[i][:id]}", method: :delete, id: "like-button", remote: true do %>
+        <%= image_tag("icon_red_heart.svg", size: "50x50") %>
+        <span>
+          <%= tweet.favs_count %>
+        </span>
+      <% end %>
+    <% else %>
+      <%= button_to tweet_tweet_favs_path(tweet), id: "like-button", remote: true do %>
+        <%= image_tag("icon_heart.svg", size: "50x50") %>
+        <span>
+          <%= tweet.favs_count %>
+        </span>
+      <% end %>
+    <% end %>
+  <% else %>
+    <%= image_tag("icon_heart.svg", size: "50x50") %>
+      <span>
+        <%= tweet.favs_count %>
+      </span>
+  <% end %>
   <% end %>
 </ul>

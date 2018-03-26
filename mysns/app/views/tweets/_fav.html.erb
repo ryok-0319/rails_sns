@@ -1,5 +1,5 @@
 <% if user_signed_in? %>
-  <% if @tweet.fav_user(current_user.id) %>
+  <% if @tweet.fav_added?(current_user.id) %>
     <%= button_to "/tweets/#{@tweet.id}/tweet_favs/#{@tweet_fav.id}", method: :delete, id: "like-button", remote: true do %>
       <%= image_tag("icon_red_heart.svg", size: "50x50") %>
       <span>

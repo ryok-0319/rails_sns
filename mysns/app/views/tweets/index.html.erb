@@ -4,7 +4,7 @@
   フォローしているユーザーのTweet
 </h2>
 <% if @following_tweets.any? %>
-<%= render :partial => "tweets", :locals => { tweets: @following_tweets } %>
+<%= render :partial => "tweets", locals: { tweets: @following_tweets, favs: @following_favs } %>
 <% else %>
 ツイートがまだありません
 <% end %>
@@ -14,4 +14,4 @@
   <%= link_to 'New Tweet', new_tweet_path, class: 'header-menu' %>
   全てのTweet
 </h2>
-<%= render :partial => "tweets", :locals => { tweets: @tweets } %>
+<%= render :partial => "tweets", locals: { tweets: @tweets, favs: @favs } %>

@@ -22,7 +22,7 @@ class Tweet < ApplicationRecord
     @permitted_tweets.sort_by!{ |a| a[:created_at] }.reverse!
   end
 
-  def fav_user(user_id)
+  def fav_added?(user_id)
     tweet_favs.find_by(user_id: user_id)
   end
 end
