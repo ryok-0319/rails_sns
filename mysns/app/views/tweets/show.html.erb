@@ -2,9 +2,25 @@
 <p><%= simple_format @tweet.content %></p>
 <p>投稿者：<%= link_to "@#{@poster.name}", user_path(@poster) %></p>
 
+<%= render 'fav' %>
+
 <h3>Replies</h3>
 <% if @replies.any? %>
-<%= render :partial => "tweets", :locals => { tweets: @replies } %>
+<ul>
+  <% @replies.each do |reply| %>
+  <li>
+    <%= reply.content %> <%= link_to "@#{reply.user.nickname}", user_path(reply.user) %>
+    <% if user_signed_in? && (reply.user_id == current_user.id) %>
+    <%= link_to '[Edit]', edit_tweet_reply_path(@tweet, reply), class: 'command'%>
+    <%= link_to '[x]',
+      tweet_reply_path(@tweet, reply),
+      method: :delete,
+      class: 'command',
+      data: { confirm: 'Sure?' } %>
+    <% end %>
+  </li>
+  <% end %>
+</ul>
 <% else %>
 リプライはまだありません
 <% end %>

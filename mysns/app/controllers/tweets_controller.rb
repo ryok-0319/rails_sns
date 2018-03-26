@@ -20,6 +20,7 @@ class TweetsController < ApplicationController
       render plain: "閲覧権限がありません"
     end
     @replies = Reply.permitted_reply(@tweet, current_user)
+    @tweet_fav = TweetFav.find_by(user_id: current_user.id, tweet_id: @tweet.id)
   end
 
   def new

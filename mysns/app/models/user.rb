@@ -22,6 +22,12 @@ class User < ApplicationRecord
 
   has_many :replies
 
+  has_many :tweet_favs, dependent: :destroy
+  has_many :tweets, through: :tweet_favs
+
+  has_many :reply_favs, dependent: :destroy
+  has_many :replies, through: :reply_favs
+
   def following?(other_user)
     following_relationships.find_by(following_id: other_user.id)
   end

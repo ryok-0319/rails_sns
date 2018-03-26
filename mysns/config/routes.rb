@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   resources :tweets do
     resources :replies
+    resources :tweet_favs, only: [:create, :destroy]
   end
 
   root 'tweets#index'
