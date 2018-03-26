@@ -4,11 +4,7 @@ class TweetsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @all_tweets = Tweet.all.order(created_at: 'desc')
-    @tweets = []
-    # 全てのツイートのうち、条件を満たしているものだけを@tweetsに格納
-    permitted_tweet(@tweets, @all_tweets)
-    @tweets.sort_by!{ |a| a[:created_at] }.reverse!
+    @tweets = Tweet.permitted_tweet(current_user)
     # @tweetsのうち、フォロー中と自分自身のものだけを@following_tweetsに格納
     @following_tweets = []
     @tweets.each do |tweet|
@@ -20,13 +16,10 @@ class TweetsController < ApplicationController
 
   def show
     @poster = @tweet.user
-    if unauthorized?(@tweet)
+    if @tweet.unviewable?(current_user)
       render plain: "閲覧権限がありません"
     end
-    @replies = []
-    # ツイートについたリプライのうち、公開設定を満たしているものだけを@repliesに格納
-    permitted_tweet(@replies, @tweet.replies)
-    @replies.sort_by! { |a| a[:created_at] }
+    @replies = Reply.permitted_reply(@tweet, current_user)
   end
 
   def new
@@ -70,19 +63,5 @@ class TweetsController < ApplicationController
 
   def set_tweet
     @tweet = Tweet.find(params[:id])
-  end
-
-  def unauthorized?(tweet)
-    (tweet.to_followers? && (!(user_signed_in?) || !(current_user.following?(tweet.user)))) ||
-      (tweet.to_myself? && (!(user_signed_in?) || current_user != tweet.user))
-  end
-
-  # judge if the tweet can be shown
-  def permitted_tweet(permitted_tweets, tweets)
-    tweets.each do |tweet|
-      if !(unauthorized?(tweet))
-        permitted_tweets.push(tweet)
-      end
-    end
   end
 end
