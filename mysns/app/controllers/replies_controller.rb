@@ -7,7 +7,20 @@ class RepliesController < ApplicationController
   def create
     @reply = @tweet.replies.new(reply_params)
     @reply[:user_id] = current_user.id
+    @user = @tweet.user
     if @reply.save
+      if @user.notification
+        RelationshipMailer.notify_reply_to_tweet(current_user, @user, @reply).deliver
+      end
+      if @user.id != current_user.id
+        Notification.create(
+          user_id: @user.id,
+          notified_by_id: current_user.id,
+          notification_type: :reply_to_tweet,
+          message: "#{@reply.content}",
+          link: "/tweets/#{@tweet.id}"
+        )
+      end
       redirect_to tweet_path(@tweet)
     else
       @tweet = Tweet.find(params[:tweet_id])

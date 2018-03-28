@@ -28,6 +28,8 @@ class User < ApplicationRecord
   has_many :reply_favs, dependent: :destroy
   has_many :replies, through: :reply_favs
 
+  has_many :notifications, dependent: :destroy
+
   def following?(other_user)
     following_relationships.find_by(following_id: other_user.id)
   end
