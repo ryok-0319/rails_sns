@@ -7,3 +7,11 @@
 <% end %>
 <%= render 'follow_form' %>
 <%= render 'stats' %>
+<h2>ツイート一覧</h2>
+<ul>
+  <% @tweets.each do |tweet| %>
+  <li>
+    <%= link_to tweet.content, tweet_path(tweet) %>
+  </li>
+  <% end %>
+</ul>

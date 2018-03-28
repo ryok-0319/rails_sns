@@ -1,0 +1,19 @@
+<h2>User List</h2>
+<table>
+  <tr>
+    <th>ユーザー名</th>
+    <th>メールアドレス</th>
+    <th>最終ログイン</th>
+    <th>アカウント作成</th>
+    <th>ログイン回数</th>
+  </tr>
+  <% @users.each do |user| %>
+  <tr>
+    <th><%= link_to user.name, user_path(user) %></th>
+    <th><%= user.email %></th>
+    <th><%= user.last_sign_in_at %></th>
+    <th><%= user.created_at %></th>
+    <th><%= user.sign_in_count %></th>
+  </tr>
+  <% end %>
+</table>
