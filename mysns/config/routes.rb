@@ -13,7 +13,10 @@ Rails.application.routes.draw do
   resources :relationships, only: [:create, :destroy]
 
   resources :tweets do
-    resources :replies
+    resources :replies do
+      resources :reply_favs, only: [:create, :destroy]
+    end
+    resources :tweet_favs, only: [:create, :destroy]
   end
 
   root 'tweets#index'

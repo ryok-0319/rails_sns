@@ -2,9 +2,47 @@
 <p><%= simple_format @tweet.content %></p>
 <p>投稿者：<%= link_to "@#{@poster.name}", user_path(@poster) %></p>
 
+<%= render 'tweet_fav' %>
+
 <h3>Replies</h3>
 <% if @replies.any? %>
-<%= render :partial => "tweets", :locals => { tweets: @replies } %>
+<ul>
+  <% @replies.each_with_index do |reply, i| %>
+  <li>
+    <%= reply.content %> <%= link_to "@#{reply.user.nickname}", user_path(reply.user) %>
+    <% if user_signed_in? && (reply.user_id == current_user.id) %>
+    <%= link_to '[Edit]', edit_tweet_reply_path(@tweet, reply), class: 'command'%>
+    <%= link_to '[x]',
+      tweet_reply_path(@tweet, reply),
+      method: :delete,
+      class: 'command',
+      data: { confirm: 'Sure?' } %>
+    <% end %>
+  </li>
+  <% if user_signed_in? %>
+    <% if reply.fav_added?(current_user.id) %>
+      <%= button_to "/tweets/#{@tweet.id}/replies/#{reply.id}/reply_favs/#{@favs[i][:id]}", method: :delete, id: "like-button", remote: true do %>
+        <%= image_tag("icon_red_heart.svg", size: "50x50") %>
+        <span>
+          <%= reply.favs_count %>
+        </span>
+      <% end %>
+    <% else %>
+      <%= button_to tweet_reply_reply_favs_path(@tweet, reply), id: "like-button", remote: true do %>
+        <%= image_tag("icon_heart.svg", size: "50x50") %>
+        <span>
+          <%= reply.favs_count %>
+        </span>
+      <% end %>
+    <% end %>
+  <% else %>
+    <%= image_tag("icon_heart.svg", size: "50x50") %>
+      <span>
+        <%= reply.favs_count %>
+      </span>
+  <% end %>
+  <% end %>
+</ul>
 <% else %>
 リプライはまだありません
 <% end %>
@@ -26,3 +64,5 @@
   <%= f.submit %>
 </p>
 <% end %>
+
+<%= @reply_favs %>

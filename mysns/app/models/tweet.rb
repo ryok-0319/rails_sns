@@ -1,5 +1,6 @@
 class Tweet < ApplicationRecord
   has_many :replies
+  has_many :tweet_favs, dependent: :destroy
   belongs_to :user
   enum level: { to_all: 0, to_followers: 1, to_myself: 2 }
   validates :content, presence: true,
@@ -19,5 +20,9 @@ class Tweet < ApplicationRecord
       end
     end
     @permitted_tweets.sort_by!{ |a| a[:created_at] }.reverse!
+  end
+
+  def fav_added?(user_id)
+    tweet_favs.find_by(user_id: user_id)
   end
 end

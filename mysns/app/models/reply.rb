@@ -1,6 +1,7 @@
 class Reply < ApplicationRecord
   belongs_to :tweet
   belongs_to :user
+  has_many :reply_favs, dependent: :destroy
   enum level: { to_all: 0, to_followers: 1, to_myself: 2 }
   validates :content, presence: true,
     length: { maximum: 140, message: 'Too long!' }
@@ -18,5 +19,9 @@ class Reply < ApplicationRecord
       end
     end
     permitted_replies.sort_by!{ |a| a[:created_at] }
+  end
+
+  def fav_added?(user_id)
+    reply_favs.find_by(user_id: user_id)
   end
 end

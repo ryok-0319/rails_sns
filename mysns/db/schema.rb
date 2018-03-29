@@ -10,25 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180323025202) do
-
-  create_table "fav_to_replies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "user_id"
-    t.bigint "reply_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["reply_id"], name: "index_fav_to_replies_on_reply_id"
-    t.index ["user_id"], name: "index_fav_to_replies_on_user_id"
-  end
-
-  create_table "fav_to_tweets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "user_id"
-    t.bigint "tweet_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["tweet_id"], name: "index_fav_to_tweets_on_tweet_id"
-    t.index ["user_id"], name: "index_fav_to_tweets_on_user_id"
-  end
+ActiveRecord::Schema.define(version: 20180326194815) do
 
   create_table "relationships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "follower_id"
@@ -44,8 +26,27 @@ ActiveRecord::Schema.define(version: 20180323025202) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
+    t.integer "favs_count"
     t.index ["tweet_id"], name: "index_replies_on_tweet_id"
     t.index ["user_id"], name: "index_replies_on_user_id"
+  end
+
+  create_table "reply_favs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "user_id", null: false
+    t.bigint "reply_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["reply_id"], name: "index_reply_favs_on_reply_id"
+    t.index ["user_id"], name: "index_reply_favs_on_user_id"
+  end
+
+  create_table "tweet_favs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "user_id", null: false
+    t.bigint "tweet_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tweet_id"], name: "index_tweet_favs_on_tweet_id"
+    t.index ["user_id"], name: "index_tweet_favs_on_user_id"
   end
 
   create_table "tweets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -54,6 +55,7 @@ ActiveRecord::Schema.define(version: 20180323025202) do
     t.datetime "updated_at", null: false
     t.integer "level"
     t.bigint "user_id"
+    t.integer "favs_count"
     t.index ["user_id"], name: "index_tweets_on_user_id"
   end
 
@@ -79,10 +81,6 @@ ActiveRecord::Schema.define(version: 20180323025202) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "fav_to_replies", "replies"
-  add_foreign_key "fav_to_replies", "users"
-  add_foreign_key "fav_to_tweets", "tweets"
-  add_foreign_key "fav_to_tweets", "users"
   add_foreign_key "replies", "tweets"
   add_foreign_key "replies", "users"
   add_foreign_key "tweets", "users"

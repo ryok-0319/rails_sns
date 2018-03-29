@@ -5,12 +5,18 @@ class TweetsController < ApplicationController
 
   def index
     @tweets = Tweet.permitted_tweet(current_user)
+    if user_signed_in?
+      @favs = TweetFav.user_favs(@tweets, current_user)
+    end
     # @tweetsのうち、フォロー中と自分自身のものだけを@following_tweetsに格納
     @following_tweets = []
     @tweets.each do |tweet|
       if user_signed_in? && (current_user.following?(tweet.user) || current_user == tweet.user)
         @following_tweets.push(tweet)
       end
+    end
+    if user_signed_in?
+      @following_favs = TweetFav.user_favs(@following_tweets, current_user)
     end
   end
 
@@ -20,6 +26,10 @@ class TweetsController < ApplicationController
       render plain: "閲覧権限がありません"
     end
     @replies = Reply.permitted_reply(@tweet, current_user)
+    if user_signed_in?
+      @tweet_fav = TweetFav.find_by(user_id: current_user.id, tweet_id: @tweet.id)
+      @favs = ReplyFav.user_favs(@replies, current_user)
+    end
   end
 
   def new
