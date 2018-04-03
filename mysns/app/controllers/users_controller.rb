@@ -23,5 +23,8 @@ class UsersController < ApplicationController
       end
     end
     @tweets.sort_by! {|a| a.created_at}.reverse!
+    if user_signed_in?
+      @favs = TweetFav.user_favs(@tweets, current_user)
+    end
   end
 end

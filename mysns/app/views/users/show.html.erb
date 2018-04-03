@@ -1,17 +1,52 @@
-<h2>Account Info</h2>
-<h3>ID：<%= @user.name %></h3>
-<h3>スクリーンネーム：<%= @user.nickname %></h3>
-<% if user_signed_in? && (@user.id == current_user.id) %>
-<h3>メールアドレス：<%= @user.email %></h3>
-<p><%= link_to 'Edit Account', edit_user_registration_path %></p>
-<% end %>
 <%= render 'follow_form' %>
-<%= render 'stats' %>
-<h2>ツイート一覧</h2>
-<ul>
-  <% @tweets.each do |tweet| %>
-  <li>
-    <%= link_to tweet.content, tweet_path(tweet) %>
-  </li>
-  <% end %>
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a href="#tab1" class="nav-link active" data-toggle="tab">ツイート</a>
+    </li>
+    <li class="nav-item">
+      <a href="#tab2" class="nav-link" data-toggle="tab"><%= @user.followings.count %>フォロー中</a>
+    </li>
+    <li class="nav-item">
+      <a href="#tab3" class="nav-link" data-toggle="tab"><%= @user.followers.count %>フォロワー</a>
+    </li>
+    <li class="nav-item">
+      <a href="#tab4" class="nav-link" data-toggle="tab">アカウント情報</a>
+    </li>
 </ul>
+
+<div class="tab-content">
+  <div id="tab1" class="tab-pane active">
+    <% if @tweets.any? %>
+    <%= render :partial => 'tweets/tweets', locals: { tweets: @tweets, favs: @favs } %>
+    <% else %>
+    ツイートがまだありません
+    <% end %>
+  </div>
+  <div id="tab2" class="tab-pane">
+    <% @followings.each do |user| %>
+    <div class="tweet">
+      <h3><%= user.nickname %></h3>
+      <p>@<%= user.name %></p>
+      <%= link_to '詳細', user_path(user), class: "btn btn-primary" %>
+    </div>
+    <% end %>
+  </div>
+  <div id="tab3" class="tab-pane">
+    <% @followers.each do |user| %>
+    <div class="tweet">
+      <h3><%= user.nickname %></h3>
+      <p>@<%= user.name %></p>
+      <%= link_to '詳細', user_path(user), class: "btn btn-primary" %>
+    </div>
+    <% end %>
+  </div>
+  <div id="tab4" class="tab-pane">
+    <h2>Account Info</h2>
+    <h3>ID：<%= @user.name %></h3>
+    <h3>ニックネーム：<%= @user.nickname %></h3>
+    <% if user_signed_in? && (@user.id == current_user.id) %>
+    <h3>メールアドレス：<%= @user.email %></h3>
+    <p><%= link_to 'Edit Account', edit_user_registration_path, class: 'btn btn-info' %></p>
+    <% end %>
+  </div>
+</div>

@@ -1,37 +1,47 @@
-<ul>
+<div>
   <% tweets.each_with_index do |tweet, i| %>
-  <li>
-    <%= link_to tweet.content, tweet_path(tweet) %> <%= link_to "@#{tweet.user.nickname}", user_path(tweet.user) %>
-    <% if user_signed_in? && (tweet.user_id == current_user.id) %>
-    <%= link_to '[Edit]', edit_tweet_path(tweet), class: 'command'%>
-    <%= link_to '[x]',
-      tweet_path(tweet),
-      method: :delete,
-      class: 'command',
-      data: { confirm: 'Sure?' } %>
-    <% end %>
-  </li>
+  <div class="tweet">
+  <div class="user-info">
+  <span><%= link_to tweet.user.nickname, user_path(tweet.user) %></span>
+  <%= link_to "@#{tweet.user.name}", user_path(tweet.user) %>
+  </div>
+  <div class="tweet-content">
+  <p><%= link_to tweet.content, tweet_path(tweet) %></p>
+  </div>
+  <div class="tweet-option">
+  <p>
   <% if user_signed_in? %>
     <% if tweet.fav_added?(current_user.id) %>
       <%= button_to "/tweets/#{tweet.id}/tweet_favs/#{favs[i][:id]}", method: :delete, id: "like-button", remote: true do %>
-        <%= image_tag("icon_red_heart.svg", size: "50x50") %>
+        <%= image_tag("icon_red_heart.svg", size: "20x20") %>
         <span>
           <%= tweet.favs_count %>
         </span>
       <% end %>
     <% else %>
       <%= button_to tweet_tweet_favs_path(tweet), id: "like-button", remote: true do %>
-        <%= image_tag("icon_heart.svg", size: "50x50") %>
+        <%= image_tag("icon_heart.svg", size: "20x20") %>
         <span>
           <%= tweet.favs_count %>
         </span>
       <% end %>
     <% end %>
   <% else %>
-    <%= image_tag("icon_heart.svg", size: "50x50") %>
+    <%= image_tag("icon_heart.svg", size: "20x20") %>
       <span>
         <%= tweet.favs_count %>
       </span>
   <% end %>
+  <% if user_signed_in? && (tweet.user_id == current_user.id) %>
+  <%= link_to '[x]',
+    tweet_path(tweet),
+    method: :delete,
+    class: 'command',
+    data: { confirm: 'Sure?' } %>
+  <%= link_to '[Edit]', edit_tweet_path(tweet), class: 'command'%>  
+  </p>
   <% end %>
-</ul>
+  </div>
+  </div>
+  <% end %>
+</div>

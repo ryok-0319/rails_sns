@@ -1,17 +1,29 @@
 <% if user_signed_in? %>
-<h2>
-  <%= link_to 'New Tweet', new_tweet_path, class: 'header-menu' %>
-  フォローしているユーザーのTweet
-</h2>
-<% if @following_tweets.any? %>
-<%= render :partial => "tweets", locals: { tweets: @following_tweets, favs: @following_favs } %>
-<% else %>
-ツイートがまだありません
-<% end %>
-<% end %>
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a href="#tab1" class="nav-link active" data-toggle="tab">フォローしているユーザーのTweet</a>
+    </li>
+    <li class="nav-item">
+      <a href="#tab2" class="nav-link" data-toggle="tab">全てのTweet</a>
+    </li>
+</ul>
 
+<div class="tab-content">
+  <div id="tab1" class="tab-pane active">
+    <% if @following_tweets.any? %>
+    <%= render :partial => "tweets", locals: { tweets: @following_tweets, favs: @following_favs } %>
+    <% else %>
+    ツイートがまだありません
+    <% end %>
+  </div>
+  <div id="tab2" class="tab-pane">
+    <%= render :partial => "tweets", locals: { tweets: @tweets, favs: @favs } %>
+  </div>
+</div>
+
+<% else %>
 <h2>
-  <%= link_to 'New Tweet', new_tweet_path, class: 'header-menu' %>
   全てのTweet
 </h2>
 <%= render :partial => "tweets", locals: { tweets: @tweets, favs: @favs } %>
+<% end %>
