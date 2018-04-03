@@ -41,6 +41,13 @@
     <%= f.password_field :current_password, autocomplete: "off" %>
   </div>
 
+  <div class="field">
+    <%= f.label :notification, class:"checkbox inline" do %>
+    <%= f.check_box :notification %>
+    <span>Send email notification</span>
+    <% end %>
+  </div>
+
   <div class="actions">
     <%= f.submit "Update" %>
   </div>

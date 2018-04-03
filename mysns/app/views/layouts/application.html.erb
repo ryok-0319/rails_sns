@@ -27,6 +27,7 @@
       <% end %>
       <% if user_signed_in? %>
       <h2><%= link_to 'Account Info', user_path(current_user.id) %></h2>
+      <h2><%= link_to "通知(#{@num_of_unread})", user_notifications_path(current_user.id) %></h2>
       <% end %>
     <%= yield %>
     </div>
