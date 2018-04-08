@@ -47,6 +47,12 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
+staging:
+  <<: *default
+  database: mysns_staging
+  username: mysns
+  password: <%= ENV['MYSNS_DATABASE_PASSWORD'] %>
+
 production:
   <<: *default
   database: mysns_production
