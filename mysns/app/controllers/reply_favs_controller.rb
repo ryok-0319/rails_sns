@@ -14,9 +14,7 @@ class ReplyFavsController < ApplicationController
       )
     end
     @tweet = Tweet.find(params[:tweet_id])
-    @reply_favs = ReplyFav.where(reply_id: params[:reply_id])
-    @replies = Reply.all
-    redirect_to tweet_path(@tweet)
+    redirect_back(fallback_location: root_path)
   end
 
   def destroy
@@ -25,6 +23,6 @@ class ReplyFavsController < ApplicationController
     @tweet = Tweet.find(params[:tweet_id])
     @reply_favs = ReplyFav.where(reply_id: params[:reply_id])
     @replies = Reply.all
-    redirect_to tweet_path(@tweet)
+    redirect_back(fallback_location: root_path)
   end
 end

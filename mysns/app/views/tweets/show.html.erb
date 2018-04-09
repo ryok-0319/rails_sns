@@ -7,8 +7,6 @@
   <p><%= simple_format @tweet.content %></p>
 </div>
 
-<%= render 'tweet_fav' %>
-
 <h2>Replies</h2>
 <% if @replies.any? %>
   <% @replies.each_with_index do |reply, i| %>
@@ -77,5 +75,3 @@
   <%= f.submit %>
 </p>
 <% end %>
-
-<%= @reply_favs %>

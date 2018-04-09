@@ -14,9 +14,7 @@ class TweetFavsController < ApplicationController
         link: "/tweets/#{@tweet.id}"
       )
     end
-    @tweet_favs = TweetFav.where(tweet_id: params[:tweet_id])
-    @tweets = Tweet.all
-    redirect_to tweet_path(@tweet)
+    #redirect_back(fallback_location: root_path)
   end
 
   def destroy
@@ -25,6 +23,6 @@ class TweetFavsController < ApplicationController
     @tweet = Tweet.find(params[:tweet_id])
     @tweet_favs = TweetFav.where(tweet_id: params[:tweet_id])
     @tweets = Tweet.all
-    redirect_to tweet_path(@tweet)
+    redirect_back(fallback_location: root_path)
   end
 end
