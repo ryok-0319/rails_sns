@@ -1,0 +1,17 @@
+<%= form_for @tweet do |f| %>
+<p>
+  <%= f.text_area :content, placeholder: 'enter here '%>
+  <% if @tweet.errors.messages[:content].any? %>
+  <span class="error"><%= @tweet.errors.messages[:content][0] %></span>
+  <% end %>
+</p>
+<p>
+  <%= f.label :"公開範囲" %>
+</p>
+<p>
+  <%= f.select :level, [["全体", :to_all], ["フォロワーのみ", :to_followers], ["自分のみ", :to_myself]] %>
+</p>
+<p>
+  <%= f.submit %>
+</p>
+<% end %>

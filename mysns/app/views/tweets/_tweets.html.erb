@@ -1,0 +1,26 @@
+<div>
+  <% tweets.each_with_index do |tweet, i| %>
+  <div class="tweet">
+  <div class="user-info">
+  <span><%= link_to tweet.user.nickname, user_path(tweet.user) %></span>
+  <%= link_to "@#{tweet.user.name}", user_path(tweet.user) %>
+  </div>
+  <div class="tweet-content">
+  <p><%= link_to tweet.content, tweet_path(tweet) %></p>
+  </div>
+  <div class="tweet-option">
+  <div id="like-buttons">
+    <%= render partial: 'tweets/tweet_fav', locals: {tweet: tweet, favs: favs, i: i} %>
+  </div>
+  <% if user_signed_in? && (tweet.user_id == current_user.id) %>
+  <%= link_to '[x]',
+    tweet_path(tweet),
+    method: :delete,
+    class: 'command',
+    data: { confirm: 'Sure?' } %>
+  <%= link_to '[Edit]', edit_tweet_path(tweet), class: 'command'%>
+  <% end %>
+  </div>
+  </div>
+  <% end %>
+</div>

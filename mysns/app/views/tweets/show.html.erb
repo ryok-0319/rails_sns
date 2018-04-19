@@ -1,0 +1,77 @@
+<h2>ツイート詳細</h2>
+<div class="user-info">
+  <span><%= link_to @poster.nickname, user_path(@poster) %></span>
+  <%= link_to "@#{@poster.name}", user_path(@poster) %>
+</div>
+<div class="tweet-content">
+  <p><%= simple_format @tweet.content %></p>
+</div>
+
+<h2>Replies</h2>
+<% if @replies.any? %>
+  <% @replies.each_with_index do |reply, i| %>
+  <div class="tweet">
+    <div class="user-info">
+      <span><%= link_to reply.user.nickname, user_path(reply.user) %></span>
+      <%= link_to "@#{reply.user.name}", user_path(reply.user) %>
+    </div>
+    <div class="tweet-content">
+      <p><%= reply.content %></p>
+    </div>
+    <div class="tweet-option">
+    <p>
+    <% if user_signed_in? %>
+    <% if reply.fav_added?(current_user.id) %>
+      <%= button_to "/tweets/#{@tweet.id}/replies/#{reply.id}/reply_favs/#{@favs[i][:id]}", method: :delete, id: "like-button", remote: true do %>
+        <%= image_tag("icon_red_heart.svg", size: "20x20") %>
+        <span>
+          <%= reply.favs_count %>
+        </span>
+      <% end %>
+    <% else %>
+      <%= button_to tweet_reply_reply_favs_path(@tweet, reply), id: "like-button", remote: true do %>
+        <%= image_tag("icon_heart.svg", size: "20x20") %>
+        <span>
+          <%= reply.favs_count %>
+        </span>
+      <% end %>
+    <% end %>
+  <% else %>
+    <%= image_tag("icon_heart.svg", size: "20x20") %>
+      <span>
+        <%= reply.favs_count %>
+      </span>
+  <% end %>
+  <% if user_signed_in? && (reply.user_id == current_user.id) %>
+  <%= link_to '[x]',
+    tweet_reply_path(@tweet, reply),
+    method: :delete,
+    class: 'command',
+    data: { confirm: 'Sure?' } %>
+    <%= link_to '[Edit]', edit_tweet_reply_path(@tweet, reply), class: 'command'%>
+  <% end %>
+  </p>
+  </div>
+  </div>
+  <% end %>
+<% else %>
+リプライはまだありません
+<% end %>
+
+<%= form_for ([@tweet, @tweet.replies.build]) do |f| %>
+<p>
+  <%= f.text_area :content, placeholder: 'enter here '%>
+  <% if !(@reply.nil?) && @reply.errors.messages[:content].any? %>
+  <span class="error"><%= @reply.errors.messages[:content][0] %></span>
+  <% end %>
+</p>
+<p>
+  <%= f.label :"公開範囲" %>
+</p>
+<p>
+  <%= f.select :level, [["全体", :to_all], ["フォロワーのみ", :to_followers], ["自分のみ", :to_myself]] %>
+</p>
+<p>
+  <%= f.submit %>
+</p>
+<% end %>

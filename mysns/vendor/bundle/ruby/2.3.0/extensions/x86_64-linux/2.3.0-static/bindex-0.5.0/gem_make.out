@@ -1,0 +1,15 @@
+current directory: /home/vagrant/rails_sns/mysns/vendor/bundle/ruby/2.3.0/gems/bindex-0.5.0/ext/bindex
+/home/vagrant/.rbenv/versions/2.3.1/bin/ruby -r ./siteconf20180403-8924-2jf89s.rb extconf.rb
+creating Makefile
+
+current directory: /home/vagrant/rails_sns/mysns/vendor/bundle/ruby/2.3.0/gems/bindex-0.5.0/ext/bindex
+make "DESTDIR=" clean
+
+current directory: /home/vagrant/rails_sns/mysns/vendor/bundle/ruby/2.3.0/gems/bindex-0.5.0/ext/bindex
+make "DESTDIR="
+compiling cruby.c
+linking shared-object bindex/cruby.so
+
+current directory: /home/vagrant/rails_sns/mysns/vendor/bundle/ruby/2.3.0/gems/bindex-0.5.0/ext/bindex
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 cruby.so ./.gem.20180403-8924-c9b1me/bindex

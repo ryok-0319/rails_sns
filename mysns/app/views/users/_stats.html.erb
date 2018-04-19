@@ -1,0 +1,34 @@
+<% @user ||= current_user %>
+<div onclick="obj=document.getElementById('open').style; obj.display=(obj.display=='none')?'block':'none';">
+  <a style="cursor:pointer;">
+    <strong id="following" class="stat"><%= @user.followings.count %></strong>フォロー中
+  </a>
+</div>
+
+<div id="open" style="display:none;clear:both;">
+  <% @followings.each do |user| %>
+  <table>
+  <tr>
+    <td>  <%= user.nickname %> </td>
+    <td><%= link_to '詳細', user_path(user) %></td>
+  </tr>
+  </table>
+  <% end %>
+</div>
+
+<div onclick="obj=document.getElementById('open2').style; obj.display=(obj.display=='none')?'block':'none';">
+  <a style="cursor:pointer;">
+    <strong id="followers" class="stat"><%= @user.followers.count %></strong>フォロワー
+  </a>
+</div>
+
+<div id="open2" style="display:none;clear:both;">
+  <% @followers.each do |user| %>
+  <table>
+  <tr>
+    <td>  <%= user.nickname %> </td>
+    <td><%= link_to '詳細', user_path(user) %></td>
+  </tr>
+  </table>
+  <% end %>
+</div>

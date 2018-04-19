@@ -1,0 +1,22 @@
+<h2>通知一覧</h2>
+<% if @notifications.nil? %>
+通知はありません
+<% else %>
+<% @notifications.each do |notification| %>
+<div class="tweet">
+  <p>・
+    <% if notification.notification_type == "fav_to_tweet" %>
+    <%= notification.notified_by.name %>があなたのこのツイートにいいねしました。
+    <% elsif notification.notification_type == "fav_to_reply" %>
+    <%= notification.notified_by.name %>があなたのこのリプライにいいねしました。
+    <% elsif notification.notification_type == "reply_to_tweet" %>
+    <%= notification.notified_by.name %>があなたのツイートに以下のリプライをしました。
+    <% elsif notification.notification_type == "followed" %>
+    <%= notification.notified_by.name %>があなたをフォローしました。
+    <% end %>
+  </p>
+  <div class="tweet-content"><%= notification.message %></div>
+  <a href="<%= notification.link%>">確認する</a>
+</div>
+<% end %>
+<% end %>

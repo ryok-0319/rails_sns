@@ -1,0 +1,2 @@
+module TweetFavsHelper
+end
