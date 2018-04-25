@@ -1,0 +1,31 @@
+version: '3'
+services:
+  web:
+    build: .
+    command: /bin/bash -c "bundle exec unicorn -c config/unicorn.rb"
+    volumes:
+      - .:/app
+    expose:
+      - '3000'
+    depends_on:
+      - db
+    privileged: true
+  nginx:
+    build:
+      context: .
+      dockerfile: ./container/nginx/Dockerfile
+    ports:
+      - '80:80'
+    links:
+      - web
+  db:
+    image: mysql
+    volumes:
+      - db-volume:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    ports:
+      - '3306:3306'
+    privileged: true
+volumes:
+  db-volume:
