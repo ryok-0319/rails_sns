@@ -1,0 +1,37 @@
+version: 0.2
+
+env:
+  variables:
+    IMAGE_TAG: "master"
+
+phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - eval $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
+  build:
+    commands:
+      - echo Build started on `date`
+      - echo Building the Docker image...
+      - docker build -t $APPLICATION_NAME:$IMAGE_TAG .
+      - echo Run the Docker image
+      - docker run -dit $APPLICATION_NAME:$IMAGE_TAG
+      - echo Get the container id
+      - export CONTAINER_ID=$(docker ps | grep $APPLICATION_NAME:$IMAGE_TAG | head -1 | awk '{print $1}') && echo $CONTAINER_ID
+      - echo Download private key for accessing GitHub
+      - docker exec -u ubuntu -i $CONTAINER_ID bash -lc "export AWS_ACCESS_KEY_ID=$RO_AWS_ID && export AWS_SECRET_ACCESS_KEY=$RO_AWS_KEY && aws s3 cp --region $AWS_DEFAULT_REGION s3://finc-secrets/ssh-key/code_oni_github_key /home/ubuntu/.ssh/id_rsa && chmod 400 /home/ubuntu/.ssh/id_rsa"
+      - echo Execute bundle install in the container $CONTAINER_ID
+      - docker exec -u ubuntu -i $CONTAINER_ID bash -lc "cd /home/ubuntu/$APPLICATION_NAME && gem install bundler --force && bundle install"
+      - echo Remove GitHub private key
+      - docker exec -u ubuntu -i $CONTAINER_ID bash -lc "rm -f /home/ubuntu/.ssh/id_rsa"
+      - echo Remove Source Code before create docker image
+      - docker exec -u ubuntu -i $CONTAINER_ID bash -lc "rm -fr /home/ubuntu/$APPLICATION_NAME"
+      - docker commit $CONTAINER_ID $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$APPLICATION_NAME:$IMAGE_TAG
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - echo Pushing the Docker image...
+      - docker images
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$APPLICATION_NAME:$IMAGE_TAG
+      - echo Kill the container $CONTAINER_ID
+      - docker kill $CONTAINER_ID && docker ps
