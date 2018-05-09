@@ -5,7 +5,6 @@ env.BRANCH_NAME_ESCAPE = env.JOB_NAME.split(/\//)[2]
 
 env.STAGING_DEPLOY_BRANCH = 'deploy/staging'
 env.PRODUCTION_DEPLOY_BRANCH = 'deploy/production'
-
 env.SLACK_CANNEL = '#times_kubota'
 
 env.ECS_TASK_NAME_PREFIX = 'RailsSns'

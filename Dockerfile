@@ -15,14 +15,14 @@ RUN git clone https://github.com/sstephenson/rbenv.git ~/.rbenv && \
     git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build && \
     echo 'export PATH="~/.rbenv/bin:$PATH"' >> ~/.bashrc && \
     echo 'eval "$(rbenv init -)"' >> ~/.bashrc && \
-    CONFIGURE_OPTS='--disable-install-rdoc' /home/ubuntu/.rbenv/bin/rbenv install 2.3.1 && \
+    CONFIGURE_OPTS='--disable-install-rdoc' /home/ubuntu/.rbenv/bin/rbenv install 2.5.0 && \
     mkdir /home/ubuntu/.ssh && \
     chmod 700 /home/ubuntu/.ssh
 COPY middleware/docker/run_utc.sh /home/ubuntu/
 COPY middleware/docker/rbenv.sh /etc/profile.d/
 COPY middleware/docker/.ssh/authorized_keys /home/ubuntu/.ssh/authorized_keys
 RUN sudo chown ubuntu:ubuntu /home/ubuntu/.ssh/authorized_keys
-RUN /home/ubuntu/.rbenv/versions/2.3.1/bin/gem update --system 2.6.13
+RUN /home/ubuntu/.rbenv/versions/2.5.0/bin/gem update --system 2.6.13
 ADD . /home/ubuntu/rails_sns
 USER root
 RUN chown -R ubuntu:ubuntu /home/ubuntu/rails_sns
