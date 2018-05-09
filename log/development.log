@@ -1,0 +1,352 @@
+Started GET "/" for 172.21.0.4 at 2018-05-09 06:07:55 +0000
+Cannot render console from 172.21.0.4! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Started GET "/" for 172.21.0.4 at 2018-05-09 06:07:55 +0000
+Cannot render console from 172.21.0.4! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  
+ActiveRecord::NoDatabaseError (Unknown database 'mysns_development'):
+  
+activerecord (5.1.5) lib/active_record/connection_adapters/mysql2_adapter.rb:25:in `rescue in mysql2_connection'
+activerecord (5.1.5) lib/active_record/connection_adapters/mysql2_adapter.rb:11:in `mysql2_connection'
+activerecord (5.1.5) lib/active_record/connection_adapters/abstract/connection_pool.rb:759:in `new_connection'
+activerecord (5.1.5) lib/active_record/connection_adapters/abstract/connection_pool.rb:803:in `checkout_new_connection'
+activerecord (5.1.5) lib/active_record/connection_adapters/abstract/connection_pool.rb:782:in `try_to_checkout_new_connection'
+activerecord (5.1.5) lib/active_record/connection_adapters/abstract/connection_pool.rb:743:in `acquire_connection'
+activerecord (5.1.5) lib/active_record/connection_adapters/abstract/connection_pool.rb:500:in `checkout'
+activerecord (5.1.5) lib/active_record/connection_adapters/abstract/connection_pool.rb:374:in `connection'
+activerecord (5.1.5) lib/active_record/connection_adapters/abstract/connection_pool.rb:931:in `retrieve_connection'
+activerecord (5.1.5) lib/active_record/connection_handling.rb:116:in `retrieve_connection'
+activerecord (5.1.5) lib/active_record/connection_handling.rb:88:in `connection'
+activerecord (5.1.5) lib/active_record/migration.rb:562:in `connection'
+activerecord (5.1.5) lib/active_record/migration.rb:553:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/callbacks.rb:26:in `block in call'
+activesupport (5.1.5) lib/active_support/callbacks.rb:97:in `run_callbacks'
+actionpack (5.1.5) lib/action_dispatch/middleware/callbacks.rb:24:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/debug_exceptions.rb:59:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:20:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.5) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.4) lib/rack/method_override.rb:22:in `call'
+rack (2.0.4) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.5) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.5) lib/rails/engine.rb:522:in `call'
+rack (2.0.4) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.0.4) lib/rack/lint.rb:49:in `_call'
+rack (2.0.4) lib/rack/lint.rb:37:in `call'
+rack (2.0.4) lib/rack/show_exceptions.rb:23:in `call'
+rack (2.0.4) lib/rack/common_logger.rb:33:in `call'
+rack (2.0.4) lib/rack/chunked.rb:54:in `call'
+rack (2.0.4) lib/rack/content_length.rb:15:in `call'
+unicorn (5.4.0) lib/unicorn/http_server.rb:606:in `process_client'
+unicorn (5.4.0) lib/unicorn/http_server.rb:701:in `worker_loop'
+unicorn (5.4.0) lib/unicorn/http_server.rb:549:in `spawn_missing_workers'
+unicorn (5.4.0) lib/unicorn/http_server.rb:142:in `start'
+unicorn (5.4.0) bin/unicorn:126:in `<top (required)>'
+/usr/local/bundle/bin/unicorn:29:in `load'
+/usr/local/bundle/bin/unicorn:29:in `<top (required)>'
+bundler (1.16.1) lib/bundler/cli/exec.rb:75:in `load'
+bundler (1.16.1) lib/bundler/cli/exec.rb:75:in `kernel_load'
+bundler (1.16.1) lib/bundler/cli/exec.rb:28:in `run'
+bundler (1.16.1) lib/bundler/cli.rb:424:in `exec'
+bundler (1.16.1) lib/bundler/vendor/thor/lib/thor/command.rb:27:in `run'
+bundler (1.16.1) lib/bundler/vendor/thor/lib/thor/invocation.rb:126:in `invoke_command'
+bundler (1.16.1) lib/bundler/vendor/thor/lib/thor.rb:387:in `dispatch'
+bundler (1.16.1) lib/bundler/cli.rb:27:in `dispatch'
+bundler (1.16.1) lib/bundler/vendor/thor/lib/thor/base.rb:466:in `start'
+bundler (1.16.1) lib/bundler/cli.rb:18:in `start'
+bundler (1.16.1) exe/bundle:30:in `block in <top (required)>'
+bundler (1.16.1) lib/bundler/friendly_errors.rb:122:in `with_friendly_errors'
+bundler (1.16.1) exe/bundle:22:in `<top (required)>'
+/usr/local/bundle/bin/bundle:104:in `load'
+/usr/local/bundle/bin/bundle:104:in `<main>'
+  
+ActiveRecord::NoDatabaseError (Unknown database 'mysns_development'):
+  
+activerecord (5.1.5) lib/active_record/connection_adapters/mysql2_adapter.rb:25:in `rescue in mysql2_connection'
+activerecord (5.1.5) lib/active_record/connection_adapters/mysql2_adapter.rb:11:in `mysql2_connection'
+activerecord (5.1.5) lib/active_record/connection_adapters/abstract/connection_pool.rb:759:in `new_connection'
+activerecord (5.1.5) lib/active_record/connection_adapters/abstract/connection_pool.rb:803:in `checkout_new_connection'
+activerecord (5.1.5) lib/active_record/connection_adapters/abstract/connection_pool.rb:782:in `try_to_checkout_new_connection'
+activerecord (5.1.5) lib/active_record/connection_adapters/abstract/connection_pool.rb:743:in `acquire_connection'
+activerecord (5.1.5) lib/active_record/connection_adapters/abstract/connection_pool.rb:500:in `checkout'
+activerecord (5.1.5) lib/active_record/connection_adapters/abstract/connection_pool.rb:374:in `connection'
+activerecord (5.1.5) lib/active_record/connection_adapters/abstract/connection_pool.rb:931:in `retrieve_connection'
+activerecord (5.1.5) lib/active_record/connection_handling.rb:116:in `retrieve_connection'
+activerecord (5.1.5) lib/active_record/connection_handling.rb:88:in `connection'
+activerecord (5.1.5) lib/active_record/migration.rb:562:in `connection'
+activerecord (5.1.5) lib/active_record/migration.rb:553:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/callbacks.rb:26:in `block in call'
+activesupport (5.1.5) lib/active_support/callbacks.rb:97:in `run_callbacks'
+actionpack (5.1.5) lib/action_dispatch/middleware/callbacks.rb:24:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/debug_exceptions.rb:59:in `call'
+web-console (3.5.1) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.5.1) lib/web_console/middleware.rb:20:in `block in call'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `catch'
+web-console (3.5.1) lib/web_console/middleware.rb:18:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/show_exceptions.rb:31:in `call'
+railties (5.1.5) lib/rails/rack/logger.rb:36:in `call_app'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `block in call'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `block in tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:26:in `tagged'
+activesupport (5.1.5) lib/active_support/tagged_logging.rb:69:in `tagged'
+railties (5.1.5) lib/rails/rack/logger.rb:24:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/remote_ip.rb:79:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/request_id.rb:25:in `call'
+rack (2.0.4) lib/rack/method_override.rb:22:in `call'
+rack (2.0.4) lib/rack/runtime.rb:22:in `call'
+activesupport (5.1.5) lib/active_support/cache/strategy/local_cache_middleware.rb:27:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/executor.rb:12:in `call'
+actionpack (5.1.5) lib/action_dispatch/middleware/static.rb:125:in `call'
+rack (2.0.4) lib/rack/sendfile.rb:111:in `call'
+railties (5.1.5) lib/rails/engine.rb:522:in `call'
+rack (2.0.4) lib/rack/tempfile_reaper.rb:15:in `call'
+rack (2.0.4) lib/rack/lint.rb:49:in `_call'
+rack (2.0.4) lib/rack/lint.rb:37:in `call'
+rack (2.0.4) lib/rack/show_exceptions.rb:23:in `call'
+rack (2.0.4) lib/rack/common_logger.rb:33:in `call'
+rack (2.0.4) lib/rack/chunked.rb:54:in `call'
+rack (2.0.4) lib/rack/content_length.rb:15:in `call'
+unicorn (5.4.0) lib/unicorn/http_server.rb:606:in `process_client'
+unicorn (5.4.0) lib/unicorn/http_server.rb:701:in `worker_loop'
+unicorn (5.4.0) lib/unicorn/http_server.rb:549:in `spawn_missing_workers'
+unicorn (5.4.0) lib/unicorn/http_server.rb:142:in `start'
+unicorn (5.4.0) bin/unicorn:126:in `<top (required)>'
+/usr/local/bundle/bin/unicorn:29:in `load'
+/usr/local/bundle/bin/unicorn:29:in `<top (required)>'
+bundler (1.16.1) lib/bundler/cli/exec.rb:75:in `load'
+bundler (1.16.1) lib/bundler/cli/exec.rb:75:in `kernel_load'
+bundler (1.16.1) lib/bundler/cli/exec.rb:28:in `run'
+bundler (1.16.1) lib/bundler/cli.rb:424:in `exec'
+bundler (1.16.1) lib/bundler/vendor/thor/lib/thor/command.rb:27:in `run'
+bundler (1.16.1) lib/bundler/vendor/thor/lib/thor/invocation.rb:126:in `invoke_command'
+bundler (1.16.1) lib/bundler/vendor/thor/lib/thor.rb:387:in `dispatch'
+bundler (1.16.1) lib/bundler/cli.rb:27:in `dispatch'
+bundler (1.16.1) lib/bundler/vendor/thor/lib/thor/base.rb:466:in `start'
+bundler (1.16.1) lib/bundler/cli.rb:18:in `start'
+bundler (1.16.1) exe/bundle:30:in `block in <top (required)>'
+bundler (1.16.1) lib/bundler/friendly_errors.rb:122:in `with_friendly_errors'
+bundler (1.16.1) exe/bundle:22:in `<top (required)>'
+/usr/local/bundle/bin/bundle:104:in `load'
+/usr/local/bundle/bin/bundle:104:in `<main>'
+  [1m[35m (1.4ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE DATABASE `mysns_development` DEFAULT CHARACTER SET `utf8`[0m
+  [1m[35m (0.7ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE DATABASE `mysns_test` DEFAULT CHARACTER SET `utf8`[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (23.9ms)[0m  [1m[35mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL PRIMARY KEY) ENGINE=InnoDB[0m
+  [1m[35m (24.1ms)[0m  [1m[35mCREATE TABLE `ar_internal_metadata` (`key` varchar(255) NOT NULL PRIMARY KEY, `value` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT GET_LOCK('837410121787227135', 0)[0m
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Migrating to CreateTweets (20180318230243)
+  [1m[35m (20.2ms)[0m  [1m[35mCREATE TABLE `tweets` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `content` text, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20180318230243')[0m
+  [1m[35m (3.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddLevelToTweet (20180318230318)
+  [1m[35m (68.0ms)[0m  [1m[35mALTER TABLE `tweets` ADD `level` int[0m
+  [1m[35m (3.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20180318230318')[0m
+  [1m[35m (3.6ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateReplies (20180318234905)
+  [1m[35m (30.7ms)[0m  [1m[35mCREATE TABLE `replies` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `content` text, `level` int, `tweet_id` bigint, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_replies_on_tweet_id`  (`tweet_id`), CONSTRAINT `fk_rails_acd191e993`
+FOREIGN KEY (`tweet_id`)
+  REFERENCES `tweets` (`id`)
+) ENGINE=InnoDB[0m
+  [1m[35m (0.9ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (4.7ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20180318234905')[0m
+  [1m[35m (4.0ms)[0m  [1m[35mCOMMIT[0m
+Migrating to DeviseCreateUsers (20180319173056)
+  [1m[35m (20.8ms)[0m  [1m[35mCREATE TABLE `users` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int DEFAULT 0 NOT NULL, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (34.0ms)[0m  [1m[35mCREATE UNIQUE INDEX `index_users_on_email`  ON `users` (`email`) [0m
+  [1m[35m (26.6ms)[0m  [1m[35mCREATE UNIQUE INDEX `index_users_on_reset_password_token`  ON `users` (`reset_password_token`) [0m
+  [1m[35m (0.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (23.6ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20180319173056')[0m
+  [1m[35m (5.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddNameToUsers (20180319173901)
+  [1m[35m (54.1ms)[0m  [1m[35mALTER TABLE `users` ADD `name` varchar(255)[0m
+  [1m[35m (3.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (6.3ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20180319173901')[0m
+  [1m[35m (5.0ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddNicknameToUsers (20180319173925)
+  [1m[35m (78.0ms)[0m  [1m[35mALTER TABLE `users` ADD `nickname` varchar(255)[0m
+  [1m[35m (2.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (4.6ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20180319173925')[0m
+  [1m[35m (3.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddBioToUsers (20180319174030)
+  [1m[35m (48.3ms)[0m  [1m[35mALTER TABLE `users` ADD `bio` text[0m
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20180319174030')[0m
+  [1m[35m (3.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddIconToUsers (20180319174058)
+  [1m[35m (40.0ms)[0m  [1m[35mALTER TABLE `users` ADD `icon` varchar(255)[0m
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20180319174058')[0m
+  [1m[35m (3.0ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddNotificationToUsers (20180319174201)
+  [1m[35m (54.8ms)[0m  [1m[35mALTER TABLE `users` ADD `notification` tinyint(1)[0m
+  [1m[35m (1.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.2ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20180319174201')[0m
+  [1m[35m (4.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddUserRefToTweets (20180319175021)
+  [1m[35m (54.1ms)[0m  [1m[35mALTER TABLE `tweets` ADD `user_id` bigint[0m
+  [1m[35m (39.5ms)[0m  [1m[35mCREATE  INDEX `index_tweets_on_user_id`  ON `tweets` (`user_id`) [0m
+  [1m[35m (86.2ms)[0m  [1m[35mALTER TABLE `tweets` ADD CONSTRAINT `fk_rails_003928b7f5`
+FOREIGN KEY (`user_id`)
+  REFERENCES `users` (`id`)
+[0m
+  [1m[35m (1.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (2.2ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20180319175021')[0m
+  [1m[35m (3.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddUserRefToReplies (20180319175131)
+  [1m[35m (62.7ms)[0m  [1m[35mALTER TABLE `replies` ADD `user_id` bigint[0m
+  [1m[35m (17.9ms)[0m  [1m[35mCREATE  INDEX `index_replies_on_user_id`  ON `replies` (`user_id`) [0m
+  [1m[35m (61.3ms)[0m  [1m[35mALTER TABLE `replies` ADD CONSTRAINT `fk_rails_256e4b72c5`
+FOREIGN KEY (`user_id`)
+  REFERENCES `users` (`id`)
+[0m
+  [1m[35m (1.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20180319175131')[0m
+  [1m[35m (4.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateFollows (20180319204328)
+  [1m[35m (30.0ms)[0m  [1m[35mCREATE TABLE `follows` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `followee_id` int, `user_id` bigint, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_follows_on_user_id`  (`user_id`), CONSTRAINT `fk_rails_32479bd030`
+FOREIGN KEY (`user_id`)
+  REFERENCES `users` (`id`)
+) ENGINE=InnoDB[0m
+  [1m[35m (1.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (2.7ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20180319204328')[0m
+  [1m[35m (4.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateRelationships (20180319214337)
+  [1m[35m (24.3ms)[0m  [1m[35mCREATE TABLE `relationships` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `follower_id` int, `following_id` int, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (1.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (3.7ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20180319214337')[0m
+  [1m[35m (5.0ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateFavToTweets (20180323024929)
+  [1m[35m (28.5ms)[0m  [1m[35mCREATE TABLE `fav_to_tweets` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `user_id` bigint, `tweet_id` bigint, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_fav_to_tweets_on_user_id`  (`user_id`),  INDEX `index_fav_to_tweets_on_tweet_id`  (`tweet_id`), CONSTRAINT `fk_rails_0fa492f3ec`
+FOREIGN KEY (`user_id`)
+  REFERENCES `users` (`id`)
+, CONSTRAINT `fk_rails_cb9324b5b3`
+FOREIGN KEY (`tweet_id`)
+  REFERENCES `tweets` (`id`)
+) ENGINE=InnoDB[0m
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20180323024929')[0m
+  [1m[35m (2.9ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateFavToReplies (20180323025202)
+  [1m[35m (33.6ms)[0m  [1m[35mCREATE TABLE `fav_to_replies` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `user_id` bigint, `reply_id` bigint, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_fav_to_replies_on_user_id`  (`user_id`),  INDEX `index_fav_to_replies_on_reply_id`  (`reply_id`), CONSTRAINT `fk_rails_eb67103d4d`
+FOREIGN KEY (`user_id`)
+  REFERENCES `users` (`id`)
+, CONSTRAINT `fk_rails_88a0f72904`
+FOREIGN KEY (`reply_id`)
+  REFERENCES `replies` (`id`)
+) ENGINE=InnoDB[0m
+  [1m[35m (2.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (2.0ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20180323025202')[0m
+  [1m[35m (4.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateTweetFavs (20180325223327)
+  [1m[35m (28.1ms)[0m  [1m[35mCREATE TABLE `tweet_favs` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `user_id` bigint NOT NULL, `tweet_id` bigint NOT NULL, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_tweet_favs_on_user_id`  (`user_id`),  INDEX `index_tweet_favs_on_tweet_id`  (`tweet_id`)) ENGINE=InnoDB[0m
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20180325223327')[0m
+  [1m[35m (2.9ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateReplyFavs (20180325223400)
+  [1m[35m (31.1ms)[0m  [1m[35mCREATE TABLE `reply_favs` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `user_id` bigint NOT NULL, `reply_id` bigint NOT NULL, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_reply_favs_on_user_id`  (`user_id`),  INDEX `index_reply_favs_on_reply_id`  (`reply_id`)) ENGINE=InnoDB[0m
+  [1m[35m (1.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.4ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20180325223400')[0m
+  [1m[35m (5.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddColumnToTweets (20180326000255)
+  [1m[35m (34.0ms)[0m  [1m[35mALTER TABLE `tweets` ADD `favs_count` int[0m
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20180326000255')[0m
+  [1m[35m (3.8ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddColumnToReplies (20180326194815)
+  [1m[35m (61.4ms)[0m  [1m[35mALTER TABLE `replies` ADD `favs_count` int[0m
+  [1m[35m (2.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.6ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20180326194815')[0m
+  [1m[35m (4.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateNotifications (20180327231012)
+  [1m[35m (31.8ms)[0m  [1m[35mCREATE TABLE `notifications` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `user_id` bigint NOT NULL, `notified_by_id` bigint NOT NULL, `type` int NOT NULL, `read` tinyint(1) DEFAULT 0, `message` text, `link` text, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_notifications_on_user_id`  (`user_id`),  INDEX `index_notifications_on_notified_by_id`  (`notified_by_id`)) ENGINE=InnoDB[0m
+  [1m[35m (99.3ms)[0m  [1m[35mALTER TABLE `notifications` ADD CONSTRAINT `fk_rails_b080fb4855`
+FOREIGN KEY (`user_id`)
+  REFERENCES `users` (`id`)
+[0m
+  [1m[35m (91.6ms)[0m  [1m[35mALTER TABLE `notifications` ADD CONSTRAINT `fk_rails_ff009aac1a`
+FOREIGN KEY (`notified_by_id`)
+  REFERENCES `users` (`id`)
+[0m
+  [1m[35m (1.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20180327231012')[0m
+  [1m[35m (3.0ms)[0m  [1m[35mCOMMIT[0m
+Migrating to RenameTypeToNotifications (20180328000615)
+  [1m[35m (11.6ms)[0m  [1m[35mALTER TABLE `notifications` CHANGE `type` `notification_type` int(11) NOT NULL[0m
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20180328000615')[0m
+  [1m[35m (3.7ms)[0m  [1m[35mCOMMIT[0m
+Migrating to DeviseCreateAdmins (20180328183039)
+  [1m[35m (22.6ms)[0m  [1m[35mCREATE TABLE `admins` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int DEFAULT 0 NOT NULL, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (27.5ms)[0m  [1m[35mCREATE UNIQUE INDEX `index_admins_on_email`  ON `admins` (`email`) [0m
+  [1m[35m (27.0ms)[0m  [1m[35mCREATE UNIQUE INDEX `index_admins_on_reset_password_token`  ON `admins` (`reset_password_token`) [0m
+  [1m[35m (1.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.5ms)[0m  [1m[32mINSERT INTO `schema_migrations` (`version`) VALUES ('20180328183039')[0m
+  [1m[35m (3.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (1.5ms)[0m  [1m[34mSELECT  `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.2ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('environment', 'development', '2018-05-09 06:14:24', '2018-05-09 06:14:24')[0m
+  [1m[35m (4.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT RELEASE_LOCK('837410121787227135')[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.6ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.7ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.7ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.6ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.8ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.5ms)[0m  [1m[31mROLLBACK[0m
+Started GET "/" for 172.21.0.4 at 2018-05-09 06:14:40 +0000
+Cannot render console from 172.21.0.4! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[35m (0.9ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+Processing by TweetsController#index as HTML
+  [1m[36mTweet Load (0.7ms)[0m  [1m[34mSELECT `tweets`.* FROM `tweets`[0m
+  Rendering tweets/index.html.erb within layouts/application
+  Rendered tweets/_tweets.html.erb (0.7ms)
+  Rendered tweets/index.html.erb within layouts/application (24.2ms)
+Completed 200 OK in 8341ms (Views: 8217.5ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/users/sign_in" for 172.21.0.4 at 2018-05-09 06:15:09 +0000
+Cannot render console from 172.21.0.4! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Users::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (1.2ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (146.6ms)
+Completed 200 OK in 2825ms (Views: 2757.7ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/users/sign_up" for 172.21.0.4 at 2018-05-09 06:15:13 +0000
+Cannot render console from 172.21.0.4! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Users::RegistrationsController#new as HTML
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (1.1ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (86.7ms)
+Completed 200 OK in 739ms (Views: 693.0ms | ActiveRecord: 2.5ms)
+
+
