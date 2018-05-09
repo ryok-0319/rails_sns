@@ -1,0 +1,50 @@
+I, [2018-05-09T06:07:42.603833 #1]  INFO -- : listening on addr=0.0.0.0:3000 fd=9
+I, [2018-05-09T06:07:42.604542 #1]  INFO -- : worker=0 spawning...
+I, [2018-05-09T06:07:42.605704 #1]  INFO -- : worker=1 spawning...
+I, [2018-05-09T06:07:42.606497 #6]  INFO -- : worker=0 spawned pid=6
+I, [2018-05-09T06:07:42.607442 #6]  INFO -- : Refreshing Gem list
+I, [2018-05-09T06:07:42.607712 #1]  INFO -- : master process ready
+I, [2018-05-09T06:07:42.609206 #9]  INFO -- : worker=1 spawned pid=9
+I, [2018-05-09T06:07:42.610750 #9]  INFO -- : Refreshing Gem list
+I, [2018-05-09T06:07:55.840317 #9]  INFO -- : worker=1 ready
+I, [2018-05-09T06:07:55.860700 #6]  INFO -- : worker=0 ready
+172.21.0.4 - - [09/May/2018:06:07:56 +0000] "GET / HTTP/1.0" 500 82929 0.3009
+172.21.0.4 - - [09/May/2018:06:07:56 +0000] "GET / HTTP/1.0" 500 82929 0.3599
+172.21.0.4 - - [09/May/2018:06:07:56 +0000] "GET /favicon.ico HTTP/1.0" 200 - 0.0249
+172.21.0.4 - - [09/May/2018:06:14:48 +0000] "GET / HTTP/1.0" 200 - 8.7741
+172.21.0.4 - - [09/May/2018:06:14:49 +0000] "GET /application.self-fc91ed069411df31d30ad397925ab9d7042431baa47c297bdbb9e539b4ab14e3.css?body=1 HTTP/1.0" 200 307166 0.1334
+172.21.0.4 - - [09/May/2018:06:14:49 +0000] "GET /bootstrap.self-b38817c3e3a3049abb1fc08dd6ae448b23330f8453226efdb074710209474f75.js?body=1 HTTP/1.0" 200 69708 0.0620
+172.21.0.4 - - [09/May/2018:06:14:49 +0000] "GET /rails-ujs.self-8944eaf3f9a2615ce7c830a810ed630e296633063af8bb7441d5702fbe3ea597.js?body=1 HTTP/1.0" 200 25941 0.0620
+172.21.0.4 - - [09/May/2018:06:14:49 +0000] "GET /bootstrap/transition.self-6ad2488465135ab731a045a8ebbe3ea2fc501aed286042496eda1664fdd07ba9.js?body=1 HTTP/1.0" 200 1832 0.0448
+172.21.0.4 - - [09/May/2018:06:14:49 +0000] "GET /bootstrap/alert.self-742145c5bb847aafdadc6e339be795628f8bc25f177e851f03a8c42278eb0312.js?body=1 HTTP/1.0" 200 2285 0.0420
+172.21.0.4 - - [09/May/2018:06:14:49 +0000] "GET /bootstrap/button.self-126ac9bf0e7f2d8568f8da3a00fd5f0fac6eae0946331003370161fbf8d7975e.js?body=1 HTTP/1.0" 200 3825 0.0631
+172.21.0.4 - - [09/May/2018:06:14:49 +0000] "GET /bootstrap/carousel.self-e47323f363ceb3dc0bdbce05e36e709ed428e339833a41140a85cb0af24b8127.js?body=1 HTTP/1.0" 200 7142 0.0570
+172.21.0.4 - - [09/May/2018:06:14:49 +0000] "GET /bootstrap/collapse.self-2eb697f62b587bb786ff940d82dd4be88cdeeaf13ca128e3da3850c5fcaec301.js?body=1 HTTP/1.0" 200 5992 0.0407
+172.21.0.4 - - [09/May/2018:06:14:49 +0000] "GET /bootstrap/dropdown.self-561cca1cbaf67474e01e9536f106bad541594860a6df997004591c1c1957a147.js?body=1 HTTP/1.0" 200 4744 0.0450
+172.21.0.4 - - [09/May/2018:06:14:49 +0000] "GET /bootstrap/modal.self-3e78617ade5663314b7ee0ea10375a5b34d59ffbade44939e3f2a4e4ef2019b3.js?body=1 HTTP/1.0" 200 9988 0.0373
+172.21.0.4 - - [09/May/2018:06:14:49 +0000] "GET /bootstrap/tab.self-5bf7078b682f8b131332eefa46b45fa5eff2eca745fc0d03e2991450888f7c28.js?body=1 HTTP/1.0" 200 3906 0.0356
+172.21.0.4 - - [09/May/2018:06:14:49 +0000] "GET /bootstrap/affix.self-6d6f1a7fc5c8aabf3547fa1b794fab6268f54bc55ad815e55873c71f52513517.js?body=1 HTTP/1.0" 200 4839 0.0483
+172.21.0.4 - - [09/May/2018:06:14:49 +0000] "GET /bootstrap/scrollspy.self-969f3c5f48cdf1e439c7fa1154c13b948715f5c689f87837c0b64521d3b46ef6.js?body=1 HTTP/1.0" 200 4708 0.0419
+172.21.0.4 - - [09/May/2018:06:14:49 +0000] "GET /bootstrap/tooltip.self-05afb177e08f98997ccfc84fa08a215e4b27d48d5fe4d049080675e9dffd8199.js?body=1 HTTP/1.0" 200 16720 0.0447
+172.21.0.4 - - [09/May/2018:06:14:49 +0000] "GET /bootstrap/popover.self-0aa93860b59fe7393f1dd490f54b3cb994f9d6155adffce034d4e14ae361b041.js?body=1 HTTP/1.0" 200 3164 0.0393
+172.21.0.4 - - [09/May/2018:06:14:49 +0000] "GET /jquery.self-bd7ddd393353a8d2480a622e80342adf488fb6006d667e8b42e4c0073393abee.js?body=1 HTTP/1.0" 200 293431 0.9333
+172.21.0.4 - - [09/May/2018:06:14:49 +0000] "GET /bootstrap-sprockets.self-fbfa5ad7d9aa0afe439ec4ff3883acc4cb92b62cb67c40d674320c9aa1d4642d.js?body=1 HTTP/1.0" 200 12 0.1068
+172.21.0.4 - - [09/May/2018:06:14:49 +0000] "GET /action_cable.self-69fddfcddf4fdef9828648f9330d6ce108b93b82b0b8d3affffc59a114853451.js?body=1 HTTP/1.0" 200 20539 0.0776
+172.21.0.4 - - [09/May/2018:06:14:49 +0000] "GET /turbolinks.self-2db6ec539b9190f75e1d477b305df53d12904d5cafdd47c7ffd91ba25cbec128.js?body=1 HTTP/1.0" 200 37484 0.1385
+172.21.0.4 - - [09/May/2018:06:14:50 +0000] "GET /cable.self-8484513823f404ed0c0f039f75243bfdede7af7919dda65f2e66391252443ce9.js?body=1 HTTP/1.0" 200 293 0.0811
+172.21.0.4 - - [09/May/2018:06:14:50 +0000] "GET /follows.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1 HTTP/1.0" 200 31 0.1064
+172.21.0.4 - - [09/May/2018:06:14:50 +0000] "GET /notifications.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1 HTTP/1.0" 200 31 0.0704
+172.21.0.4 - - [09/May/2018:06:14:50 +0000] "GET /replies.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1 HTTP/1.0" 200 31 0.0482
+172.21.0.4 - - [09/May/2018:06:14:50 +0000] "GET /relationships.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1 HTTP/1.0" 200 31 0.1104
+172.21.0.4 - - [09/May/2018:06:14:50 +0000] "GET /reply_favs.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1 HTTP/1.0" 200 31 0.0562
+172.21.0.4 - - [09/May/2018:06:14:50 +0000] "GET /tweets.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1 HTTP/1.0" 200 31 0.0522
+172.21.0.4 - - [09/May/2018:06:14:50 +0000] "GET /tweet_favs.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1 HTTP/1.0" 200 31 0.1111
+172.21.0.4 - - [09/May/2018:06:14:50 +0000] "GET /users.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1 HTTP/1.0" 200 31 0.0572
+172.21.0.4 - - [09/May/2018:06:14:50 +0000] "GET /assets/logo-77815ee38a520a78dd604584babf3b42999da3df4ff6d3bb0464725d8881ebd5.png HTTP/1.0" 200 15953 0.0303
+172.21.0.4 - - [09/May/2018:06:14:50 +0000] "GET /application.self-5e866087125b4eb5e02a8365d73cdaeb7f2127bbb3f479fb54ab3ddb0d5c66af.js?body=1 HTTP/1.0" 200 637 0.3665
+172.21.0.4 - - [09/May/2018:06:14:50 +0000] "GET /favicon.ico HTTP/1.0" 200 - 0.0224
+172.21.0.4 - - [09/May/2018:06:15:12 +0000] "GET /users/sign_in HTTP/1.0" 200 - 3.0944
+172.21.0.4 - - [09/May/2018:06:15:14 +0000] "GET /users/sign_up HTTP/1.0" 200 - 0.8375
+I, [2018-05-09T06:20:10.740219 #1]  INFO -- : reaped #<Process::Status: pid 6 exit 0> worker=0
+I, [2018-05-09T06:20:10.749412 #1]  INFO -- : reaped #<Process::Status: pid 9 exit 0> worker=1
+I, [2018-05-09T06:20:10.753689 #1]  INFO -- : master complete
