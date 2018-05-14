@@ -27,7 +27,7 @@ env.HAS_INTERNAL='false'
 env.BUILD_TOOLS_ABSOLUTE_PATH = '/home/finc/build_script/v2/master/'
 env.PRODUCTION_BUILD_TOOLS_ABSOLUTE_PATH = '/home/finc/build_script/v2/master/'
 
-env.SKIP_TEST = 'false'
+env.SKIP_TEST = 'true'
 
 env.DOCKERFILE_EXISTS = 'true'
 env.BUILD_DOCKER_IMAGE='true'
