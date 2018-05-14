@@ -89,6 +89,6 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.action_controller.asset_host = '//assets.cdn.finc.com'
+  config.action_controller.asset_host = '//assets-stg.cdn.finc.com'
   config.assets.prefix = '/sns/assets'
 end
