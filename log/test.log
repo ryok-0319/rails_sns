@@ -1,0 +1,228 @@
+  [1m[35m (0.8ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.6ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.5ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (5.9ms)[0m  [1m[35mDROP DATABASE IF EXISTS `mysns_test`[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCREATE DATABASE `mysns_test` DEFAULT CHARACTER SET `utf8`[0m
+  [1m[35m (0.5ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.5ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS `admins` CASCADE[0m
+  [1m[35m (18.8ms)[0m  [1m[35mCREATE TABLE `admins` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int DEFAULT 0 NOT NULL, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL, UNIQUE INDEX `index_admins_on_email`  (`email`), UNIQUE INDEX `index_admins_on_reset_password_token`  (`reset_password_token`)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS `fav_to_replies` CASCADE[0m
+  [1m[35m (15.1ms)[0m  [1m[35mCREATE TABLE `fav_to_replies` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `user_id` bigint, `reply_id` bigint, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_fav_to_replies_on_reply_id`  (`reply_id`),  INDEX `index_fav_to_replies_on_user_id`  (`user_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS `fav_to_tweets` CASCADE[0m
+  [1m[35m (15.9ms)[0m  [1m[35mCREATE TABLE `fav_to_tweets` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `user_id` bigint, `tweet_id` bigint, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_fav_to_tweets_on_tweet_id`  (`tweet_id`),  INDEX `index_fav_to_tweets_on_user_id`  (`user_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS `follows` CASCADE[0m
+  [1m[35m (13.3ms)[0m  [1m[35mCREATE TABLE `follows` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `followee_id` int, `user_id` bigint, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_follows_on_user_id`  (`user_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS `notifications` CASCADE[0m
+  [1m[35m (16.3ms)[0m  [1m[35mCREATE TABLE `notifications` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `user_id` bigint NOT NULL, `notified_by_id` bigint NOT NULL, `notification_type` int NOT NULL, `read` tinyint(1) DEFAULT 0, `message` text, `link` text, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_notifications_on_notified_by_id`  (`notified_by_id`),  INDEX `index_notifications_on_user_id`  (`user_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS `relationships` CASCADE[0m
+  [1m[35m (13.3ms)[0m  [1m[35mCREATE TABLE `relationships` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `follower_id` int, `following_id` int, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS `replies` CASCADE[0m
+  [1m[35m (17.0ms)[0m  [1m[35mCREATE TABLE `replies` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `content` text, `level` int, `tweet_id` bigint, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL, `user_id` bigint, `favs_count` int,  INDEX `index_replies_on_tweet_id`  (`tweet_id`),  INDEX `index_replies_on_user_id`  (`user_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS `reply_favs` CASCADE[0m
+  [1m[35m (15.4ms)[0m  [1m[35mCREATE TABLE `reply_favs` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `user_id` bigint NOT NULL, `reply_id` bigint NOT NULL, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_reply_favs_on_reply_id`  (`reply_id`),  INDEX `index_reply_favs_on_user_id`  (`user_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS `tweet_favs` CASCADE[0m
+  [1m[35m (14.9ms)[0m  [1m[35mCREATE TABLE `tweet_favs` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `user_id` bigint NOT NULL, `tweet_id` bigint NOT NULL, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_tweet_favs_on_tweet_id`  (`tweet_id`),  INDEX `index_tweet_favs_on_user_id`  (`user_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (0.5ms)[0m  [1m[35mDROP TABLE IF EXISTS `tweets` CASCADE[0m
+  [1m[35m (17.0ms)[0m  [1m[35mCREATE TABLE `tweets` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `content` text, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL, `level` int, `user_id` bigint, `favs_count` int,  INDEX `index_tweets_on_user_id`  (`user_id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS `users` CASCADE[0m
+  [1m[35m (17.3ms)[0m  [1m[35mCREATE TABLE `users` (`id` bigint NOT NULL AUTO_INCREMENT PRIMARY KEY, `email` varchar(255) DEFAULT '' NOT NULL, `encrypted_password` varchar(255) DEFAULT '' NOT NULL, `reset_password_token` varchar(255), `reset_password_sent_at` datetime, `remember_created_at` datetime, `sign_in_count` int DEFAULT 0 NOT NULL, `current_sign_in_at` datetime, `last_sign_in_at` datetime, `current_sign_in_ip` varchar(255), `last_sign_in_ip` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL, `name` varchar(255), `nickname` varchar(255), `bio` text, `icon` varchar(255), `notification` tinyint(1), UNIQUE INDEX `index_users_on_email`  (`email`), UNIQUE INDEX `index_users_on_reset_password_token`  (`reset_password_token`)) ENGINE=InnoDB DEFAULT CHARSET=utf8[0m
+  [1m[35m (34.3ms)[0m  [1m[35mALTER TABLE `fav_to_replies` ADD CONSTRAINT `fk_rails_88a0f72904`
+FOREIGN KEY (`reply_id`)
+  REFERENCES `replies` (`id`)
+[0m
+  [1m[35m (32.6ms)[0m  [1m[35mALTER TABLE `fav_to_replies` ADD CONSTRAINT `fk_rails_eb67103d4d`
+FOREIGN KEY (`user_id`)
+  REFERENCES `users` (`id`)
+[0m
+  [1m[35m (27.9ms)[0m  [1m[35mALTER TABLE `fav_to_tweets` ADD CONSTRAINT `fk_rails_cb9324b5b3`
+FOREIGN KEY (`tweet_id`)
+  REFERENCES `tweets` (`id`)
+[0m
+  [1m[35m (30.9ms)[0m  [1m[35mALTER TABLE `fav_to_tweets` ADD CONSTRAINT `fk_rails_0fa492f3ec`
+FOREIGN KEY (`user_id`)
+  REFERENCES `users` (`id`)
+[0m
+  [1m[35m (40.7ms)[0m  [1m[35mALTER TABLE `follows` ADD CONSTRAINT `fk_rails_32479bd030`
+FOREIGN KEY (`user_id`)
+  REFERENCES `users` (`id`)
+[0m
+  [1m[35m (33.4ms)[0m  [1m[35mALTER TABLE `notifications` ADD CONSTRAINT `fk_rails_b080fb4855`
+FOREIGN KEY (`user_id`)
+  REFERENCES `users` (`id`)
+[0m
+  [1m[35m (28.6ms)[0m  [1m[35mALTER TABLE `notifications` ADD CONSTRAINT `fk_rails_ff009aac1a`
+FOREIGN KEY (`notified_by_id`)
+  REFERENCES `users` (`id`)
+[0m
+  [1m[35m (29.1ms)[0m  [1m[35mALTER TABLE `replies` ADD CONSTRAINT `fk_rails_acd191e993`
+FOREIGN KEY (`tweet_id`)
+  REFERENCES `tweets` (`id`)
+[0m
+  [1m[35m (29.5ms)[0m  [1m[35mALTER TABLE `replies` ADD CONSTRAINT `fk_rails_256e4b72c5`
+FOREIGN KEY (`user_id`)
+  REFERENCES `users` (`id`)
+[0m
+  [1m[35m (29.2ms)[0m  [1m[35mALTER TABLE `tweets` ADD CONSTRAINT `fk_rails_003928b7f5`
+FOREIGN KEY (`user_id`)
+  REFERENCES `users` (`id`)
+[0m
+  [1m[35m (13.1ms)[0m  [1m[35mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL PRIMARY KEY) ENGINE=InnoDB[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (3.8ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES (20180328183039)[0m
+  [1m[35m (4.5ms)[0m  [1m[32mINSERT INTO `schema_migrations` (version) VALUES
+(20180318230243),
+(20180318230318),
+(20180318234905),
+(20180319173056),
+(20180319173901),
+(20180319173925),
+(20180319174030),
+(20180319174058),
+(20180319174201),
+(20180319175021),
+(20180319175131),
+(20180319204328),
+(20180319214337),
+(20180323024929),
+(20180323025202),
+(20180325223327),
+(20180325223400),
+(20180326000255),
+(20180326194815),
+(20180327231012),
+(20180328000615);
+
+[0m
+  [1m[35m (13.0ms)[0m  [1m[35mCREATE TABLE `ar_internal_metadata` (`key` varchar(255) NOT NULL PRIMARY KEY, `value` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT  `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO `ar_internal_metadata` (`key`, `value`, `created_at`, `updated_at`) VALUES ('environment', 'test', '2018-05-10 06:15:11', '2018-05-10 06:15:11')[0m
+  [1m[35m (3.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT  `ar_internal_metadata`.* FROM `ar_internal_metadata` WHERE `ar_internal_metadata`.`key` = 'environment' LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mSET NAMES utf8,  @@SESSION.sql_mode = CONCAT(CONCAT(@@sql_mode, ',STRICT_ALL_TABLES'), ',NO_AUTO_VALUE_ON_ZERO'),  @@SESSION.sql_auto_is_null = 0, @@SESSION.wait_timeout = 2147483[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT `schema_migrations`.`version` FROM `schema_migrations` ORDER BY `schema_migrations`.`version` ASC[0m
+  [1m[35m (1.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.5ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (2.5ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = BINARY 'hoge@gmail.com' LIMIT 1[0m
+  [1m[36mUser Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`name` = BINARY 'hogehoge' LIMIT 1[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO `users` (`email`, `encrypted_password`, `created_at`, `updated_at`, `name`, `nickname`) VALUES ('hoge@gmail.com', '$2a$04$Z6FUCi/2xxcPBws8MgYrFuwME8QwlkZ1ux5.qlhZSygdv3C7AteOS', '2018-05-10 06:15:12', '2018-05-10 06:15:12', 'hogehoge', 'ほげお')[0m
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.5ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO `tweets` (`content`, `created_at`, `updated_at`, `level`, `user_id`) VALUES ('ホゲホゲなう', '2018-05-10 06:15:12', '2018-05-10 06:15:12', 0, 1)[0m
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.7ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = BINARY 'piyo@gmail.com' LIMIT 1[0m
+  [1m[36mUser Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`name` = BINARY 'piyopiyo' LIMIT 1[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO `users` (`email`, `encrypted_password`, `created_at`, `updated_at`, `name`, `nickname`) VALUES ('piyo@gmail.com', '$2a$04$8utm0OK8zpzVd87/8xA5qeMDF9bd4ZvqiV5D5e.OfwL0Ih7UjAsem', '2018-05-10 06:15:12', '2018-05-10 06:15:12', 'piyopiyo', 'ぴよこ')[0m
+  [1m[35m (0.5ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (2.0ms)[0m  [1m[32mINSERT INTO `tweets` (`content`, `created_at`, `updated_at`, `level`, `user_id`) VALUES ('ホゲホゲなう', '2018-05-10 06:15:12', '2018-05-10 06:15:12', 0, 2)[0m
+  [1m[35m (1.5ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by TweetsController#index as HTML
+  [1m[36mTweet Load (0.6ms)[0m  [1m[34mSELECT `tweets`.* FROM `tweets`[0m
+  Rendering tweets/index.html.erb within layouts/application
+  Template rendering was prevented by rspec-rails. Use `render_views` to verify rendered view contents if necessary.
+  Rendered tweets/index.html.erb within layouts/application (0.8ms)
+  Template rendering was prevented by rspec-rails. Use `render_views` to verify rendered view contents if necessary.
+Completed 200 OK in 149ms (Views: 70.5ms | ActiveRecord: 0.6ms)
+  [1m[35m (2.3ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.5ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = BINARY 'hoge@gmail.com' LIMIT 1[0m
+  [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`name` = BINARY 'hogehoge' LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO `users` (`email`, `encrypted_password`, `created_at`, `updated_at`, `name`, `nickname`) VALUES ('hoge@gmail.com', '$2a$04$UCcdfEp8AOuBhj3zmeGQluV6jbeNts/d633jeFELp33jGQj3q.b/u', '2018-05-10 06:15:12', '2018-05-10 06:15:12', 'hogehoge', 'ほげお')[0m
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO `tweets` (`content`, `created_at`, `updated_at`, `level`, `user_id`) VALUES ('ホゲホゲなう', '2018-05-10 06:15:12', '2018-05-10 06:15:12', 0, 3)[0m
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = BINARY 'piyo@gmail.com' LIMIT 1[0m
+  [1m[36mUser Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`name` = BINARY 'piyopiyo' LIMIT 1[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO `users` (`email`, `encrypted_password`, `created_at`, `updated_at`, `name`, `nickname`) VALUES ('piyo@gmail.com', '$2a$04$Kur5mchH3HZvdlg.bwTvm.Mi.Ekdu9YglYBtobR9mIoSmNqfG2ds.', '2018-05-10 06:15:12', '2018-05-10 06:15:12', 'piyopiyo', 'ぴよこ')[0m
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO `tweets` (`content`, `created_at`, `updated_at`, `level`, `user_id`) VALUES ('ホゲホゲなう', '2018-05-10 06:15:12', '2018-05-10 06:15:12', 0, 4)[0m
+  [1m[35m (0.5ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by TweetsController#index as HTML
+  [1m[36mTweet Load (0.6ms)[0m  [1m[34mSELECT `tweets`.* FROM `tweets`[0m
+  Rendering tweets/index.html.erb within layouts/application
+  Rendered tweets/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 5ms (Views: 1.9ms | ActiveRecord: 0.6ms)
+  [1m[35m (4.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.6ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.7ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = BINARY 'hoge@gmail.com' LIMIT 1[0m
+  [1m[36mUser Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`name` = BINARY 'hogehoge' LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO `users` (`email`, `encrypted_password`, `created_at`, `updated_at`, `name`, `nickname`) VALUES ('hoge@gmail.com', '$2a$04$2TwXj713kXk8FbKDn5CuYela9To6obXyp9PtZ4YO2XFjjwehqzUSC', '2018-05-10 06:15:12', '2018-05-10 06:15:12', 'hogehoge', 'ほげお')[0m
+  [1m[35m (0.5ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO `tweets` (`content`, `created_at`, `updated_at`, `level`, `user_id`) VALUES ('ホゲホゲなう', '2018-05-10 06:15:12', '2018-05-10 06:15:12', 0, 5)[0m
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.5ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = BINARY 'piyo@gmail.com' LIMIT 1[0m
+  [1m[36mUser Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`name` = BINARY 'piyopiyo' LIMIT 1[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO `users` (`email`, `encrypted_password`, `created_at`, `updated_at`, `name`, `nickname`) VALUES ('piyo@gmail.com', '$2a$04$DZhiXG7hdQssw35cGRJJ0e7CPv6I6MwrcQQ/UgxXoj8xMYbuw7dLK', '2018-05-10 06:15:12', '2018-05-10 06:15:12', 'piyopiyo', 'ぴよこ')[0m
+  [1m[35m (0.5ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.5ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO `tweets` (`content`, `created_at`, `updated_at`, `level`, `user_id`) VALUES ('ホゲホゲなう', '2018-05-10 06:15:12', '2018-05-10 06:15:12', 0, 6)[0m
+  [1m[35m (0.5ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+Processing by TweetsController#index as HTML
+  [1m[36mTweet Load (0.7ms)[0m  [1m[34mSELECT `tweets`.* FROM `tweets`[0m
+  Rendering tweets/index.html.erb within layouts/application
+  Rendered tweets/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 5ms (Views: 2.2ms | ActiveRecord: 0.7ms)
+  [1m[35m (4.9ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.6ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.5ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = BINARY 'hoge@gmail.com' LIMIT 1[0m
+  [1m[36mUser Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`name` = BINARY 'hogehoge' LIMIT 1[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO `users` (`email`, `encrypted_password`, `created_at`, `updated_at`, `name`, `nickname`) VALUES ('hoge@gmail.com', '$2a$04$f5UvHdBJ2o3QL0IcjaSn1.gn.sT/V40t2VzgCaLxg/Unj7v9rzN.C', '2018-05-10 06:15:12', '2018-05-10 06:15:12', 'hogehoge', 'ほげお')[0m
+  [1m[35m (0.5ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (4.6ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.8ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = BINARY 'hoge@gmail.com' LIMIT 1[0m
+  [1m[36mUser Exists (1.2ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`name` = BINARY 'hogehoge' LIMIT 1[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO `users` (`email`, `encrypted_password`, `created_at`, `updated_at`, `name`, `nickname`) VALUES ('hoge@gmail.com', '$2a$04$y9FhL80KdASmnFfZz5mvte7q8clViNS1ERiYj1w0SuBJIt8S.m3Zu', '2018-05-10 06:15:12', '2018-05-10 06:15:12', 'hogehoge', 'ほげお')[0m
+  [1m[35m (0.5ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (4.0ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.5ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = BINARY 'hoge@gmail.com' LIMIT 1[0m
+  [1m[36mUser Exists (0.7ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`name` = BINARY 'hogehoge' LIMIT 1[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO `users` (`email`, `encrypted_password`, `created_at`, `updated_at`, `name`, `nickname`) VALUES ('hoge@gmail.com', '$2a$04$KxNEtFHGjAYRJpRakOXQY.DYLKxSIBfmZX9qMspU2IxGMLC0zT/pi', '2018-05-10 06:15:12', '2018-05-10 06:15:12', 'hogehoge', 'ほげお')[0m
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (3.9ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.4ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = BINARY 'hoge@gmail.com' LIMIT 1[0m
+  [1m[36mUser Exists (0.7ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`name` = BINARY 'hogehoge' LIMIT 1[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO `users` (`email`, `encrypted_password`, `created_at`, `updated_at`, `name`, `nickname`) VALUES ('hoge@gmail.com', '$2a$04$LN3A2v.y3k8xXQ8FGFy.6eI.gN5zHzVLMMDBOh6bUvuJAp0kEoi0S', '2018-05-10 06:15:12', '2018-05-10 06:15:12', 'hogehoge', 'ほげお')[0m
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (3.7ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.8ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.7ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = BINARY 'hoge@gmail.com' LIMIT 1[0m
+  [1m[36mUser Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`name` = BINARY 'hogehoge' LIMIT 1[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO `users` (`email`, `encrypted_password`, `created_at`, `updated_at`, `name`, `nickname`) VALUES ('hoge@gmail.com', '$2a$04$S8rIfrhEhbZRIyoqk6dbF.C09qtFF65fAbwNOdK2up3FwR.p.REgq', '2018-05-10 06:15:12', '2018-05-10 06:15:12', 'hogehoge', 'ほげお')[0m
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (3.7ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.5ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.7ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = BINARY 'hoge@gmail.com' LIMIT 1[0m
+  [1m[36mUser Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`name` = BINARY 'hogehoge' LIMIT 1[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO `users` (`email`, `encrypted_password`, `created_at`, `updated_at`, `name`, `nickname`) VALUES ('hoge@gmail.com', '$2a$04$phwcs/bW2Vu.covXoHwnA.MxBjf/Cmi1V3fOEnKxvBS/zLghlvjhW', '2018-05-10 06:15:12', '2018-05-10 06:15:12', 'hogehoge', 'ほげお')[0m
+  [1m[35m (0.4ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (3.8ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.7ms)[0m  [1m[35mSAVEPOINT active_record_1[0m
+  [1m[36mUser Exists (0.9ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`email` = BINARY 'hoge@gmail.com' LIMIT 1[0m
+  [1m[36mUser Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM `users` WHERE `users`.`name` = BINARY 'hogehoge' LIMIT 1[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO `users` (`email`, `encrypted_password`, `created_at`, `updated_at`, `name`, `nickname`) VALUES ('hoge@gmail.com', '$2a$04$1o7gfMXw1fo5L2OT2QeYCu.2YR7BTQ2RYbcH/HDvBe2gIZWM9Gs0.', '2018-05-10 06:15:12', '2018-05-10 06:15:12', 'hogehoge', 'ほげお')[0m
+  [1m[35m (0.5ms)[0m  [1m[35mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (4.6ms)[0m  [1m[31mROLLBACK[0m

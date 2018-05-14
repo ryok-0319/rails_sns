@@ -23,4 +23,16 @@ FactoryBot.define do
     name  'fugafuga'
     nickname 'ふがお'
   end
+
+  factory :user_4, parent: :user do
+    email 'nanashi@gmail.com'
+    name  'nanashi'
+    nickname 'ななし'
+  end
+
+  factory :user_5, parent: :user do
+    email 'naari@gmail.com'
+    name  'naari'
+    nickname 'なあり'
+  end
 end

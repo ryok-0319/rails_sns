@@ -48,3 +48,19 @@ I, [2018-05-09T06:07:55.860700 #6]  INFO -- : worker=0 ready
 I, [2018-05-09T06:20:10.740219 #1]  INFO -- : reaped #<Process::Status: pid 6 exit 0> worker=0
 I, [2018-05-09T06:20:10.749412 #1]  INFO -- : reaped #<Process::Status: pid 9 exit 0> worker=1
 I, [2018-05-09T06:20:10.753689 #1]  INFO -- : master complete
+I, [2018-05-10T06:10:58.165316 #1]  INFO -- : listening on addr=0.0.0.0:3000 fd=9
+I, [2018-05-10T06:10:58.166337 #1]  INFO -- : worker=0 spawning...
+I, [2018-05-10T06:10:58.167584 #1]  INFO -- : worker=1 spawning...
+I, [2018-05-10T06:10:58.168252 #6]  INFO -- : worker=0 spawned pid=6
+I, [2018-05-10T06:10:58.169200 #6]  INFO -- : Refreshing Gem list
+I, [2018-05-10T06:10:58.169725 #1]  INFO -- : master process ready
+I, [2018-05-10T06:10:58.170226 #9]  INFO -- : worker=1 spawned pid=9
+I, [2018-05-10T06:10:58.171943 #9]  INFO -- : Refreshing Gem list
+I, [2018-05-10T06:11:09.294577 #6]  INFO -- : worker=0 ready
+I, [2018-05-10T06:11:09.320152 #9]  INFO -- : worker=1 ready
+172.21.0.4 - - [10/May/2018:06:11:14 +0000] "GET / HTTP/1.0" 200 - 5.1654
+172.21.0.4 - - [10/May/2018:06:11:14 +0000] "GET /assets/logo-77815ee38a520a78dd604584babf3b42999da3df4ff6d3bb0464725d8881ebd5.png HTTP/1.0" 304 - 0.0101
+172.21.0.4 - - [10/May/2018:06:11:15 +0000] "GET /favicon.ico HTTP/1.0" 304 - 0.0237
+I, [2018-05-10T06:20:40.888531 #1]  INFO -- : reaped #<Process::Status: pid 6 exit 0> worker=0
+I, [2018-05-10T06:20:40.891721 #1]  INFO -- : reaped #<Process::Status: pid 9 exit 0> worker=1
+I, [2018-05-10T06:20:40.893904 #1]  INFO -- : master complete

@@ -8,4 +8,8 @@ FactoryBot.define do
   factory :tweet_2, parent: :tweet do
     user { create(:user_2) }
   end
+
+  factory :tweet_3, parent: :tweet do
+    user { create(:user_3) }
+  end
 end
