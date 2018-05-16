@@ -14,19 +14,6 @@ default: &default
 
 master_slave: &master_slave
   <<: *default
-  adapter: mysql2_makara
-  makara:
-    blacklist_duration: 5
-    master_ttl: 5
-    master_strategy: round_robin
-    sticky: true
-    connections:
-      - role: master
-        host: <%= Settings.db.default.host %>
-        port: <%= Settings.db.default.port %>
-      - role: slave
-        host: <%= Settings.db.readonly.host %>
-        port: <%= Settings.db.default.port %>
 
 development:
   <<: *default
