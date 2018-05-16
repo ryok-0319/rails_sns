@@ -1,6 +1,6 @@
 worker_processes ENV['WORKER_PROCESSES'].to_i
 
-application_path = '/home/ubuntu/onboarding'
+application_path = '/home/ubuntu/rails_sns'
 
 listen 3000
 pid File.expand_path('unicorn.pid', '/tmp')
