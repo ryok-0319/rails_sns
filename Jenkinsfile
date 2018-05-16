@@ -28,7 +28,6 @@ env.BUILD_TOOLS_ABSOLUTE_PATH = '/home/finc/build_script/v2/master/'
 env.PRODUCTION_BUILD_TOOLS_ABSOLUTE_PATH = '/home/finc/build_script/v2/master/'
 
 env.SKIP_TEST = 'true'
-env.APP_TYPE= 'skip'
 
 env.NOT_USE_ASSETS='true'
 
