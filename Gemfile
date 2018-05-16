@@ -63,7 +63,6 @@ gem 'bootstrap-sass'
 gem 'config'
 gem 'jquery-rails'
 gem 'unicorn'
-gem 'makara'
 # Assets
 gem 'asset_sync'
 gem 'fog-aws'
