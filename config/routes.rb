@@ -31,4 +31,6 @@ Rails.application.routes.draw do
   end
 
   root 'tweets#index'
+
+  resources :health_check, only: [:index]
 end
