@@ -1993,3 +1993,1211 @@ Processing by TweetsController#index as HTML
 Completed 200 OK in 3689ms (Views: 3661.0ms | ActiveRecord: 8.4ms)
 
 
+Started POST "/tweets/3/tweet_favs" for 127.0.0.1 at 2018-05-18 19:00:37 +0900
+Processing by TweetFavsController#create as JS
+  Parameters: {"authenticity_token"=>"DMRWu29iQhQxaj3cDXxhn26bV2Gcx3pNL9kQHN7L4Eg8s1J2/ZDTH/5YzpVwwxbVljPCh1IV+fdLDcRFiGmLNw==", "tweet_id"=>"3"}
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT COUNT(*) FROM `notifications` WHERE `notifications`.`user_id` = 2 AND `notifications`.`read` = 0[0m
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[36mTweet Load (0.7ms)[0m  [1m[34mSELECT  `tweets`.* FROM `tweets` WHERE `tweets`.`id` = 3 LIMIT 1[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO `tweet_favs` (`user_id`, `tweet_id`, `created_at`, `updated_at`) VALUES (2, 3, '2018-05-18 10:00:37', '2018-05-18 10:00:37')[0m
+  [1m[35mSQL (1.7ms)[0m  [1m[33mUPDATE `tweets` SET `favs_count` = COALESCE(`favs_count`, 0) + 1 WHERE `tweets`.`id` = 3[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTweet Load (0.4ms)[0m  [1m[34mSELECT  `tweets`.* FROM `tweets` WHERE `tweets`.`id` = 3 LIMIT 1[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  Rendering tweet_favs/create.js.erb
+  Rendered tweet_favs/create.js.erb (470.8ms)
+Completed 500 Internal Server Error in 608ms (ActiveRecord: 10.2ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `tweet' for #<#<Class:0x00007f8b69cd8998>:0x00007f8b6a410440>
+Did you mean?  @tweet):
+    1: $("#like-buttons").html("<%= j(render partial: 'tweets/tweet_fav', locals: { tweet: tweet, favs: favs, i: i }) %>");
+  
+app/views/tweet_favs/create.js.erb:1:in `_app_views_tweet_favs_create_js_erb___3227519779284694272_70118376131100'
+Started GET "/tweets" for 127.0.0.1 at 2018-05-18 19:00:41 +0900
+Processing by TweetsController#index as HTML
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM `notifications` WHERE `notifications`.`user_id` = 2 AND `notifications`.`read` = 0[0m
+  [1m[36mTweet Load (0.4ms)[0m  [1m[34mSELECT `tweets`.* FROM `tweets`[0m
+  [1m[36mTweetFav Load (0.5ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m
+  [1m[36mTweetFav Load (0.5ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 2 LIMIT 1[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[36mRelationship Load (0.5ms)[0m  [1m[34mSELECT  `relationships`.* FROM `relationships` WHERE `relationships`.`follower_id` = 2 AND `relationships`.`following_id` = 2 LIMIT 1[0m
+  [1m[36mUser Load (2.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[36mRelationship Load (0.6ms)[0m  [1m[34mSELECT  `relationships`.* FROM `relationships` WHERE `relationships`.`follower_id` = 2 AND `relationships`.`following_id` = 1 LIMIT 1[0m
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m  [["user_id", 2], ["tweet_id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 2 LIMIT 1[0m  [["user_id", 2], ["tweet_id", 2], ["LIMIT", 1]]
+  Rendering tweets/index.html.erb within layouts/application
+  [1m[36mTweetFav Load (0.6ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 3 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m
+  Rendered tweets/_tweet_fav.html.erb (8.6ms)
+  [1m[36mTweetFav Load (0.6ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 2 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m
+  Rendered tweets/_tweet_fav.html.erb (4.4ms)
+  Rendered tweets/_tweets.html.erb (21.3ms)
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 3 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m  [["tweet_id", 3], ["user_id", 2], ["LIMIT", 1]]
+  Rendered tweets/_tweet_fav.html.erb (2.6ms)
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 2 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m  [["tweet_id", 2], ["user_id", 2], ["LIMIT", 1]]
+  Rendered tweets/_tweet_fav.html.erb (2.0ms)
+  Rendered tweets/_tweets.html.erb (13.3ms)
+  Rendered tweets/index.html.erb within layouts/application (43.5ms)
+Completed 200 OK in 271ms (Views: 242.6ms | ActiveRecord: 8.3ms)
+
+
+Started POST "/tweets/2/tweet_favs" for 127.0.0.1 at 2018-05-18 19:00:43 +0900
+Processing by TweetFavsController#create as JS
+  Parameters: {"authenticity_token"=>"hVlmqtKtFIifgG8vks/vcadpW5oRm8c/5h/ndNEdAtq1LmJnQF+Fg1CynGbvcJg7X8HOfN9JRIWCyzMth79ppQ==", "tweet_id"=>"2"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM `notifications` WHERE `notifications`.`user_id` = 2 AND `notifications`.`read` = 0[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[36mTweet Load (0.5ms)[0m  [1m[34mSELECT  `tweets`.* FROM `tweets` WHERE `tweets`.`id` = 2 LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO `tweet_favs` (`user_id`, `tweet_id`, `created_at`, `updated_at`) VALUES (2, 2, '2018-05-18 10:00:43', '2018-05-18 10:00:43')[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[33mUPDATE `tweets` SET `favs_count` = COALESCE(`favs_count`, 0) + 1 WHERE `tweets`.`id` = 2[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTweet Load (0.5ms)[0m  [1m[34mSELECT  `tweets`.* FROM `tweets` WHERE `tweets`.`id` = 2 LIMIT 1[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO `notifications` (`user_id`, `notified_by_id`, `notification_type`, `message`, `link`, `created_at`, `updated_at`) VALUES (1, 2, 0, '頑張ります', '/tweets/2', '2018-05-18 10:00:43', '2018-05-18 10:00:43')[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  Rendering tweet_favs/create.js.erb
+  Rendered tweet_favs/create.js.erb (506.8ms)
+Completed 500 Internal Server Error in 588ms (ActiveRecord: 7.7ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `tweet' for #<#<Class:0x00007f8b69cd8998>:0x00007f8b71a98ab8>
+Did you mean?  @tweet):
+    1: $("#like-buttons").html("<%= j(render partial: 'tweets/tweet_fav', locals: { tweet: tweet, favs: favs, i: i }) %>");
+  
+app/views/tweet_favs/create.js.erb:1:in `_app_views_tweet_favs_create_js_erb___3227519779284694272_70118442060620'
+Started GET "/tweets" for 127.0.0.1 at 2018-05-18 19:00:48 +0900
+Processing by TweetsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `notifications` WHERE `notifications`.`user_id` = 2 AND `notifications`.`read` = 0[0m
+  [1m[36mTweet Load (0.4ms)[0m  [1m[34mSELECT `tweets`.* FROM `tweets`[0m
+  [1m[36mTweetFav Load (0.6ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m
+  [1m[36mTweetFav Load (0.4ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 2 LIMIT 1[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[36mRelationship Load (0.5ms)[0m  [1m[34mSELECT  `relationships`.* FROM `relationships` WHERE `relationships`.`follower_id` = 2 AND `relationships`.`following_id` = 2 LIMIT 1[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[36mRelationship Load (0.4ms)[0m  [1m[34mSELECT  `relationships`.* FROM `relationships` WHERE `relationships`.`follower_id` = 2 AND `relationships`.`following_id` = 1 LIMIT 1[0m
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m  [["user_id", 2], ["tweet_id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 2 LIMIT 1[0m  [["user_id", 2], ["tweet_id", 2], ["LIMIT", 1]]
+  Rendering tweets/index.html.erb within layouts/application
+  [1m[36mTweetFav Load (0.7ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 3 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m
+  Rendered tweets/_tweet_fav.html.erb (6.3ms)
+  [1m[36mTweetFav Load (0.7ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 2 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m
+  Rendered tweets/_tweet_fav.html.erb (3.2ms)
+  Rendered tweets/_tweets.html.erb (19.3ms)
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 3 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m  [["tweet_id", 3], ["user_id", 2], ["LIMIT", 1]]
+  Rendered tweets/_tweet_fav.html.erb (2.2ms)
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 2 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m  [["tweet_id", 2], ["user_id", 2], ["LIMIT", 1]]
+  Rendered tweets/_tweet_fav.html.erb (3.7ms)
+  Rendered tweets/_tweets.html.erb (14.5ms)
+  Rendered tweets/index.html.erb within layouts/application (41.0ms)
+Completed 200 OK in 231ms (Views: 210.6ms | ActiveRecord: 5.5ms)
+
+
+Started DELETE "/tweets/3/tweet_favs/1" for 127.0.0.1 at 2018-05-18 19:00:50 +0900
+Processing by TweetFavsController#destroy as JS
+  Parameters: {"authenticity_token"=>"1CQa4a8Vt082fLDPB21qn0URzIUtCWSOodxzD5F3QUjkUx4sPecmRPlOQ4Z60h3VvblZY+Pb5zTFCKdWx9UqNw==", "tweet_id"=>"3", "id"=>"1"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `notifications` WHERE `notifications`.`user_id` = 2 AND `notifications`.`read` = 0[0m
+  [1m[36mTweetFav Load (0.5ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (3.1ms)[0m  [1m[31mDELETE FROM `tweet_favs` WHERE `tweet_favs`.`id` = 1[0m
+  [1m[36mTweet Load (0.9ms)[0m  [1m[34mSELECT  `tweets`.* FROM `tweets` WHERE `tweets`.`id` = 3 LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE `tweets` SET `favs_count` = COALESCE(`favs_count`, 0) - 1 WHERE `tweets`.`id` = 3[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTweet Load (0.6ms)[0m  [1m[34mSELECT  `tweets`.* FROM `tweets` WHERE `tweets`.`id` = 3 LIMIT 1[0m
+Redirected to http://0.0.0.0:3000/tweets
+Completed 200 OK in 21ms (ActiveRecord: 7.8ms)
+
+
+Started GET "/tweets" for 127.0.0.1 at 2018-05-18 19:00:50 +0900
+Processing by TweetsController#index as HTML
+  [1m[36mUser Load (4.1ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (5.1ms)[0m  [1m[34mSELECT COUNT(*) FROM `notifications` WHERE `notifications`.`user_id` = 2 AND `notifications`.`read` = 0[0m
+  [1m[36mTweet Load (1.4ms)[0m  [1m[34mSELECT `tweets`.* FROM `tweets`[0m
+  [1m[36mTweetFav Load (0.7ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m
+  [1m[36mTweetFav Load (0.5ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 2 LIMIT 1[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[36mRelationship Load (0.6ms)[0m  [1m[34mSELECT  `relationships`.* FROM `relationships` WHERE `relationships`.`follower_id` = 2 AND `relationships`.`following_id` = 2 LIMIT 1[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[36mRelationship Load (0.5ms)[0m  [1m[34mSELECT  `relationships`.* FROM `relationships` WHERE `relationships`.`follower_id` = 2 AND `relationships`.`following_id` = 1 LIMIT 1[0m
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m  [["user_id", 2], ["tweet_id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 2 LIMIT 1[0m  [["user_id", 2], ["tweet_id", 2], ["LIMIT", 1]]
+  Rendering tweets/index.html.erb within layouts/application
+  [1m[36mTweetFav Load (0.6ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 3 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m
+  Rendered tweets/_tweet_fav.html.erb (5.3ms)
+  [1m[36mTweetFav Load (0.7ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 2 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m
+  Rendered tweets/_tweet_fav.html.erb (4.1ms)
+  Rendered tweets/_tweets.html.erb (15.8ms)
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 3 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m  [["tweet_id", 3], ["user_id", 2], ["LIMIT", 1]]
+  Rendered tweets/_tweet_fav.html.erb (1.9ms)
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 2 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m  [["tweet_id", 2], ["user_id", 2], ["LIMIT", 1]]
+  Rendered tweets/_tweet_fav.html.erb (2.5ms)
+  Rendered tweets/_tweets.html.erb (11.3ms)
+  Rendered tweets/index.html.erb within layouts/application (33.6ms)
+Completed 200 OK in 294ms (Views: 256.9ms | ActiveRecord: 15.2ms)
+
+
+Started DELETE "/tweets/2/tweet_favs/2" for 127.0.0.1 at 2018-05-18 19:00:51 +0900
+Processing by TweetFavsController#destroy as JS
+  Parameters: {"authenticity_token"=>"lq012+5YJDbx6HDk2T8lqbiBFJNIAeQmL8QfCt2vuKYnqaozUocbd54lE7EJCwd4MDKPHEY+7S8AI3/SC28GBw==", "tweet_id"=>"2", "id"=>"2"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `notifications` WHERE `notifications`.`user_id` = 2 AND `notifications`.`read` = 0[0m
+  [1m[36mTweetFav Load (0.5ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 2 LIMIT 1[0m
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[31mDELETE FROM `tweet_favs` WHERE `tweet_favs`.`id` = 2[0m
+  [1m[36mTweet Load (0.6ms)[0m  [1m[34mSELECT  `tweets`.* FROM `tweets` WHERE `tweets`.`id` = 2 LIMIT 1[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[33mUPDATE `tweets` SET `favs_count` = COALESCE(`favs_count`, 0) - 1 WHERE `tweets`.`id` = 2[0m
+  [1m[35m (1.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTweet Load (0.5ms)[0m  [1m[34mSELECT  `tweets`.* FROM `tweets` WHERE `tweets`.`id` = 2 LIMIT 1[0m
+Redirected to http://0.0.0.0:3000/tweets
+Completed 200 OK in 18ms (ActiveRecord: 6.6ms)
+
+
+Started GET "/tweets" for 127.0.0.1 at 2018-05-18 19:00:52 +0900
+Processing by TweetsController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM `notifications` WHERE `notifications`.`user_id` = 2 AND `notifications`.`read` = 0[0m
+  [1m[36mTweet Load (1.2ms)[0m  [1m[34mSELECT `tweets`.* FROM `tweets`[0m
+  [1m[36mTweetFav Load (3.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m
+  [1m[36mTweetFav Load (2.3ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 2 LIMIT 1[0m
+  [1m[36mUser Load (3.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[36mRelationship Load (1.3ms)[0m  [1m[34mSELECT  `relationships`.* FROM `relationships` WHERE `relationships`.`follower_id` = 2 AND `relationships`.`following_id` = 2 LIMIT 1[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[36mRelationship Load (0.6ms)[0m  [1m[34mSELECT  `relationships`.* FROM `relationships` WHERE `relationships`.`follower_id` = 2 AND `relationships`.`following_id` = 1 LIMIT 1[0m
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m  [["user_id", 2], ["tweet_id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 2 LIMIT 1[0m  [["user_id", 2], ["tweet_id", 2], ["LIMIT", 1]]
+  Rendering tweets/index.html.erb within layouts/application
+  [1m[36mTweetFav Load (0.6ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 3 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m
+  Rendered tweets/_tweet_fav.html.erb (4.8ms)
+  [1m[36mTweetFav Load (0.7ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 2 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m
+  Rendered tweets/_tweet_fav.html.erb (2.4ms)
+  Rendered tweets/_tweets.html.erb (13.5ms)
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 3 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m  [["tweet_id", 3], ["user_id", 2], ["LIMIT", 1]]
+  Rendered tweets/_tweet_fav.html.erb (1.9ms)
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 2 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m  [["tweet_id", 2], ["user_id", 2], ["LIMIT", 1]]
+  Rendered tweets/_tweet_fav.html.erb (1.9ms)
+  Rendered tweets/_tweets.html.erb (9.3ms)
+  Rendered tweets/index.html.erb within layouts/application (28.3ms)
+Completed 200 OK in 223ms (Views: 188.2ms | ActiveRecord: 14.8ms)
+
+
+Started POST "/tweets/3/tweet_favs" for 127.0.0.1 at 2018-05-18 19:00:54 +0900
+Processing by TweetFavsController#create as JS
+  Parameters: {"authenticity_token"=>"aRi0ILjHJMS3OigHayM8qAoboUK76ogdmkQGx0B+Jtkj0NrF7cB+qyUmIT1Qs37nMkzlpo2hy7le4jEwZEqMpQ==", "tweet_id"=>"3"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `notifications` WHERE `notifications`.`user_id` = 2 AND `notifications`.`read` = 0[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[36mTweet Load (0.5ms)[0m  [1m[34mSELECT  `tweets`.* FROM `tweets` WHERE `tweets`.`id` = 3 LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO `tweet_favs` (`user_id`, `tweet_id`, `created_at`, `updated_at`) VALUES (2, 3, '2018-05-18 10:00:54', '2018-05-18 10:00:54')[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE `tweets` SET `favs_count` = COALESCE(`favs_count`, 0) + 1 WHERE `tweets`.`id` = 3[0m
+  [1m[35m (2.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTweet Load (0.6ms)[0m  [1m[34mSELECT  `tweets`.* FROM `tweets` WHERE `tweets`.`id` = 3 LIMIT 1[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  Rendering tweet_favs/create.js.erb
+  Rendered tweet_favs/create.js.erb (518.2ms)
+Completed 500 Internal Server Error in 597ms (ActiveRecord: 7.0ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `tweet' for #<#<Class:0x00007f8b69cd8998>:0x00007f8b705d2890>
+Did you mean?  @tweet):
+    1: $("#like-buttons").html("<%= j(render partial: 'tweets/tweet_fav', locals: { tweet: tweet, favs: favs, i: i }) %>");
+  
+app/views/tweet_favs/create.js.erb:1:in `_app_views_tweet_favs_create_js_erb___3227519779284694272_70118431168800'
+Started GET "/tweets" for 127.0.0.1 at 2018-05-18 19:00:57 +0900
+Processing by TweetsController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM `notifications` WHERE `notifications`.`user_id` = 2 AND `notifications`.`read` = 0[0m
+  [1m[36mTweet Load (0.5ms)[0m  [1m[34mSELECT `tweets`.* FROM `tweets`[0m
+  [1m[36mTweetFav Load (0.9ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m
+  [1m[36mTweetFav Load (0.5ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 2 LIMIT 1[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[36mRelationship Load (0.5ms)[0m  [1m[34mSELECT  `relationships`.* FROM `relationships` WHERE `relationships`.`follower_id` = 2 AND `relationships`.`following_id` = 2 LIMIT 1[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[36mRelationship Load (0.6ms)[0m  [1m[34mSELECT  `relationships`.* FROM `relationships` WHERE `relationships`.`follower_id` = 2 AND `relationships`.`following_id` = 1 LIMIT 1[0m
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m  [["user_id", 2], ["tweet_id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 2 LIMIT 1[0m  [["user_id", 2], ["tweet_id", 2], ["LIMIT", 1]]
+  Rendering tweets/index.html.erb within layouts/application
+  [1m[36mTweetFav Load (0.6ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 3 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m
+  Rendered tweets/_tweet_fav.html.erb (5.8ms)
+  [1m[36mTweetFav Load (0.5ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 2 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m
+  Rendered tweets/_tweet_fav.html.erb (3.9ms)
+  Rendered tweets/_tweets.html.erb (17.4ms)
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 3 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m  [["tweet_id", 3], ["user_id", 2], ["LIMIT", 1]]
+  Rendered tweets/_tweet_fav.html.erb (3.7ms)
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 2 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m  [["tweet_id", 2], ["user_id", 2], ["LIMIT", 1]]
+  Rendered tweets/_tweet_fav.html.erb (2.4ms)
+  Rendered tweets/_tweets.html.erb (14.0ms)
+  Rendered tweets/index.html.erb within layouts/application (38.0ms)
+Completed 200 OK in 195ms (Views: 173.2ms | ActiveRecord: 6.6ms)
+
+
+Started DELETE "/tweets/3/tweet_favs/3" for 127.0.0.1 at 2018-05-18 19:00:58 +0900
+Processing by TweetFavsController#destroy as JS
+  Parameters: {"authenticity_token"=>"+dfCBUFtRhIpHlFwVURqnNYWfs0M6MJf8YeQZmD79gLJoMbI05/XGeYsojko+x3WLr7rK8I6QeWVU0Q/NlmdfQ==", "tweet_id"=>"3", "id"=>"3"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM `notifications` WHERE `notifications`.`user_id` = 2 AND `notifications`.`read` = 0[0m
+  [1m[36mTweetFav Load (0.5ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[31mDELETE FROM `tweet_favs` WHERE `tweet_favs`.`id` = 3[0m
+  [1m[36mTweet Load (0.4ms)[0m  [1m[34mSELECT  `tweets`.* FROM `tweets` WHERE `tweets`.`id` = 3 LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[33mUPDATE `tweets` SET `favs_count` = COALESCE(`favs_count`, 0) - 1 WHERE `tweets`.`id` = 3[0m
+  [1m[35m (2.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTweet Load (0.5ms)[0m  [1m[34mSELECT  `tweets`.* FROM `tweets` WHERE `tweets`.`id` = 3 LIMIT 1[0m
+Redirected to http://0.0.0.0:3000/tweets
+Completed 200 OK in 16ms (ActiveRecord: 5.5ms)
+
+
+Started GET "/tweets" for 127.0.0.1 at 2018-05-18 19:00:58 +0900
+Processing by TweetsController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM `notifications` WHERE `notifications`.`user_id` = 2 AND `notifications`.`read` = 0[0m
+  [1m[36mTweet Load (0.5ms)[0m  [1m[34mSELECT `tweets`.* FROM `tweets`[0m
+  [1m[36mTweetFav Load (0.8ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m
+  [1m[36mTweetFav Load (1.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 2 LIMIT 1[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[36mRelationship Load (0.6ms)[0m  [1m[34mSELECT  `relationships`.* FROM `relationships` WHERE `relationships`.`follower_id` = 2 AND `relationships`.`following_id` = 2 LIMIT 1[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[36mRelationship Load (0.5ms)[0m  [1m[34mSELECT  `relationships`.* FROM `relationships` WHERE `relationships`.`follower_id` = 2 AND `relationships`.`following_id` = 1 LIMIT 1[0m
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m  [["user_id", 2], ["tweet_id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 2 LIMIT 1[0m  [["user_id", 2], ["tweet_id", 2], ["LIMIT", 1]]
+  Rendering tweets/index.html.erb within layouts/application
+  [1m[36mTweetFav Load (0.5ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 3 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m
+  Rendered tweets/_tweet_fav.html.erb (4.8ms)
+  [1m[36mTweetFav Load (0.5ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 2 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m
+  Rendered tweets/_tweet_fav.html.erb (2.4ms)
+  Rendered tweets/_tweets.html.erb (14.8ms)
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 3 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m  [["tweet_id", 3], ["user_id", 2], ["LIMIT", 1]]
+  Rendered tweets/_tweet_fav.html.erb (2.2ms)
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 2 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m  [["tweet_id", 2], ["user_id", 2], ["LIMIT", 1]]
+  Rendered tweets/_tweet_fav.html.erb (1.6ms)
+  Rendered tweets/_tweets.html.erb (9.9ms)
+  Rendered tweets/index.html.erb within layouts/application (30.5ms)
+Completed 200 OK in 211ms (Views: 180.1ms | ActiveRecord: 6.9ms)
+
+
+Started POST "/tweets/3/tweet_favs" for 127.0.0.1 at 2018-05-18 19:01:00 +0900
+Processing by TweetFavsController#create as JS
+  Parameters: {"authenticity_token"=>"nUk/t0zmK78oAbhqZqhKO4iAKqa+e/H0lmj0FQQ2807XgVFSGeFx0LodsVBdOAh0sNduQogwslBSzsPiIAJZMg==", "tweet_id"=>"3"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM `notifications` WHERE `notifications`.`user_id` = 2 AND `notifications`.`read` = 0[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[36mTweet Load (0.5ms)[0m  [1m[34mSELECT  `tweets`.* FROM `tweets` WHERE `tweets`.`id` = 3 LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO `tweet_favs` (`user_id`, `tweet_id`, `created_at`, `updated_at`) VALUES (2, 3, '2018-05-18 10:01:00', '2018-05-18 10:01:00')[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE `tweets` SET `favs_count` = COALESCE(`favs_count`, 0) + 1 WHERE `tweets`.`id` = 3[0m
+  [1m[35m (2.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTweet Load (0.7ms)[0m  [1m[34mSELECT  `tweets`.* FROM `tweets` WHERE `tweets`.`id` = 3 LIMIT 1[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  Rendering tweet_favs/create.js.erb
+  Rendered tweet_favs/create.js.erb (494.0ms)
+Completed 500 Internal Server Error in 578ms (ActiveRecord: 7.0ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `tweet' for #<#<Class:0x00007f8b69cd8998>:0x00007f8b69e43058>
+Did you mean?  @tweet):
+    1: $("#like-buttons").html("<%= j(render partial: 'tweets/tweet_fav', locals: { tweet: tweet, favs: favs, i: i }) %>");
+  
+app/views/tweet_favs/create.js.erb:1:in `_app_views_tweet_favs_create_js_erb___3227519779284694272_70118376873220'
+Started GET "/tweets" for 127.0.0.1 at 2018-05-18 19:01:02 +0900
+Processing by TweetsController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM `notifications` WHERE `notifications`.`user_id` = 2 AND `notifications`.`read` = 0[0m
+  [1m[36mTweet Load (0.5ms)[0m  [1m[34mSELECT `tweets`.* FROM `tweets`[0m
+  [1m[36mTweetFav Load (0.6ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m
+  [1m[36mTweetFav Load (0.6ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 2 LIMIT 1[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[36mRelationship Load (0.5ms)[0m  [1m[34mSELECT  `relationships`.* FROM `relationships` WHERE `relationships`.`follower_id` = 2 AND `relationships`.`following_id` = 2 LIMIT 1[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[36mRelationship Load (0.5ms)[0m  [1m[34mSELECT  `relationships`.* FROM `relationships` WHERE `relationships`.`follower_id` = 2 AND `relationships`.`following_id` = 1 LIMIT 1[0m
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m  [["user_id", 2], ["tweet_id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 2 LIMIT 1[0m  [["user_id", 2], ["tweet_id", 2], ["LIMIT", 1]]
+  Rendering tweets/index.html.erb within layouts/application
+  [1m[36mTweetFav Load (0.6ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 3 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m
+  Rendered tweets/_tweet_fav.html.erb (5.2ms)
+  [1m[36mTweetFav Load (0.6ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 2 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m
+  Rendered tweets/_tweet_fav.html.erb (4.8ms)
+  Rendered tweets/_tweets.html.erb (17.8ms)
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 3 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m  [["tweet_id", 3], ["user_id", 2], ["LIMIT", 1]]
+  Rendered tweets/_tweet_fav.html.erb (2.2ms)
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 2 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m  [["tweet_id", 2], ["user_id", 2], ["LIMIT", 1]]
+  Rendered tweets/_tweet_fav.html.erb (3.3ms)
+  Rendered tweets/_tweets.html.erb (12.5ms)
+  Rendered tweets/index.html.erb within layouts/application (37.0ms)
+Completed 200 OK in 173ms (Views: 153.0ms | ActiveRecord: 6.2ms)
+
+
+Started POST "/tweets/2/tweet_favs" for 127.0.0.1 at 2018-05-18 19:01:03 +0900
+Processing by TweetFavsController#create as JS
+  Parameters: {"authenticity_token"=>"Ww4wBNrC3SFTiRo8oP3pZiCYSvMl63Urehn0vuUDXjVreTTJSDBMKpy76XXdQp4s2DDfFes59pEezSDns6E1Sg==", "tweet_id"=>"2"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM `notifications` WHERE `notifications`.`user_id` = 2 AND `notifications`.`read` = 0[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[36mTweet Load (0.5ms)[0m  [1m[34mSELECT  `tweets`.* FROM `tweets` WHERE `tweets`.`id` = 2 LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO `tweet_favs` (`user_id`, `tweet_id`, `created_at`, `updated_at`) VALUES (2, 2, '2018-05-18 10:01:03', '2018-05-18 10:01:03')[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE `tweets` SET `favs_count` = COALESCE(`favs_count`, 0) + 1 WHERE `tweets`.`id` = 2[0m
+  [1m[35m (3.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTweet Load (0.5ms)[0m  [1m[34mSELECT  `tweets`.* FROM `tweets` WHERE `tweets`.`id` = 2 LIMIT 1[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO `notifications` (`user_id`, `notified_by_id`, `notification_type`, `message`, `link`, `created_at`, `updated_at`) VALUES (1, 2, 0, '頑張ります', '/tweets/2', '2018-05-18 10:01:03', '2018-05-18 10:01:03')[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  Rendering tweet_favs/create.js.erb
+  Rendered tweet_favs/create.js.erb (660.2ms)
+Completed 500 Internal Server Error in 742ms (ActiveRecord: 10.2ms)
+
+
+  
+ActionView::Template::Error (undefined local variable or method `tweet' for #<#<Class:0x00007f8b69cd8998>:0x00007f8b6ff7ddf0>
+Did you mean?  @tweet):
+    1: $("#like-buttons").html("<%= j(render partial: 'tweets/tweet_fav', locals: { tweet: tweet, favs: favs, i: i }) %>");
+  
+app/views/tweet_favs/create.js.erb:1:in `_app_views_tweet_favs_create_js_erb___3227519779284694272_70118427849880'
+Started GET "/tweets" for 127.0.0.1 at 2018-05-18 19:01:06 +0900
+Processing by TweetsController#index as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `notifications` WHERE `notifications`.`user_id` = 2 AND `notifications`.`read` = 0[0m
+  [1m[36mTweet Load (0.4ms)[0m  [1m[34mSELECT `tweets`.* FROM `tweets`[0m
+  [1m[36mTweetFav Load (0.5ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m
+  [1m[36mTweetFav Load (0.5ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 2 LIMIT 1[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[36mRelationship Load (0.7ms)[0m  [1m[34mSELECT  `relationships`.* FROM `relationships` WHERE `relationships`.`follower_id` = 2 AND `relationships`.`following_id` = 2 LIMIT 1[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[36mRelationship Load (0.5ms)[0m  [1m[34mSELECT  `relationships`.* FROM `relationships` WHERE `relationships`.`follower_id` = 2 AND `relationships`.`following_id` = 1 LIMIT 1[0m
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m  [["user_id", 2], ["tweet_id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 2 LIMIT 1[0m  [["user_id", 2], ["tweet_id", 2], ["LIMIT", 1]]
+  Rendering tweets/index.html.erb within layouts/application
+  [1m[36mTweetFav Load (0.6ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 3 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m
+  Rendered tweets/_tweet_fav.html.erb (5.1ms)
+  [1m[36mTweetFav Load (0.5ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 2 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m
+  Rendered tweets/_tweet_fav.html.erb (2.6ms)
+  Rendered tweets/_tweets.html.erb (15.4ms)
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 3 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m  [["tweet_id", 3], ["user_id", 2], ["LIMIT", 1]]
+  Rendered tweets/_tweet_fav.html.erb (1.8ms)
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 2 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m  [["tweet_id", 2], ["user_id", 2], ["LIMIT", 1]]
+  Rendered tweets/_tweet_fav.html.erb (2.0ms)
+  Rendered tweets/_tweets.html.erb (9.9ms)
+  Rendered tweets/index.html.erb within layouts/application (30.6ms)
+Completed 200 OK in 189ms (Views: 168.3ms | ActiveRecord: 6.0ms)
+
+
+Started DELETE "/tweets/2/tweet_favs/5" for 127.0.0.1 at 2018-05-18 19:01:07 +0900
+Processing by TweetFavsController#destroy as JS
+  Parameters: {"authenticity_token"=>"VL/Hd9WqAnmag5xnnOyNNd0DgBMcOQIhbVJ+61nkbUhkyMO6R1iTclWxby7hU/p/JasV9dLrgZsJhqqyD0YGNw==", "tweet_id"=>"2", "id"=>"5"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `notifications` WHERE `notifications`.`user_id` = 2 AND `notifications`.`read` = 0[0m
+  [1m[36mTweetFav Load (0.5ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 2 LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[31mDELETE FROM `tweet_favs` WHERE `tweet_favs`.`id` = 5[0m
+  [1m[36mTweet Load (0.5ms)[0m  [1m[34mSELECT  `tweets`.* FROM `tweets` WHERE `tweets`.`id` = 2 LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE `tweets` SET `favs_count` = COALESCE(`favs_count`, 0) - 1 WHERE `tweets`.`id` = 2[0m
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTweet Load (0.5ms)[0m  [1m[34mSELECT  `tweets`.* FROM `tweets` WHERE `tweets`.`id` = 2 LIMIT 1[0m
+Redirected to http://0.0.0.0:3000/tweets
+Completed 200 OK in 19ms (ActiveRecord: 6.1ms)
+
+
+Started GET "/tweets" for 127.0.0.1 at 2018-05-18 19:01:07 +0900
+Processing by TweetsController#index as HTML
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM `notifications` WHERE `notifications`.`user_id` = 2 AND `notifications`.`read` = 0[0m
+  [1m[36mTweet Load (1.9ms)[0m  [1m[34mSELECT `tweets`.* FROM `tweets`[0m
+  [1m[36mTweetFav Load (1.4ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m
+  [1m[36mTweetFav Load (0.6ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 2 LIMIT 1[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[36mRelationship Load (0.5ms)[0m  [1m[34mSELECT  `relationships`.* FROM `relationships` WHERE `relationships`.`follower_id` = 2 AND `relationships`.`following_id` = 2 LIMIT 1[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[36mRelationship Load (0.5ms)[0m  [1m[34mSELECT  `relationships`.* FROM `relationships` WHERE `relationships`.`follower_id` = 2 AND `relationships`.`following_id` = 1 LIMIT 1[0m
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m  [["user_id", 2], ["tweet_id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 2 LIMIT 1[0m  [["user_id", 2], ["tweet_id", 2], ["LIMIT", 1]]
+  Rendering tweets/index.html.erb within layouts/application
+  [1m[36mTweetFav Load (0.7ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 3 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m
+  Rendered tweets/_tweet_fav.html.erb (6.8ms)
+  [1m[36mTweetFav Load (0.6ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 2 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m
+  Rendered tweets/_tweet_fav.html.erb (4.5ms)
+  Rendered tweets/_tweets.html.erb (20.7ms)
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 3 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m  [["tweet_id", 3], ["user_id", 2], ["LIMIT", 1]]
+  Rendered tweets/_tweet_fav.html.erb (2.6ms)
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 2 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m  [["tweet_id", 2], ["user_id", 2], ["LIMIT", 1]]
+  Rendered tweets/_tweet_fav.html.erb (2.2ms)
+  Rendered tweets/_tweets.html.erb (13.0ms)
+  Rendered tweets/index.html.erb within layouts/application (42.2ms)
+Completed 200 OK in 248ms (Views: 210.9ms | ActiveRecord: 9.3ms)
+
+
+Started DELETE "/tweets/3/tweet_favs/4" for 127.0.0.1 at 2018-05-18 19:01:10 +0900
+Processing by TweetFavsController#destroy as JS
+  Parameters: {"authenticity_token"=>"DPjbWHwHGRw/sRWCv2DC710f809NgfnG/tK4u7gVPF6DbR/nOpl96+oMkcxDQ7jpKhXsbm5l4TmMKtp5FCZfPA==", "tweet_id"=>"3", "id"=>"4"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `notifications` WHERE `notifications`.`user_id` = 2 AND `notifications`.`read` = 0[0m
+  [1m[36mTweetFav Load (0.5ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[31mDELETE FROM `tweet_favs` WHERE `tweet_favs`.`id` = 4[0m
+  [1m[36mTweet Load (0.6ms)[0m  [1m[34mSELECT  `tweets`.* FROM `tweets` WHERE `tweets`.`id` = 3 LIMIT 1[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE `tweets` SET `favs_count` = COALESCE(`favs_count`, 0) - 1 WHERE `tweets`.`id` = 3[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTweet Load (0.5ms)[0m  [1m[34mSELECT  `tweets`.* FROM `tweets` WHERE `tweets`.`id` = 3 LIMIT 1[0m
+Redirected to http://0.0.0.0:3000/tweets
+Completed 200 OK in 16ms (ActiveRecord: 5.5ms)
+
+
+Started GET "/tweets" for 127.0.0.1 at 2018-05-18 19:01:10 +0900
+Processing by TweetsController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `notifications` WHERE `notifications`.`user_id` = 2 AND `notifications`.`read` = 0[0m
+  [1m[36mTweet Load (0.6ms)[0m  [1m[34mSELECT `tweets`.* FROM `tweets`[0m
+  [1m[36mTweetFav Load (0.6ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m
+  [1m[36mTweetFav Load (0.5ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 2 LIMIT 1[0m
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[36mRelationship Load (1.9ms)[0m  [1m[34mSELECT  `relationships`.* FROM `relationships` WHERE `relationships`.`follower_id` = 2 AND `relationships`.`following_id` = 2 LIMIT 1[0m
+  [1m[36mUser Load (6.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[36mRelationship Load (5.9ms)[0m  [1m[34mSELECT  `relationships`.* FROM `relationships` WHERE `relationships`.`follower_id` = 2 AND `relationships`.`following_id` = 1 LIMIT 1[0m
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m  [["user_id", 2], ["tweet_id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 2 LIMIT 1[0m  [["user_id", 2], ["tweet_id", 2], ["LIMIT", 1]]
+  Rendering tweets/index.html.erb within layouts/application
+  [1m[36mTweetFav Load (0.6ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 3 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m
+  Rendered tweets/_tweet_fav.html.erb (5.5ms)
+  [1m[36mTweetFav Load (0.6ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 2 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m
+  Rendered tweets/_tweet_fav.html.erb (2.2ms)
+  Rendered tweets/_tweets.html.erb (15.0ms)
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 3 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m  [["tweet_id", 3], ["user_id", 2], ["LIMIT", 1]]
+  Rendered tweets/_tweet_fav.html.erb (1.5ms)
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 2 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m  [["tweet_id", 2], ["user_id", 2], ["LIMIT", 1]]
+  Rendered tweets/_tweet_fav.html.erb (2.0ms)
+  Rendered tweets/_tweets.html.erb (8.7ms)
+  Rendered tweets/index.html.erb within layouts/application (29.1ms)
+Completed 200 OK in 186ms (Views: 149.3ms | ActiveRecord: 18.9ms)
+
+
+Started GET "/users/2" for 127.0.0.1 at 2018-05-18 19:01:53 +0900
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT COUNT(*) FROM `notifications` WHERE `notifications`.`user_id` = 2 AND `notifications`.`read` = 0[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[36mTweet Load (0.9ms)[0m  [1m[34mSELECT `tweets`.* FROM `tweets` WHERE `tweets`.`user_id` = 2[0m
+  [1m[36mTweetFav Load (0.5ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/_follow_form.html.erb (0.7ms)
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` INNER JOIN `relationships` ON `users`.`id` = `relationships`.`following_id` WHERE `relationships`.`follower_id` = 2[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` INNER JOIN `relationships` ON `users`.`id` = `relationships`.`follower_id` WHERE `relationships`.`following_id` = 2[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[36mTweetFav Load (0.6ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 3 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m
+  Rendered tweets/_tweet_fav.html.erb (5.2ms)
+  Rendered tweets/_tweets.html.erb (12.0ms)
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT `users`.* FROM `users` INNER JOIN `relationships` ON `users`.`id` = `relationships`.`following_id` WHERE `relationships`.`follower_id` = 2[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT `users`.* FROM `users` INNER JOIN `relationships` ON `users`.`id` = `relationships`.`follower_id` WHERE `relationships`.`following_id` = 2[0m
+  Rendered users/show.html.erb within layouts/application (26.3ms)
+Completed 200 OK in 159ms (Views: 137.9ms | ActiveRecord: 6.7ms)
+
+
+Started GET "/users/2" for 127.0.0.1 at 2018-05-18 19:02:32 +0900
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT COUNT(*) FROM `notifications` WHERE `notifications`.`user_id` = 2 AND `notifications`.`read` = 0[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[36mTweet Load (0.4ms)[0m  [1m[34mSELECT `tweets`.* FROM `tweets` WHERE `tweets`.`user_id` = 2[0m
+  [1m[36mTweetFav Load (0.5ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/_follow_form.html.erb (0.9ms)
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` INNER JOIN `relationships` ON `users`.`id` = `relationships`.`following_id` WHERE `relationships`.`follower_id` = 2[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM `users` INNER JOIN `relationships` ON `users`.`id` = `relationships`.`follower_id` WHERE `relationships`.`following_id` = 2[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[36mTweetFav Load (0.5ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 3 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m
+  Rendered tweets/_tweet_fav.html.erb (6.0ms)
+  Rendered tweets/_tweets.html.erb (15.2ms)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT `users`.* FROM `users` INNER JOIN `relationships` ON `users`.`id` = `relationships`.`following_id` WHERE `relationships`.`follower_id` = 2[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT `users`.* FROM `users` INNER JOIN `relationships` ON `users`.`id` = `relationships`.`follower_id` WHERE `relationships`.`following_id` = 2[0m
+  Rendered users/show.html.erb within layouts/application (37.4ms)
+Completed 200 OK in 234ms (Views: 155.0ms | ActiveRecord: 12.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-05-18 19:02:39 +0900
+Processing by TweetsController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM `notifications` WHERE `notifications`.`user_id` = 2 AND `notifications`.`read` = 0[0m
+  [1m[36mTweet Load (0.6ms)[0m  [1m[34mSELECT `tweets`.* FROM `tweets`[0m
+  [1m[36mTweetFav Load (0.7ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m
+  [1m[36mTweetFav Load (0.6ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 2 LIMIT 1[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[36mRelationship Load (0.6ms)[0m  [1m[34mSELECT  `relationships`.* FROM `relationships` WHERE `relationships`.`follower_id` = 2 AND `relationships`.`following_id` = 2 LIMIT 1[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[36mRelationship Load (0.5ms)[0m  [1m[34mSELECT  `relationships`.* FROM `relationships` WHERE `relationships`.`follower_id` = 2 AND `relationships`.`following_id` = 1 LIMIT 1[0m
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m  [["user_id", 2], ["tweet_id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 2 LIMIT 1[0m  [["user_id", 2], ["tweet_id", 2], ["LIMIT", 1]]
+  Rendering tweets/index.html.erb within layouts/application
+  [1m[36mTweetFav Load (0.5ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 3 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m
+  Rendered tweets/_tweet_fav.html.erb (7.4ms)
+  [1m[36mTweetFav Load (0.6ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 2 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m
+  Rendered tweets/_tweet_fav.html.erb (2.3ms)
+  Rendered tweets/_tweets.html.erb (17.5ms)
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 3 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m  [["tweet_id", 3], ["user_id", 2], ["LIMIT", 1]]
+  Rendered tweets/_tweet_fav.html.erb (2.0ms)
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 2 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m  [["tweet_id", 2], ["user_id", 2], ["LIMIT", 1]]
+  Rendered tweets/_tweet_fav.html.erb (1.6ms)
+  Rendered tweets/_tweets.html.erb (11.4ms)
+  Rendered tweets/index.html.erb within layouts/application (36.7ms)
+Completed 200 OK in 242ms (Views: 208.2ms | ActiveRecord: 7.9ms)
+
+
+Started POST "/tweets/3/tweet_favs" for 127.0.0.1 at 2018-05-18 19:02:41 +0900
+Processing by TweetFavsController#create as JS
+  Parameters: {"authenticity_token"=>"nz43B4WVwr7Gq8V8hfeeavL3dbByfQEgsUK+QZm/9ITV9lni0JKY0VS3zEa+Z9wlyqAxVEQ2QoR15Im2vYte+A==", "tweet_id"=>"3"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `notifications` WHERE `notifications`.`user_id` = 2 AND `notifications`.`read` = 0[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[36mTweet Load (0.5ms)[0m  [1m[34mSELECT  `tweets`.* FROM `tweets` WHERE `tweets`.`id` = 3 LIMIT 1[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO `tweet_favs` (`user_id`, `tweet_id`, `created_at`, `updated_at`) VALUES (2, 3, '2018-05-18 10:02:41', '2018-05-18 10:02:41')[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE `tweets` SET `favs_count` = COALESCE(`favs_count`, 0) + 1 WHERE `tweets`.`id` = 3[0m
+  [1m[35m (2.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTweet Load (0.6ms)[0m  [1m[34mSELECT  `tweets`.* FROM `tweets` WHERE `tweets`.`id` = 3 LIMIT 1[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+Redirected to http://0.0.0.0:3000/
+Completed 200 OK in 30ms (ActiveRecord: 7.8ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-05-18 19:02:41 +0900
+Processing by TweetsController#index as HTML
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (2.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `notifications` WHERE `notifications`.`user_id` = 2 AND `notifications`.`read` = 0[0m
+  [1m[36mTweet Load (0.5ms)[0m  [1m[34mSELECT `tweets`.* FROM `tweets`[0m
+  [1m[36mTweetFav Load (0.6ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m
+  [1m[36mTweetFav Load (0.7ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 2 LIMIT 1[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[36mRelationship Load (0.6ms)[0m  [1m[34mSELECT  `relationships`.* FROM `relationships` WHERE `relationships`.`follower_id` = 2 AND `relationships`.`following_id` = 2 LIMIT 1[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[36mRelationship Load (0.7ms)[0m  [1m[34mSELECT  `relationships`.* FROM `relationships` WHERE `relationships`.`follower_id` = 2 AND `relationships`.`following_id` = 1 LIMIT 1[0m
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m  [["user_id", 2], ["tweet_id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 2 LIMIT 1[0m  [["user_id", 2], ["tweet_id", 2], ["LIMIT", 1]]
+  Rendering tweets/index.html.erb within layouts/application
+  [1m[36mTweetFav Load (0.5ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 3 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m
+  Rendered tweets/_tweet_fav.html.erb (5.6ms)
+  [1m[36mTweetFav Load (0.5ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 2 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m
+  Rendered tweets/_tweet_fav.html.erb (5.3ms)
+  Rendered tweets/_tweets.html.erb (19.8ms)
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 3 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m  [["tweet_id", 3], ["user_id", 2], ["LIMIT", 1]]
+  Rendered tweets/_tweet_fav.html.erb (1.9ms)
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 2 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m  [["tweet_id", 2], ["user_id", 2], ["LIMIT", 1]]
+  Rendered tweets/_tweet_fav.html.erb (1.6ms)
+  Rendered tweets/_tweets.html.erb (10.9ms)
+  Rendered tweets/index.html.erb within layouts/application (38.7ms)
+Completed 200 OK in 194ms (Views: 162.0ms | ActiveRecord: 8.7ms)
+
+
+Started POST "/tweets/2/tweet_favs" for 127.0.0.1 at 2018-05-18 19:02:42 +0900
+Processing by TweetFavsController#create as JS
+  Parameters: {"authenticity_token"=>"aV7LGqt4kyoJWQUuCsFpXDBiPFq7bUNpem8Urp2LZUsMfu0cXP4knloFO8eKbWR5tC4Kn9ZOM9JXpqj7iims2w==", "tweet_id"=>"2"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `notifications` WHERE `notifications`.`user_id` = 2 AND `notifications`.`read` = 0[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[36mTweet Load (0.6ms)[0m  [1m[34mSELECT  `tweets`.* FROM `tweets` WHERE `tweets`.`id` = 2 LIMIT 1[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO `tweet_favs` (`user_id`, `tweet_id`, `created_at`, `updated_at`) VALUES (2, 2, '2018-05-18 10:02:42', '2018-05-18 10:02:42')[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE `tweets` SET `favs_count` = COALESCE(`favs_count`, 0) + 1 WHERE `tweets`.`id` = 2[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTweet Load (0.5ms)[0m  [1m[34mSELECT  `tweets`.* FROM `tweets` WHERE `tweets`.`id` = 2 LIMIT 1[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO `notifications` (`user_id`, `notified_by_id`, `notification_type`, `message`, `link`, `created_at`, `updated_at`) VALUES (1, 2, 0, '頑張ります', '/tweets/2', '2018-05-18 10:02:42', '2018-05-18 10:02:42')[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://0.0.0.0:3000/
+Completed 200 OK in 37ms (ActiveRecord: 8.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-05-18 19:02:42 +0900
+Processing by TweetsController#index as HTML
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT COUNT(*) FROM `notifications` WHERE `notifications`.`user_id` = 2 AND `notifications`.`read` = 0[0m
+  [1m[36mTweet Load (0.6ms)[0m  [1m[34mSELECT `tweets`.* FROM `tweets`[0m
+  [1m[36mTweetFav Load (0.6ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m
+  [1m[36mTweetFav Load (0.7ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 2 LIMIT 1[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[36mRelationship Load (0.6ms)[0m  [1m[34mSELECT  `relationships`.* FROM `relationships` WHERE `relationships`.`follower_id` = 2 AND `relationships`.`following_id` = 2 LIMIT 1[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[36mRelationship Load (0.5ms)[0m  [1m[34mSELECT  `relationships`.* FROM `relationships` WHERE `relationships`.`follower_id` = 2 AND `relationships`.`following_id` = 1 LIMIT 1[0m
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m  [["user_id", 2], ["tweet_id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 2 LIMIT 1[0m  [["user_id", 2], ["tweet_id", 2], ["LIMIT", 1]]
+  Rendering tweets/index.html.erb within layouts/application
+  [1m[36mTweetFav Load (0.6ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 3 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m
+  Rendered tweets/_tweet_fav.html.erb (5.2ms)
+  [1m[36mTweetFav Load (0.5ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 2 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m
+  Rendered tweets/_tweet_fav.html.erb (2.5ms)
+  Rendered tweets/_tweets.html.erb (14.2ms)
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 3 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m  [["tweet_id", 3], ["user_id", 2], ["LIMIT", 1]]
+  Rendered tweets/_tweet_fav.html.erb (2.1ms)
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 2 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m  [["tweet_id", 2], ["user_id", 2], ["LIMIT", 1]]
+  Rendered tweets/_tweet_fav.html.erb (1.9ms)
+  Rendered tweets/_tweets.html.erb (13.2ms)
+  Rendered tweets/index.html.erb within layouts/application (33.6ms)
+Completed 200 OK in 200ms (Views: 171.3ms | ActiveRecord: 7.5ms)
+
+
+Started DELETE "/tweets/3/tweet_favs/6" for 127.0.0.1 at 2018-05-18 19:02:43 +0900
+Processing by TweetFavsController#destroy as JS
+  Parameters: {"authenticity_token"=>"eig8LXv22M/3YSrxkKW5Oq2k2sKpn25GZOpyFcDXApiIjGLk/NlBZRF8g7YBRENL4Cj07ROwpxx8I5KuU3cyvw==", "tweet_id"=>"3", "id"=>"6"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM `notifications` WHERE `notifications`.`user_id` = 2 AND `notifications`.`read` = 0[0m
+  [1m[36mTweetFav Load (0.6ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[31mDELETE FROM `tweet_favs` WHERE `tweet_favs`.`id` = 6[0m
+  [1m[36mTweet Load (0.5ms)[0m  [1m[34mSELECT  `tweets`.* FROM `tweets` WHERE `tweets`.`id` = 3 LIMIT 1[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[33mUPDATE `tweets` SET `favs_count` = COALESCE(`favs_count`, 0) - 1 WHERE `tweets`.`id` = 3[0m
+  [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTweet Load (0.5ms)[0m  [1m[34mSELECT  `tweets`.* FROM `tweets` WHERE `tweets`.`id` = 3 LIMIT 1[0m
+Redirected to http://0.0.0.0:3000/
+Completed 200 OK in 18ms (ActiveRecord: 6.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-05-18 19:02:43 +0900
+Processing by TweetsController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM `notifications` WHERE `notifications`.`user_id` = 2 AND `notifications`.`read` = 0[0m
+  [1m[36mTweet Load (2.7ms)[0m  [1m[34mSELECT `tweets`.* FROM `tweets`[0m
+  [1m[36mTweetFav Load (5.8ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m
+  [1m[36mTweetFav Load (0.8ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 2 LIMIT 1[0m
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[36mRelationship Load (0.9ms)[0m  [1m[34mSELECT  `relationships`.* FROM `relationships` WHERE `relationships`.`follower_id` = 2 AND `relationships`.`following_id` = 2 LIMIT 1[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[36mRelationship Load (0.5ms)[0m  [1m[34mSELECT  `relationships`.* FROM `relationships` WHERE `relationships`.`follower_id` = 2 AND `relationships`.`following_id` = 1 LIMIT 1[0m
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m  [["user_id", 2], ["tweet_id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 2 LIMIT 1[0m  [["user_id", 2], ["tweet_id", 2], ["LIMIT", 1]]
+  Rendering tweets/index.html.erb within layouts/application
+  [1m[36mTweetFav Load (0.6ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 3 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m
+  Rendered tweets/_tweet_fav.html.erb (5.0ms)
+  [1m[36mTweetFav Load (0.6ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 2 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m
+  Rendered tweets/_tweet_fav.html.erb (4.2ms)
+  Rendered tweets/_tweets.html.erb (15.5ms)
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 3 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m  [["tweet_id", 3], ["user_id", 2], ["LIMIT", 1]]
+  Rendered tweets/_tweet_fav.html.erb (2.7ms)
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 2 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m  [["tweet_id", 2], ["user_id", 2], ["LIMIT", 1]]
+  Rendered tweets/_tweet_fav.html.erb (2.4ms)
+  Rendered tweets/_tweets.html.erb (13.9ms)
+  Rendered tweets/index.html.erb within layouts/application (36.0ms)
+Completed 200 OK in 210ms (Views: 173.8ms | ActiveRecord: 15.0ms)
+
+
+Started DELETE "/tweets/2/tweet_favs/7" for 127.0.0.1 at 2018-05-18 19:02:44 +0900
+Processing by TweetFavsController#destroy as JS
+  Parameters: {"authenticity_token"=>"IEk4NXAzetESM/Ej4SDbXcnDf/2Uh6Uy9eXCtlBxKXte1mvugt12P3gFTyq637ziww4+uQj21yAp5IxFaGR2Pw==", "tweet_id"=>"2", "id"=>"7"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM `notifications` WHERE `notifications`.`user_id` = 2 AND `notifications`.`read` = 0[0m
+  [1m[36mTweetFav Load (0.4ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 2 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[31mDELETE FROM `tweet_favs` WHERE `tweet_favs`.`id` = 7[0m
+  [1m[36mTweet Load (0.5ms)[0m  [1m[34mSELECT  `tweets`.* FROM `tweets` WHERE `tweets`.`id` = 2 LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE `tweets` SET `favs_count` = COALESCE(`favs_count`, 0) - 1 WHERE `tweets`.`id` = 2[0m
+  [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTweet Load (0.4ms)[0m  [1m[34mSELECT  `tweets`.* FROM `tweets` WHERE `tweets`.`id` = 2 LIMIT 1[0m
+Redirected to http://0.0.0.0:3000/
+Completed 200 OK in 17ms (ActiveRecord: 5.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-05-18 19:02:44 +0900
+Processing by TweetsController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM `notifications` WHERE `notifications`.`user_id` = 2 AND `notifications`.`read` = 0[0m
+  [1m[36mTweet Load (0.7ms)[0m  [1m[34mSELECT `tweets`.* FROM `tweets`[0m
+  [1m[36mTweetFav Load (2.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m
+  [1m[36mTweetFav Load (4.3ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 2 LIMIT 1[0m
+  [1m[36mUser Load (3.1ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[36mRelationship Load (1.2ms)[0m  [1m[34mSELECT  `relationships`.* FROM `relationships` WHERE `relationships`.`follower_id` = 2 AND `relationships`.`following_id` = 2 LIMIT 1[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[36mRelationship Load (0.6ms)[0m  [1m[34mSELECT  `relationships`.* FROM `relationships` WHERE `relationships`.`follower_id` = 2 AND `relationships`.`following_id` = 1 LIMIT 1[0m
+  [1m[36mCACHE TweetFav Load (0.1ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m  [["user_id", 2], ["tweet_id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 2 LIMIT 1[0m  [["user_id", 2], ["tweet_id", 2], ["LIMIT", 1]]
+  Rendering tweets/index.html.erb within layouts/application
+  [1m[36mTweetFav Load (0.5ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 3 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m
+  Rendered tweets/_tweet_fav.html.erb (6.0ms)
+  [1m[36mTweetFav Load (0.5ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 2 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m
+  Rendered tweets/_tweet_fav.html.erb (2.4ms)
+  Rendered tweets/_tweets.html.erb (15.3ms)
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 3 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m  [["tweet_id", 3], ["user_id", 2], ["LIMIT", 1]]
+  Rendered tweets/_tweet_fav.html.erb (2.4ms)
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 2 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m  [["tweet_id", 2], ["user_id", 2], ["LIMIT", 1]]
+  Rendered tweets/_tweet_fav.html.erb (2.8ms)
+  Rendered tweets/_tweets.html.erb (12.5ms)
+  Rendered tweets/index.html.erb within layouts/application (33.4ms)
+Completed 200 OK in 243ms (Views: 209.8ms | ActiveRecord: 14.8ms)
+
+
+Started POST "/tweets/3/tweet_favs" for 127.0.0.1 at 2018-05-18 19:02:45 +0900
+Processing by TweetFavsController#create as JS
+  Parameters: {"authenticity_token"=>"0qjvZDZTPQfkcCV5dISfG13+c+EfEH6xn1uRU+ghlymYYIGBY1RnaHZsLENPFN1UZak3BSlbPRVb/aakzBU9VQ==", "tweet_id"=>"3"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `notifications` WHERE `notifications`.`user_id` = 2 AND `notifications`.`read` = 0[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[36mTweet Load (0.4ms)[0m  [1m[34mSELECT  `tweets`.* FROM `tweets` WHERE `tweets`.`id` = 3 LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO `tweet_favs` (`user_id`, `tweet_id`, `created_at`, `updated_at`) VALUES (2, 3, '2018-05-18 10:02:45', '2018-05-18 10:02:45')[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[33mUPDATE `tweets` SET `favs_count` = COALESCE(`favs_count`, 0) + 1 WHERE `tweets`.`id` = 3[0m
+  [1m[35m (2.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTweet Load (0.5ms)[0m  [1m[34mSELECT  `tweets`.* FROM `tweets` WHERE `tweets`.`id` = 3 LIMIT 1[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+Redirected to http://0.0.0.0:3000/
+Completed 200 OK in 19ms (ActiveRecord: 6.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-05-18 19:02:45 +0900
+Processing by TweetsController#index as HTML
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (2.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `notifications` WHERE `notifications`.`user_id` = 2 AND `notifications`.`read` = 0[0m
+  [1m[36mTweet Load (10.1ms)[0m  [1m[34mSELECT `tweets`.* FROM `tweets`[0m
+  [1m[36mTweetFav Load (0.6ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m
+  [1m[36mTweetFav Load (0.7ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 2 LIMIT 1[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[36mRelationship Load (1.2ms)[0m  [1m[34mSELECT  `relationships`.* FROM `relationships` WHERE `relationships`.`follower_id` = 2 AND `relationships`.`following_id` = 2 LIMIT 1[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[36mRelationship Load (0.5ms)[0m  [1m[34mSELECT  `relationships`.* FROM `relationships` WHERE `relationships`.`follower_id` = 2 AND `relationships`.`following_id` = 1 LIMIT 1[0m
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m  [["user_id", 2], ["tweet_id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 2 LIMIT 1[0m  [["user_id", 2], ["tweet_id", 2], ["LIMIT", 1]]
+  Rendering tweets/index.html.erb within layouts/application
+  [1m[36mTweetFav Load (0.6ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 3 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m
+  Rendered tweets/_tweet_fav.html.erb (5.0ms)
+  [1m[36mTweetFav Load (0.6ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 2 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m
+  Rendered tweets/_tweet_fav.html.erb (4.0ms)
+  Rendered tweets/_tweets.html.erb (15.8ms)
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 3 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m  [["tweet_id", 3], ["user_id", 2], ["LIMIT", 1]]
+  Rendered tweets/_tweet_fav.html.erb (2.4ms)
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 2 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m  [["tweet_id", 2], ["user_id", 2], ["LIMIT", 1]]
+  Rendered tweets/_tweet_fav.html.erb (2.3ms)
+  Rendered tweets/_tweets.html.erb (14.2ms)
+  Rendered tweets/index.html.erb within layouts/application (36.9ms)
+Completed 200 OK in 278ms (Views: 233.1ms | ActiveRecord: 19.0ms)
+
+
+Started POST "/tweets/2/tweet_favs" for 127.0.0.1 at 2018-05-18 19:02:45 +0900
+Processing by TweetFavsController#create as JS
+  Parameters: {"authenticity_token"=>"+90QOzZG/rbdA40hGNaARXSjmXlnCBHcPMUHzVSdTuie/TY9wcBJAo5fs8iYeo1g8O+vvAorYWcRDLuYQz+HeA==", "tweet_id"=>"2"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `notifications` WHERE `notifications`.`user_id` = 2 AND `notifications`.`read` = 0[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[36mTweet Load (0.6ms)[0m  [1m[34mSELECT  `tweets`.* FROM `tweets` WHERE `tweets`.`id` = 2 LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO `tweet_favs` (`user_id`, `tweet_id`, `created_at`, `updated_at`) VALUES (2, 2, '2018-05-18 10:02:45', '2018-05-18 10:02:45')[0m
+  [1m[35mSQL (2.2ms)[0m  [1m[33mUPDATE `tweets` SET `favs_count` = COALESCE(`favs_count`, 0) + 1 WHERE `tweets`.`id` = 2[0m
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTweet Load (0.6ms)[0m  [1m[34mSELECT  `tweets`.* FROM `tweets` WHERE `tweets`.`id` = 2 LIMIT 1[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO `notifications` (`user_id`, `notified_by_id`, `notification_type`, `message`, `link`, `created_at`, `updated_at`) VALUES (1, 2, 0, '頑張ります', '/tweets/2', '2018-05-18 10:02:45', '2018-05-18 10:02:45')[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://0.0.0.0:3000/
+Completed 200 OK in 25ms (ActiveRecord: 8.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-05-18 19:02:45 +0900
+Processing by TweetsController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (3.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `notifications` WHERE `notifications`.`user_id` = 2 AND `notifications`.`read` = 0[0m
+  [1m[36mTweet Load (5.2ms)[0m  [1m[34mSELECT `tweets`.* FROM `tweets`[0m
+  [1m[36mTweetFav Load (1.1ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m
+  [1m[36mTweetFav Load (1.2ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 2 LIMIT 1[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[36mRelationship Load (0.5ms)[0m  [1m[34mSELECT  `relationships`.* FROM `relationships` WHERE `relationships`.`follower_id` = 2 AND `relationships`.`following_id` = 2 LIMIT 1[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[36mRelationship Load (0.4ms)[0m  [1m[34mSELECT  `relationships`.* FROM `relationships` WHERE `relationships`.`follower_id` = 2 AND `relationships`.`following_id` = 1 LIMIT 1[0m
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m  [["user_id", 2], ["tweet_id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 2 LIMIT 1[0m  [["user_id", 2], ["tweet_id", 2], ["LIMIT", 1]]
+  Rendering tweets/index.html.erb within layouts/application
+  [1m[36mTweetFav Load (0.6ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 3 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m
+  Rendered tweets/_tweet_fav.html.erb (6.8ms)
+  [1m[36mTweetFav Load (0.7ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 2 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m
+  Rendered tweets/_tweet_fav.html.erb (3.3ms)
+  Rendered tweets/_tweets.html.erb (18.6ms)
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 3 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m  [["tweet_id", 3], ["user_id", 2], ["LIMIT", 1]]
+  Rendered tweets/_tweet_fav.html.erb (2.4ms)
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 2 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m  [["tweet_id", 2], ["user_id", 2], ["LIMIT", 1]]
+  Rendered tweets/_tweet_fav.html.erb (2.4ms)
+  Rendered tweets/_tweets.html.erb (13.2ms)
+  Rendered tweets/index.html.erb within layouts/application (39.4ms)
+Completed 200 OK in 329ms (Views: 288.6ms | ActiveRecord: 15.2ms)
+
+
+Started DELETE "/tweets/3/tweet_favs/8" for 127.0.0.1 at 2018-05-18 19:02:46 +0900
+Processing by TweetFavsController#destroy as JS
+  Parameters: {"authenticity_token"=>"REte1DUtLpXrDs7weAIupQ4OzHmkLyry5IhHOYUT5kf9d8NVmdE64UV0c3+KbA3Ap/jXrc14EoeaUtqnq1NU2w==", "tweet_id"=>"3", "id"=>"8"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `notifications` WHERE `notifications`.`user_id` = 2 AND `notifications`.`read` = 0[0m
+  [1m[36mTweetFav Load (0.5ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[31mDELETE FROM `tweet_favs` WHERE `tweet_favs`.`id` = 8[0m
+  [1m[36mTweet Load (0.5ms)[0m  [1m[34mSELECT  `tweets`.* FROM `tweets` WHERE `tweets`.`id` = 3 LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE `tweets` SET `favs_count` = COALESCE(`favs_count`, 0) - 1 WHERE `tweets`.`id` = 3[0m
+  [1m[35m (1.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTweet Load (0.5ms)[0m  [1m[34mSELECT  `tweets`.* FROM `tweets` WHERE `tweets`.`id` = 3 LIMIT 1[0m
+Redirected to http://0.0.0.0:3000/
+Completed 200 OK in 16ms (ActiveRecord: 5.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-05-18 19:02:46 +0900
+Processing by TweetsController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `notifications` WHERE `notifications`.`user_id` = 2 AND `notifications`.`read` = 0[0m
+  [1m[36mTweet Load (0.6ms)[0m  [1m[34mSELECT `tweets`.* FROM `tweets`[0m
+  [1m[36mTweetFav Load (3.1ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m
+  [1m[36mTweetFav Load (8.5ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 2 LIMIT 1[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[36mRelationship Load (0.6ms)[0m  [1m[34mSELECT  `relationships`.* FROM `relationships` WHERE `relationships`.`follower_id` = 2 AND `relationships`.`following_id` = 2 LIMIT 1[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[36mRelationship Load (0.5ms)[0m  [1m[34mSELECT  `relationships`.* FROM `relationships` WHERE `relationships`.`follower_id` = 2 AND `relationships`.`following_id` = 1 LIMIT 1[0m
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m  [["user_id", 2], ["tweet_id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 2 LIMIT 1[0m  [["user_id", 2], ["tweet_id", 2], ["LIMIT", 1]]
+  Rendering tweets/index.html.erb within layouts/application
+  [1m[36mTweetFav Load (0.6ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 3 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m
+  Rendered tweets/_tweet_fav.html.erb (8.1ms)
+  [1m[36mTweetFav Load (0.7ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 2 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m
+  Rendered tweets/_tweet_fav.html.erb (7.7ms)
+  Rendered tweets/_tweets.html.erb (25.1ms)
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 3 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m  [["tweet_id", 3], ["user_id", 2], ["LIMIT", 1]]
+  Rendered tweets/_tweet_fav.html.erb (2.3ms)
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 2 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m  [["tweet_id", 2], ["user_id", 2], ["LIMIT", 1]]
+  Rendered tweets/_tweet_fav.html.erb (3.3ms)
+  Rendered tweets/_tweets.html.erb (15.8ms)
+  Rendered tweets/index.html.erb within layouts/application (48.5ms)
+Started DELETE "/tweets/3/tweet_favs/8" for 127.0.0.1 at 2018-05-18 19:02:46 +0900
+Processing by TweetFavsController#destroy as JS
+  Parameters: {"authenticity_token"=>"REte1DUtLpXrDs7weAIupQ4OzHmkLyry5IhHOYUT5kf9d8NVmdE64UV0c3+KbA3Ap/jXrc14EoeaUtqnq1NU2w==", "tweet_id"=>"3", "id"=>"8"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM `notifications` WHERE `notifications`.`user_id` = 2 AND `notifications`.`read` = 0[0m
+  [1m[36mTweetFav Load (0.8ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m
+Completed 500 Internal Server Error in 16ms (ActiveRecord: 2.0ms)
+
+
+  
+NoMethodError (undefined method `destroy' for nil:NilClass):
+  
+app/controllers/tweet_favs_controller.rb:22:in `destroy'
+Completed 200 OK in 370ms (Views: 308.3ms | ActiveRecord: 17.0ms)
+
+
+Started POST "/tweets/3/tweet_favs" for 127.0.0.1 at 2018-05-18 19:02:48 +0900
+Processing by TweetFavsController#create as JS
+  Parameters: {"authenticity_token"=>"vGh2fCBx5CQZzcETDpzS1kk9Ho27nMQfYRKz2hD9a1L2oBiZdXa+S4vRyCk1DJCZcWpaaY3Xh7ultIQtNMnBLg==", "tweet_id"=>"3"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `notifications` WHERE `notifications`.`user_id` = 2 AND `notifications`.`read` = 0[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[36mTweet Load (0.4ms)[0m  [1m[34mSELECT  `tweets`.* FROM `tweets` WHERE `tweets`.`id` = 3 LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO `tweet_favs` (`user_id`, `tweet_id`, `created_at`, `updated_at`) VALUES (2, 3, '2018-05-18 10:02:48', '2018-05-18 10:02:48')[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[33mUPDATE `tweets` SET `favs_count` = COALESCE(`favs_count`, 0) + 1 WHERE `tweets`.`id` = 3[0m
+  [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTweet Load (0.4ms)[0m  [1m[34mSELECT  `tweets`.* FROM `tweets` WHERE `tweets`.`id` = 3 LIMIT 1[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+Redirected to http://0.0.0.0:3000/
+Completed 200 OK in 18ms (ActiveRecord: 6.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-05-18 19:02:48 +0900
+Processing by TweetsController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (4.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `notifications` WHERE `notifications`.`user_id` = 2 AND `notifications`.`read` = 0[0m
+  [1m[36mTweet Load (10.5ms)[0m  [1m[34mSELECT `tweets`.* FROM `tweets`[0m
+  [1m[36mTweetFav Load (3.5ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m
+  [1m[36mTweetFav Load (0.9ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 2 LIMIT 1[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[36mRelationship Load (0.9ms)[0m  [1m[34mSELECT  `relationships`.* FROM `relationships` WHERE `relationships`.`follower_id` = 2 AND `relationships`.`following_id` = 2 LIMIT 1[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[36mRelationship Load (0.6ms)[0m  [1m[34mSELECT  `relationships`.* FROM `relationships` WHERE `relationships`.`follower_id` = 2 AND `relationships`.`following_id` = 1 LIMIT 1[0m
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m  [["user_id", 2], ["tweet_id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 2 LIMIT 1[0m  [["user_id", 2], ["tweet_id", 2], ["LIMIT", 1]]
+  Rendering tweets/index.html.erb within layouts/application
+  [1m[36mTweetFav Load (0.8ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 3 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m
+  Rendered tweets/_tweet_fav.html.erb (7.8ms)
+  [1m[36mTweetFav Load (4.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 2 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m
+  Rendered tweets/_tweet_fav.html.erb (7.2ms)
+  Rendered tweets/_tweets.html.erb (26.2ms)
+Started POST "/tweets/3/tweet_favs" for 127.0.0.1 at 2018-05-18 19:02:48 +0900
+Processing by TweetFavsController#create as JS
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 3 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m  [["tweet_id", 3], ["user_id", 2], ["LIMIT", 1]]
+  Parameters: {"authenticity_token"=>"vGh2fCBx5CQZzcETDpzS1kk9Ho27nMQfYRKz2hD9a1L2oBiZdXa+S4vRyCk1DJCZcWpaaY3Xh7ultIQtNMnBLg==", "tweet_id"=>"3"}
+  Rendered tweets/_tweet_fav.html.erb (2.7ms)
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 2 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m  [["tweet_id", 2], ["user_id", 2], ["LIMIT", 1]]
+  Rendered tweets/_tweet_fav.html.erb (2.3ms)
+  Rendered tweets/_tweets.html.erb (20.4ms)
+  Rendered tweets/index.html.erb within layouts/application (59.4ms)
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT COUNT(*) FROM `notifications` WHERE `notifications`.`user_id` = 2 AND `notifications`.`read` = 0[0m
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[36mTweet Load (1.0ms)[0m  [1m[34mSELECT  `tweets`.* FROM `tweets` WHERE `tweets`.`id` = 3 LIMIT 1[0m
+  [1m[35mSQL (13.2ms)[0m  [1m[32mINSERT INTO `tweet_favs` (`user_id`, `tweet_id`, `created_at`, `updated_at`) VALUES (2, 3, '2018-05-18 10:02:48', '2018-05-18 10:02:48')[0m
+  [1m[35mSQL (9.1ms)[0m  [1m[33mUPDATE `tweets` SET `favs_count` = COALESCE(`favs_count`, 0) + 1 WHERE `tweets`.`id` = 3[0m
+  [1m[35m (12.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTweet Load (10.3ms)[0m  [1m[34mSELECT  `tweets`.* FROM `tweets` WHERE `tweets`.`id` = 3 LIMIT 1[0m
+  [1m[36mUser Load (2.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+Redirected to http://0.0.0.0:3000/
+Completed 200 OK in 81ms (ActiveRecord: 53.3ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-05-18 19:02:48 +0900
+Processing by TweetsController#index as HTML
+  [1m[36mUser Load (3.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (2.8ms)[0m  [1m[34mSELECT COUNT(*) FROM `notifications` WHERE `notifications`.`user_id` = 2 AND `notifications`.`read` = 0[0m
+  [1m[36mTweet Load (0.7ms)[0m  [1m[34mSELECT `tweets`.* FROM `tweets`[0m
+  [1m[36mTweetFav Load (1.1ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m
+  [1m[36mTweetFav Load (3.1ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 2 LIMIT 1[0m
+  [1m[36mUser Load (2.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[36mRelationship Load (2.1ms)[0m  [1m[34mSELECT  `relationships`.* FROM `relationships` WHERE `relationships`.`follower_id` = 2 AND `relationships`.`following_id` = 2 LIMIT 1[0m
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[36mRelationship Load (2.7ms)[0m  [1m[34mSELECT  `relationships`.* FROM `relationships` WHERE `relationships`.`follower_id` = 2 AND `relationships`.`following_id` = 1 LIMIT 1[0m
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m  [["user_id", 2], ["tweet_id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 2 LIMIT 1[0m  [["user_id", 2], ["tweet_id", 2], ["LIMIT", 1]]
+  Rendering tweets/index.html.erb within layouts/application
+  [1m[36mTweetFav Load (2.8ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 3 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m
+  Rendered tweets/_tweet_fav.html.erb (14.3ms)
+  [1m[36mTweetFav Load (2.3ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 2 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m
+  Rendered tweets/_tweet_fav.html.erb (5.0ms)
+  Rendered tweets/_tweets.html.erb (39.3ms)
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 3 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m  [["tweet_id", 3], ["user_id", 2], ["LIMIT", 1]]
+  Rendered tweets/_tweet_fav.html.erb (5.2ms)
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 2 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m  [["tweet_id", 2], ["user_id", 2], ["LIMIT", 1]]
+  Rendered tweets/_tweet_fav.html.erb (4.8ms)
+  Rendered tweets/_tweets.html.erb (24.4ms)
+  Rendered tweets/index.html.erb within layouts/application (89.0ms)
+Completed 200 OK in 414ms (Views: 356.4ms | ActiveRecord: 27.6ms)
+
+
+Completed 200 OK in 376ms (Views: 299.6ms | ActiveRecord: 24.8ms)
+
+
+Started DELETE "/tweets/3/tweet_favs/10" for 127.0.0.1 at 2018-05-18 19:02:49 +0900
+Processing by TweetFavsController#destroy as JS
+  Parameters: {"authenticity_token"=>"910LRqMu+PIV+cwsJZSP9lroU6Yxd+BI4uEqTmlrJq7b+AnL8JCtn6zaat/d7Mf8FyiJWyvRgNs3lIDtBM8zZQ==", "tweet_id"=>"3", "id"=>"10"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM `notifications` WHERE `notifications`.`user_id` = 2 AND `notifications`.`read` = 0[0m
+  [1m[36mTweetFav Load (0.6ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[31mDELETE FROM `tweet_favs` WHERE `tweet_favs`.`id` = 10[0m
+  [1m[36mTweet Load (0.4ms)[0m  [1m[34mSELECT  `tweets`.* FROM `tweets` WHERE `tweets`.`id` = 3 LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[33mUPDATE `tweets` SET `favs_count` = COALESCE(`favs_count`, 0) - 1 WHERE `tweets`.`id` = 3[0m
+  [1m[35m (1.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTweet Load (0.4ms)[0m  [1m[34mSELECT  `tweets`.* FROM `tweets` WHERE `tweets`.`id` = 3 LIMIT 1[0m
+Redirected to http://0.0.0.0:3000/
+Completed 200 OK in 15ms (ActiveRecord: 5.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-05-18 19:02:49 +0900
+Processing by TweetsController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM `notifications` WHERE `notifications`.`user_id` = 2 AND `notifications`.`read` = 0[0m
+  [1m[36mTweet Load (1.9ms)[0m  [1m[34mSELECT `tweets`.* FROM `tweets`[0m
+  [1m[36mTweetFav Load (2.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m
+  [1m[36mTweetFav Load (12.6ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 2 LIMIT 1[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[36mRelationship Load (0.6ms)[0m  [1m[34mSELECT  `relationships`.* FROM `relationships` WHERE `relationships`.`follower_id` = 2 AND `relationships`.`following_id` = 2 LIMIT 1[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[36mRelationship Load (0.5ms)[0m  [1m[34mSELECT  `relationships`.* FROM `relationships` WHERE `relationships`.`follower_id` = 2 AND `relationships`.`following_id` = 1 LIMIT 1[0m
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m  [["user_id", 2], ["tweet_id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 2 LIMIT 1[0m  [["user_id", 2], ["tweet_id", 2], ["LIMIT", 1]]
+  Rendering tweets/index.html.erb within layouts/application
+  [1m[36mTweetFav Load (0.6ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 3 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m
+  Rendered tweets/_tweet_fav.html.erb (6.8ms)
+  [1m[36mTweetFav Load (0.7ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 2 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m
+  Rendered tweets/_tweet_fav.html.erb (3.4ms)
+  Rendered tweets/_tweets.html.erb (19.4ms)
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 3 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m  [["tweet_id", 3], ["user_id", 2], ["LIMIT", 1]]
+  Rendered tweets/_tweet_fav.html.erb (4.8ms)
+Started DELETE "/tweets/3/tweet_favs/10" for 127.0.0.1 at 2018-05-18 19:02:49 +0900
+Processing by TweetFavsController#destroy as JS
+  Parameters: {"authenticity_token"=>"910LRqMu+PIV+cwsJZSP9lroU6Yxd+BI4uEqTmlrJq7b+AnL8JCtn6zaat/d7Mf8FyiJWyvRgNs3lIDtBM8zZQ==", "tweet_id"=>"3", "id"=>"10"}
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 2 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m  [["tweet_id", 2], ["user_id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (2.7ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  Rendered tweets/_tweet_fav.html.erb (3.2ms)
+  Rendered tweets/_tweets.html.erb (34.8ms)
+  Rendered tweets/index.html.erb within layouts/application (63.1ms)
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM `notifications` WHERE `notifications`.`user_id` = 2 AND `notifications`.`read` = 0[0m
+  [1m[36mTweetFav Load (1.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[31mDELETE FROM `tweet_favs` WHERE `tweet_favs`.`id` = 11[0m
+  [1m[36mTweet Load (2.1ms)[0m  [1m[34mSELECT  `tweets`.* FROM `tweets` WHERE `tweets`.`id` = 3 LIMIT 1[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[33mUPDATE `tweets` SET `favs_count` = COALESCE(`favs_count`, 0) - 1 WHERE `tweets`.`id` = 3[0m
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTweet Load (1.0ms)[0m  [1m[34mSELECT  `tweets`.* FROM `tweets` WHERE `tweets`.`id` = 3 LIMIT 1[0m
+Redirected to http://0.0.0.0:3000/
+Completed 200 OK in 28ms (ActiveRecord: 11.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-05-18 19:02:49 +0900
+Processing by TweetsController#index as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM `notifications` WHERE `notifications`.`user_id` = 2 AND `notifications`.`read` = 0[0m
+  [1m[36mTweet Load (2.6ms)[0m  [1m[34mSELECT `tweets`.* FROM `tweets`[0m
+  [1m[36mTweetFav Load (3.1ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m
+  [1m[36mTweetFav Load (1.6ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 2 LIMIT 1[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[36mRelationship Load (1.2ms)[0m  [1m[34mSELECT  `relationships`.* FROM `relationships` WHERE `relationships`.`follower_id` = 2 AND `relationships`.`following_id` = 2 LIMIT 1[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[36mRelationship Load (1.0ms)[0m  [1m[34mSELECT  `relationships`.* FROM `relationships` WHERE `relationships`.`follower_id` = 2 AND `relationships`.`following_id` = 1 LIMIT 1[0m
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m  [["user_id", 2], ["tweet_id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 2 LIMIT 1[0m  [["user_id", 2], ["tweet_id", 2], ["LIMIT", 1]]
+  Rendering tweets/index.html.erb within layouts/application
+  [1m[36mTweetFav Load (1.7ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 3 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m
+  Rendered tweets/_tweet_fav.html.erb (8.7ms)
+  [1m[36mTweetFav Load (0.8ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 2 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m
+  Rendered tweets/_tweet_fav.html.erb (12.0ms)
+  Rendered tweets/_tweets.html.erb (46.0ms)
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 3 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m  [["tweet_id", 3], ["user_id", 2], ["LIMIT", 1]]
+  Rendered tweets/_tweet_fav.html.erb (2.5ms)
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 2 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m  [["tweet_id", 2], ["user_id", 2], ["LIMIT", 1]]
+  Rendered tweets/_tweet_fav.html.erb (2.4ms)
+  Rendered tweets/_tweets.html.erb (18.4ms)
+  Rendered tweets/index.html.erb within layouts/application (80.8ms)
+Completed 200 OK in 415ms (Views: 363.0ms | ActiveRecord: 21.2ms)
+
+
+Completed 200 OK in 332ms (Views: 286.8ms | ActiveRecord: 14.8ms)
+
+
+Started POST "/tweets/3/tweet_favs" for 127.0.0.1 at 2018-05-18 19:02:50 +0900
+Processing by TweetFavsController#create as JS
+  Parameters: {"authenticity_token"=>"+vynlywKy9PRpsmCdSOz3QM9nrcBKERpH5bSbJ5F+cywNMlyeQ2RvEO6wLhOs/GSO2raUzdjB83bMOWbunFTsA==", "tweet_id"=>"3"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `notifications` WHERE `notifications`.`user_id` = 2 AND `notifications`.`read` = 0[0m
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[36mTweet Load (0.5ms)[0m  [1m[34mSELECT  `tweets`.* FROM `tweets` WHERE `tweets`.`id` = 3 LIMIT 1[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO `tweet_favs` (`user_id`, `tweet_id`, `created_at`, `updated_at`) VALUES (2, 3, '2018-05-18 10:02:50', '2018-05-18 10:02:50')[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[33mUPDATE `tweets` SET `favs_count` = COALESCE(`favs_count`, 0) + 1 WHERE `tweets`.`id` = 3[0m
+  [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTweet Load (0.5ms)[0m  [1m[34mSELECT  `tweets`.* FROM `tweets` WHERE `tweets`.`id` = 3 LIMIT 1[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+Redirected to http://0.0.0.0:3000/
+Completed 200 OK in 19ms (ActiveRecord: 6.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-05-18 19:02:50 +0900
+Processing by TweetsController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT COUNT(*) FROM `notifications` WHERE `notifications`.`user_id` = 2 AND `notifications`.`read` = 0[0m
+  [1m[36mTweet Load (4.7ms)[0m  [1m[34mSELECT `tweets`.* FROM `tweets`[0m
+  [1m[36mTweetFav Load (4.6ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m
+  [1m[36mTweetFav Load (8.3ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 2 LIMIT 1[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[36mRelationship Load (0.5ms)[0m  [1m[34mSELECT  `relationships`.* FROM `relationships` WHERE `relationships`.`follower_id` = 2 AND `relationships`.`following_id` = 2 LIMIT 1[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[36mRelationship Load (0.5ms)[0m  [1m[34mSELECT  `relationships`.* FROM `relationships` WHERE `relationships`.`follower_id` = 2 AND `relationships`.`following_id` = 1 LIMIT 1[0m
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m  [["user_id", 2], ["tweet_id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 2 LIMIT 1[0m  [["user_id", 2], ["tweet_id", 2], ["LIMIT", 1]]
+  Rendering tweets/index.html.erb within layouts/application
+  [1m[36mTweetFav Load (0.6ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 3 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m
+  Rendered tweets/_tweet_fav.html.erb (5.3ms)
+  [1m[36mTweetFav Load (0.6ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 2 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m
+  Rendered tweets/_tweet_fav.html.erb (3.5ms)
+  Rendered tweets/_tweets.html.erb (17.6ms)
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 3 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m  [["tweet_id", 3], ["user_id", 2], ["LIMIT", 1]]
+  Rendered tweets/_tweet_fav.html.erb (6.4ms)
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 2 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m  [["tweet_id", 2], ["user_id", 2], ["LIMIT", 1]]
+  Rendered tweets/_tweet_fav.html.erb (2.5ms)
+  Rendered tweets/_tweets.html.erb (20.6ms)
+  Rendered tweets/index.html.erb within layouts/application (45.8ms)
+Completed 200 OK in 247ms (Views: 200.9ms | ActiveRecord: 22.9ms)
+
+
+Started DELETE "/tweets/2/tweet_favs/9" for 127.0.0.1 at 2018-05-18 19:02:53 +0900
+Processing by TweetFavsController#destroy as JS
+  Parameters: {"authenticity_token"=>"O+RMkxtmXk1DP217Jac2B16Z4rf4Accs4BicqsRVBD6Am95hISsCrYXeZRWFlOQ2OCQOmR7x0QLW1p9BbvQTZQ==", "tweet_id"=>"2", "id"=>"9"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM `notifications` WHERE `notifications`.`user_id` = 2 AND `notifications`.`read` = 0[0m
+  [1m[36mTweetFav Load (0.6ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 2 LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[31mDELETE FROM `tweet_favs` WHERE `tweet_favs`.`id` = 9[0m
+  [1m[36mTweet Load (0.5ms)[0m  [1m[34mSELECT  `tweets`.* FROM `tweets` WHERE `tweets`.`id` = 2 LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[33mUPDATE `tweets` SET `favs_count` = COALESCE(`favs_count`, 0) - 1 WHERE `tweets`.`id` = 2[0m
+  [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTweet Load (0.5ms)[0m  [1m[34mSELECT  `tweets`.* FROM `tweets` WHERE `tweets`.`id` = 2 LIMIT 1[0m
+Redirected to http://0.0.0.0:3000/
+Completed 200 OK in 15ms (ActiveRecord: 5.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-05-18 19:02:53 +0900
+Processing by TweetsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM `notifications` WHERE `notifications`.`user_id` = 2 AND `notifications`.`read` = 0[0m
+  [1m[36mTweet Load (3.2ms)[0m  [1m[34mSELECT `tweets`.* FROM `tweets`[0m
+  [1m[36mTweetFav Load (3.3ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m
+  [1m[36mTweetFav Load (8.8ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 2 LIMIT 1[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[36mRelationship Load (0.5ms)[0m  [1m[34mSELECT  `relationships`.* FROM `relationships` WHERE `relationships`.`follower_id` = 2 AND `relationships`.`following_id` = 2 LIMIT 1[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[36mRelationship Load (0.5ms)[0m  [1m[34mSELECT  `relationships`.* FROM `relationships` WHERE `relationships`.`follower_id` = 2 AND `relationships`.`following_id` = 1 LIMIT 1[0m
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m  [["user_id", 2], ["tweet_id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 2 LIMIT 1[0m  [["user_id", 2], ["tweet_id", 2], ["LIMIT", 1]]
+  Rendering tweets/index.html.erb within layouts/application
+  [1m[36mTweetFav Load (0.6ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 3 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m
+  Rendered tweets/_tweet_fav.html.erb (6.0ms)
+  [1m[36mTweetFav Load (0.5ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 2 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m
+  Rendered tweets/_tweet_fav.html.erb (3.6ms)
+  Rendered tweets/_tweets.html.erb (16.4ms)
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 3 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m  [["tweet_id", 3], ["user_id", 2], ["LIMIT", 1]]
+  Rendered tweets/_tweet_fav.html.erb (1.8ms)
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 2 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m  [["tweet_id", 2], ["user_id", 2], ["LIMIT", 1]]
+  Rendered tweets/_tweet_fav.html.erb (2.4ms)
+  Rendered tweets/_tweets.html.erb (11.4ms)
+  Rendered tweets/index.html.erb within layouts/application (33.4ms)
+Completed 200 OK in 244ms (Views: 201.3ms | ActiveRecord: 19.9ms)
+
+
+Started DELETE "/tweets/3/tweet_favs/12" for 127.0.0.1 at 2018-05-18 19:02:53 +0900
+Processing by TweetFavsController#destroy as JS
+  Parameters: {"authenticity_token"=>"azeWBG09vcwu3wOLknqI88wcOIWfTQxSDVHcJs/BhSfTi6nmUdpq1vPZFnFwi0evUd7rodhtOEHDA6yf4qVDDA==", "tweet_id"=>"3", "id"=>"12"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT COUNT(*) FROM `notifications` WHERE `notifications`.`user_id` = 2 AND `notifications`.`read` = 0[0m
+  [1m[36mTweetFav Load (0.5ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[31mDELETE FROM `tweet_favs` WHERE `tweet_favs`.`id` = 12[0m
+  [1m[36mTweet Load (0.4ms)[0m  [1m[34mSELECT  `tweets`.* FROM `tweets` WHERE `tweets`.`id` = 3 LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[33mUPDATE `tweets` SET `favs_count` = COALESCE(`favs_count`, 0) - 1 WHERE `tweets`.`id` = 3[0m
+  [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTweet Load (0.4ms)[0m  [1m[34mSELECT  `tweets`.* FROM `tweets` WHERE `tweets`.`id` = 3 LIMIT 1[0m
+Redirected to http://0.0.0.0:3000/
+Completed 200 OK in 15ms (ActiveRecord: 5.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-05-18 19:02:53 +0900
+Processing by TweetsController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM `notifications` WHERE `notifications`.`user_id` = 2 AND `notifications`.`read` = 0[0m
+  [1m[36mTweet Load (0.4ms)[0m  [1m[34mSELECT `tweets`.* FROM `tweets`[0m
+  [1m[36mTweetFav Load (5.2ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m
+  [1m[36mTweetFav Load (2.1ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 2 LIMIT 1[0m
+  [1m[36mUser Load (12.0ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1[0m
+  [1m[36mRelationship Load (4.4ms)[0m  [1m[34mSELECT  `relationships`.* FROM `relationships` WHERE `relationships`.`follower_id` = 2 AND `relationships`.`following_id` = 2 LIMIT 1[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 1 LIMIT 1[0m
+  [1m[36mRelationship Load (0.6ms)[0m  [1m[34mSELECT  `relationships`.* FROM `relationships` WHERE `relationships`.`follower_id` = 2 AND `relationships`.`following_id` = 1 LIMIT 1[0m
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 3 LIMIT 1[0m  [["user_id", 2], ["tweet_id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`user_id` = 2 AND `tweet_favs`.`tweet_id` = 2 LIMIT 1[0m  [["user_id", 2], ["tweet_id", 2], ["LIMIT", 1]]
+  Rendering tweets/index.html.erb within layouts/application
+  [1m[36mTweetFav Load (0.6ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 3 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m
+  Rendered tweets/_tweet_fav.html.erb (5.1ms)
+  [1m[36mTweetFav Load (0.5ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 2 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m
+  Rendered tweets/_tweet_fav.html.erb (2.5ms)
+  Rendered tweets/_tweets.html.erb (14.5ms)
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 3 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m  [["tweet_id", 3], ["user_id", 2], ["LIMIT", 1]]
+  Rendered tweets/_tweet_fav.html.erb (2.3ms)
+  [1m[36mCACHE TweetFav Load (0.0ms)[0m  [1m[34mSELECT  `tweet_favs`.* FROM `tweet_favs` WHERE `tweet_favs`.`tweet_id` = 2 AND `tweet_favs`.`user_id` = 2 LIMIT 1[0m  [["tweet_id", 2], ["user_id", 2], ["LIMIT", 1]]
+  Rendered tweets/_tweet_fav.html.erb (2.2ms)
+  Rendered tweets/_tweets.html.erb (12.9ms)
+  Rendered tweets/index.html.erb within layouts/application (35.2ms)
+Completed 200 OK in 252ms (Views: 203.6ms | ActiveRecord: 27.6ms)
+
+
