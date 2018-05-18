@@ -13,12 +13,14 @@
     <%= render partial: 'tweets/tweet_fav', locals: {tweet: tweet, favs: favs, i: i} %>
   </div>
   <% if user_signed_in? && (tweet.user_id == current_user.id) %>
-  <%= link_to '[x]',
-    tweet_path(tweet),
-    method: :delete,
-    class: 'command',
-    data: { confirm: 'Sure?' } %>
-  <%= link_to '[Edit]', edit_tweet_path(tweet), class: 'command'%>
+  <div class="commands">
+    <%= link_to '[x]',
+      tweet_path(tweet),
+      method: :delete,
+      class: 'command',
+      data: { confirm: 'Sure?' } %>
+    <%= link_to '[Edit]', edit_tweet_path(tweet), class: 'command'%>
+  </div>
   <% end %>
   </div>
   </div>
