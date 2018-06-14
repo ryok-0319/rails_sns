@@ -30,7 +30,7 @@ env.PRODUCTION_BUILD_TOOLS_ABSOLUTE_PATH = '/home/finc/build_script/v2/master/'
 env.SKIP_TEST = 'true'
 
 env.DOCKERFILE_EXISTS = 'true'
-env.BUILD_DOCKER_IMAGE='true'
+// env.BUILD_DOCKER_IMAGE='true'
 
 // PATH need last /
 if (env.BUILD_TOOLS_ABSOLUTE_PATH.charAt(env.BUILD_TOOLS_ABSOLUTE_PATH.length()-1)!='/') {
