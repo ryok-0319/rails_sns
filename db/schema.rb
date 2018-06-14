@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180328183039) do
+ActiveRecord::Schema.define(version: 20180523060635) do
 
-  create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "admins", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -29,7 +29,18 @@ ActiveRecord::Schema.define(version: 20180328183039) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-  create_table "fav_to_replies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "clientoken_authorized_services", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC" do |t|
+    t.string "application_name", null: false
+    t.string "old_application_token", null: false
+    t.datetime "valid_until", null: false
+    t.string "application_token", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["application_name"], name: "index_clientoken_authorized_services_on_application_name", unique: true
+    t.index ["application_token"], name: "index_clientoken_authorized_services_on_application_token", unique: true
+  end
+
+  create_table "fav_to_replies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.bigint "user_id"
     t.bigint "reply_id"
     t.datetime "created_at", null: false
@@ -38,7 +49,7 @@ ActiveRecord::Schema.define(version: 20180328183039) do
     t.index ["user_id"], name: "index_fav_to_replies_on_user_id"
   end
 
-  create_table "fav_to_tweets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "fav_to_tweets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.bigint "user_id"
     t.bigint "tweet_id"
     t.datetime "created_at", null: false
@@ -47,7 +58,7 @@ ActiveRecord::Schema.define(version: 20180328183039) do
     t.index ["user_id"], name: "index_fav_to_tweets_on_user_id"
   end
 
-  create_table "follows", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "follows", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.integer "followee_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
@@ -55,7 +66,7 @@ ActiveRecord::Schema.define(version: 20180328183039) do
     t.index ["user_id"], name: "index_follows_on_user_id"
   end
 
-  create_table "notifications", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "notifications", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.bigint "user_id", null: false
     t.bigint "notified_by_id", null: false
     t.integer "notification_type", null: false
@@ -68,14 +79,14 @@ ActiveRecord::Schema.define(version: 20180328183039) do
     t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
-  create_table "relationships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "relationships", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.integer "follower_id"
     t.integer "following_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "replies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "replies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.text "content"
     t.integer "level"
     t.bigint "tweet_id"
@@ -87,7 +98,7 @@ ActiveRecord::Schema.define(version: 20180328183039) do
     t.index ["user_id"], name: "index_replies_on_user_id"
   end
 
-  create_table "reply_favs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "reply_favs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.bigint "user_id", null: false
     t.bigint "reply_id", null: false
     t.datetime "created_at", null: false
@@ -96,7 +107,7 @@ ActiveRecord::Schema.define(version: 20180328183039) do
     t.index ["user_id"], name: "index_reply_favs_on_user_id"
   end
 
-  create_table "tweet_favs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "tweet_favs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.bigint "user_id", null: false
     t.bigint "tweet_id", null: false
     t.datetime "created_at", null: false
@@ -105,7 +116,7 @@ ActiveRecord::Schema.define(version: 20180328183039) do
     t.index ["user_id"], name: "index_tweet_favs_on_user_id"
   end
 
-  create_table "tweets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "tweets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -115,7 +126,7 @@ ActiveRecord::Schema.define(version: 20180328183039) do
     t.index ["user_id"], name: "index_tweets_on_user_id"
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4" do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"

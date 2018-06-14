@@ -5,7 +5,7 @@ base: &base
   collation: utf8mb4_general_ci
   pool: 5
   username: <%= Settings.db.default.username %>
-  password: <%= Settings.db.default.password %>
+# password: <%= Settings.db.default.password %>
 
 default: &default
   <<: *base

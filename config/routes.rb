@@ -33,4 +33,6 @@ Rails.application.routes.draw do
   root 'tweets#index'
 
   resources :health_check, only: [:index]
+
+  mount Clientoken::Engine, at: "/clientoken"
 end

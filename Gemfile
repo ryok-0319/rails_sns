@@ -64,7 +64,7 @@ gem 'config'
 gem 'jquery-rails'
 gem 'unicorn'
 gem 'makara'
-
+gem 'clientoken', git: 'git@github.com:FiNCDeveloper/clientoken.git' 
 # Assets
 gem 'asset_sync'
 gem 'fog-aws'
