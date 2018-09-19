@@ -68,3 +68,5 @@ gem 'clientoken', git: 'git@github.com:FiNCDeveloper/clientoken.git'
 # Assets
 gem 'asset_sync'
 gem 'fog-aws'
+
+# test
